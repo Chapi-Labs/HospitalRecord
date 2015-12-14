@@ -1,7 +1,7 @@
 {
     "name": "Pablo/hospital-record",
     "license": "proprietary",
-    "type": "project",
+    "type": "proyecot para administrar emergencia en el hospital de Xela",
     "autoload": {
         "psr-4": {
             "": "src/"
@@ -9,6 +9,7 @@
     },
     "require": {
         "php": ">=5.3.9",
+        "ext-mbstring": "*",
         "symfony/symfony": "2.7.*",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
@@ -17,7 +18,11 @@
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/user-bundle": "^1.3",
+        "javiereguiluz/easyadmin-bundle": "^1.9",
+        "braincrafted/bootstrap-bundle": "^2.1",
+        "genemu/form-bundle": "2.2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

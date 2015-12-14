@@ -1,6 +1,7 @@
 HospitalRecord
 ==============
-
+[![Symfony](http://img.shields.io/badge/Symfony2-2.7.7-blue.svg)](http://syfmony.com)
+[![Database](http://img.shields.io/badge/Database-MySQL-blue.svg)](http://mysql.com)
 A Symfony project created on November 13, 2015, 10:29 am.
 
 Requirements:

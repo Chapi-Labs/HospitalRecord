@@ -11,8 +11,9 @@
         <link rel="stylesheet" href="{{ asset('css/responsiveslides.css') }} ">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }} ">
+        <link rel="stylesheet" href="{{ asset('css/minimalMenu.css')}}">
    
-        <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
+      
         <script>
             // You can also use "$(window).load(function() {"
                 $(function () {
@@ -29,6 +30,12 @@
     </head>
     <body>
         {% include 'menu/menu.html.twig' %}
+        {# sub menu para entrar a los sitios administrativos#}
+        {% if app.user and app.user.hasRole('ROLE_ADMIN') %}
+            {% include 'menu/minimal.html.twig' %}
+        {% endif %} 
+            
+       
          
         {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
         {% block body %}{% endblock %}
@@ -70,5 +77,13 @@
 
        
         {% block javascripts %}{% endblock %}
+        <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
+        <scritp src="{{ asset('js/minimalMenu.js')}}"></script>
+        <script>
+                 $('.navbar-toggler').on('click', function(event) {
+                    event.preventDefault();
+                    $(this).closest('.navbar-minimal').toggleClass('open');
+                });
+        </script>
     </body>
 </html>

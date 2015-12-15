@@ -1,0 +1,11 @@
+easy_admin:
+    site_name: 'Hospital'
+    entities:
+        Usuario:
+            class: UserBundle\Entity\Usuario
+            list:
+                fields: ['nombre','apellido','telefono','username','email','enabled','lastLogin','roles']
+            new:
+                fields: ['nombre','apellido','telefono','username','email','enabled','password','roles']
+            edit:
+                fields: ['nombre','apellido','telefono','username','email','enabled','lastLogin','password','expiresAt','locked','expired','roles']

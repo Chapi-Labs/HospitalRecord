@@ -22,7 +22,8 @@ class AppKernel extends Kernel
 
             new FOS\UserBundle\FOSUserBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
-            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle()
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle()            //Add select2
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

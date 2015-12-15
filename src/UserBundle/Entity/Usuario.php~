@@ -45,7 +45,8 @@ class Usuario extends BaseUser
     public function __construct()
     {
         parent::__construct();// construye los metodos y atributos de Base
-      
+        $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tutorias = new \Doctrine\Common\Collections\ArrayCollection();
     }
     /**
      * Get id.
@@ -77,7 +78,43 @@ class Usuario extends BaseUser
     {
         return $this->credentialsExpireAt;
     }
-   
+    public function __toString()
+    {
+        return $this->nombreCompleto;
+    }
+
+    /**
+     * Add tutorias.
+     *
+     * @param \TutoriaBundle\Entity\Tutoria $tutorias
+     *
+     * @return Usuario
+     */
+    public function addTutoria(\TutoriaBundle\Entity\Tutoria $tutorias)
+    {
+        $this->tutorias[] = $tutorias;
+        $tutorias->setUsuario($this);
+
+        return $this;
+    }
+    /**
+     * Remove tutorias.
+     *
+     * @param \TutoriaBundle\Entity\Tutoria $tutorias
+     */
+    public function removeTutoria(\TutoriaBundle\Entity\Tutoria $tutorias)
+    {
+        $this->tutorias->removeElement($tutorias);
+    }
+    /**
+     * Get tutorias.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTutorias()
+    {
+        return $this->tutorias;
+    }
 
     public function hasRole($role)
     {
@@ -86,82 +123,5 @@ class Usuario extends BaseUser
         }
 
         return false;
-    }
-
-    /**
-     * Set nombre
-     *
-     * @param string $nombre
-     *
-     * @return Usuario
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
-    /**
-     * Get nombre
-     *
-     * @return string
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * Set apellidos
-     *
-     * @param string $apellidos
-     *
-     * @return Usuario
-     */
-    public function setApellidos($apellidos)
-    {
-        $this->apellidos = $apellidos;
-
-        return $this;
-    }
-
-    /**
-     * Get apellidos
-     *
-     * @return string
-     */
-    public function getApellidos()
-    {
-        return $this->apellidos;
-    }
-
-    /**
-     * Set telefono
-     *
-     * @param integer $telefono
-     *
-     * @return Usuario
-     */
-    public function setTelefono($telefono)
-    {
-        $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    /**
-     * Get telefono
-     *
-     * @return integer
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-     public function __toString()
-    {
-        return $this->nombre.' '.$this->apellidos;
     }
 }

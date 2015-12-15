@@ -1,8 +1,6 @@
-{% extends 'default/base.html.twig' %}
+{% extends 'base.html.twig' %}
     
     {% block body %}
-        
-       {% include 'menu.html.twig' %}
         
         <br>
         <br>
@@ -42,7 +40,7 @@
                         
     <!-- Custom Section -->
 
-    <div style = "color: #ffffff">
+    <div style = "color: #000000">
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
                 <a href="{{ path('fos_user_security_logout') }}">
@@ -56,7 +54,7 @@
         {% for type, messages in app.session.flashBag.all %}
             {% for message in messages %}
                 <div class="{{ type }}">
-                    <p style="border-bottom: 1px solid #ffffff; color: #ffffff "> {{ message|trans({}, 'FOSUserBundle') }}</p>
+                    <p style="border-bottom: 1px solid #000000; color: #000000 "> {{ message|trans({}, 'FOSUserBundle') }}</p>
                 </div>
             {% endfor %}
         {% endfor %}
@@ -124,20 +122,7 @@
         </div>
         <!-- End Main Body Section -->
         
-        <footer>
-            <!-- Start Copyright Section -->
-            <div class="copyright text-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div>Universidad del Valle de Guatemal<a href="#" target="_blank"></a></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Copyright Section -->
-        </footer>
-        
+      
        
         
         

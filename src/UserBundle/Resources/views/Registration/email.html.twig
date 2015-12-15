@@ -28,7 +28,7 @@
 										
 										{% block body_text %}
 											{% autoescape 'html' %}
-												<p>Hola {{user.nombreCompleto}}!</p>
+												<p>Hola {{user.nombre}} {{user.apellidos}}!</p>
 												<p>Para completar la validación de tu cuenta - por favor visita el siguiente <a href="{{confirmationUrl}}">Link de Activación</a></p>
 												<p>Atentamente,</p>
 												<p>el Equipo.</p>

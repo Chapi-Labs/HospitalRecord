@@ -1,5 +1,86 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    
+    <div class="image-slider">
+                        <!-- Slideshow 1 -->
+                        <ul class="rslides rslides1" id="slider1" style="max-width: 2500px;">
+                          <li id="rslides1_s0" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; -webkit-transition: opacity 600ms ease-in-out; transition: opacity 600ms ease-in-out;">
+                            <img src="{{ asset('images/slider2.png')}}" alt="">
+                            <div class="slider-info">
+                                <p>Hospital Regional de Occidente</p>
+                                  <span>Departamento de Ortopedia y Traumatología</span>
+                                  <a href="#">Iniciar Sesión</a>
+                            </div>
+                          </li>
+                          <li id="rslides1_s1" class="" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; -webkit-transition: opacity 600ms ease-in-out; transition: opacity 600ms ease-in-out;"><img src="{{ asset('images/slider3.png')}}" alt="">
+                            <div class="slider-info">
+                                <p>Hospital Regional de Occidente</p>
+                                <span>Departamento de Ortopedia y Traumatología</span>
+                                 <a href="#">Iniciar Sesión</a>
+                            </div>
+                          </li>
+                          <li id="rslides1_s2" class="rslides1_on" style="float: left; position: relative; opacity: 1; z-index: 2; display: list-item; -webkit-transition: opacity 600ms ease-in-out; transition: opacity 600ms ease-in-out;"><img src="{{ asset('images/sliderDoct.jpg')}}" alt="">
+                            <div class="slider-info">
+                               
+                              
+                            </div>
+                          </li>
+                        </ul>
+                         <!-- Slideshow 2 -->
+                    </div>
+            <!---End-images-slider---->
+            <!--start-content-->
+            <div class="content">
+                <div class="content-top-grids">
+                    <div class="wrap">
+                        <div class="content-top-grid">
+                            <div class="content-top-grid-header">
+                                <div class="content-top-grid-pic">
+                                    <a href="#"><img src="{{ asset('images/timer.png')}}" title="image-name" /></a>
+                                </div>
+                                <div class="content-top-grid-title">
+                                    <h3>24x7</h3>
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
+                                <p>Sistema dedicado para el Departamento de Ortopedia y Traumatología del Hospital Regional de Occidente.</p>
+                              
+                                <div class="clear"> </div>
+                        </div>
+                        <div class="content-top-grid">
+                            <div class="content-top-grid-header">
+                                <div class="content-top-grid-pic">
+                                    <a href="#"><img src="{{ asset('images/tool.png')}}" title="image-name" /></a>
+                                </div>
+                                <div class="content-top-grid-title">
+                                    <h3>Sistema Administrativo</h3>
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
+                                <p>Este es un sistema administrativo para ingresar datos personales y clínicos de los pacientes</p>
+                              
+                                <div class="clear"> </div>
+                        </div>
+                        <div class="content-top-grid">
+                            <div class="content-top-grid-header">
+                                <div class="content-top-grid-pic">
+                                    <a href="#"><img src="{{ asset('images/inject.png')}}" title="image-name" /></a>
+                                </div>
+                                <div class="content-top-grid-title">
+                                    <h3>Emergencia</h3>
+                                </div>
+                                <div class="clear"> </div>
+                            </div>
+                                <p>Tiene el propósito de llevar un registro del área de emergencia</p>
+                               
+                                <div class="clear"> </div>
+                        </div>
+                        <div class="clear"> </div>
+                    </div>
+                </div>
+               
+                    </div>
+            <!----End-content---->
+        </div>
+
 {% endblock %}

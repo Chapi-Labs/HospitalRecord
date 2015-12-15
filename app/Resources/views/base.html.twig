@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Xela-Med{% endblock %}</title>
+        <title>{% block title %}Hospital Regional de Occidente {% endblock %}</title>
 
         {% block stylesheets %}{% endblock %}
     
@@ -10,6 +10,9 @@
         <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ asset('css/responsiveslides.css') }} ">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+          <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }} ">
+
+
         <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
         <script>
             // You can also use "$(window).load(function() {"
@@ -26,7 +29,46 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include 'menu/menu.html.twig' %}
+         
+         {% block body %}{% endblock %}
+
+        <!---start-footer---->
+        <div class="footer">
+            <div class="wrap">
+                <div class="footer-grids">
+                    <div class="footer-grid">
+                        <h3>Dirección</h3>
+                         <p>0 calle 36-40 zona 8, Quetzaltenango, Quetzaltenango.</p>
+                    </div>
+                    <div class="footer-grid">
+                        <h3></h3>
+                        
+                    </div>
+                    <div class="footer-grid">
+                        <h3></h3>
+                       
+                    </div>
+                    <div class="footer-grid">
+                       <h3>Teléfono</h3>
+                        <span>7763-5154</span>
+                        <br>
+                        <span>7763-5340</span>
+                    </div>
+                    <div class="clear"> </div>
+                </div>
+                <div class="clear"> </div>
+                <!---start-copy-right---->
+                <div class="copy-tight">
+                    <p style="font-size:50%;">Design by W3layouts</a></p>
+
+                </div>
+                <!---End-copy-right-->
+            </div>
+        </div>
+        <!---End-footer---->
+
+       
         {% block javascripts %}{% endblock %}
     </body>
 </html>

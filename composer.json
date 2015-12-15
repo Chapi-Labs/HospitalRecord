@@ -38,7 +38,8 @@
         "braincrafted/bootstrap-bundle": "^2.1",
         "genemu/form-bundle": "2.2.*",
        "jquery/jquery": "1.11.*",
-        "twbs/bootstrap": "3.*"
+        "twbs/bootstrap": "3.*",
+        "oyejorge/less.php": "~1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

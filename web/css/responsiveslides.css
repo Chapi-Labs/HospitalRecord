@@ -42,10 +42,11 @@
 	transition: background 0.2s ease;
 	border-radius: 0.3em;
 	width: 50%;
+	font-size: 95%;
 }
 .slider-info p{
 	font-family: 'Open Sans', sans-serif;
-	color: #007DAD;
+	color:#014763;
 	font-size:4.5em;
 	text-transform: uppercase;
 }
@@ -69,7 +70,7 @@
 	font-family: 'Open Sans', sans-serif;
 	background:#289cd8;
 	color: #FFF;
-	padding: 15px 40px;
+	padding: 15px 10px;
 	font-size: 0.875em;
 	text-transform: uppercase;
 	display: block;

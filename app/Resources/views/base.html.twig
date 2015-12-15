@@ -30,7 +30,8 @@
     <body>
         {% include 'menu/menu.html.twig' %}
          
-         {% block body %}{% endblock %}
+        {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
+        {% block body %}{% endblock %}
 
         <!---start-footer---->
         <footer class="footer">

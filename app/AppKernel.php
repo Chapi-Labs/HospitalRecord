@@ -19,11 +19,13 @@ class AppKernel extends Kernel
             
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle(),
+            new ContactBundle\ContactBundle(),
 
             new FOS\UserBundle\FOSUserBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
-            new Genemu\Bundle\FormBundle\GenemuFormBundle()            //Add select2
+            new Genemu\Bundle\FormBundle\GenemuFormBundle()            //Add select2,
+           
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

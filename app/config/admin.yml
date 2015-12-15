@@ -4,8 +4,8 @@ easy_admin:
         Usuario:
             class: UserBundle\Entity\Usuario
             list:
-                fields: ['nombre','apellido','telefono','username','email','enabled','lastLogin','roles']
+                fields: ['nombre','apellidos','telefono','username','email','enabled','lastLogin','roles']
             new:
-                fields: ['nombre','apellido','telefono','username','email','enabled','password','roles']
+                fields: ['nombre','apellidos','telefono','username','email','enabled','password','roles']
             edit:
-                fields: ['nombre','apellido','telefono','username','email','enabled','lastLogin','password','expiresAt','locked','expired','roles']
+                fields: ['nombre','apellidos','telefono','username','email','enabled','lastLogin','password','expiresAt','locked','expired','roles']

@@ -11,14 +11,20 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // agregar campos personalizados
-        $builder->add('nombreCompleto', null, ['label' => false,
+        $builder->add('nombre', null, ['label' => false,
             'attr' => [
             'placeholder' => 'Nombre/s y Apellidos',
             ],
 
             ])
+            ->add('apellidos',null,['label' => false,
+                'attr'  => [
+                 'placeholder' => 'Apellidos',
+                ]
+                ])
             ->add('username', null, ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('email', 'email', ['label' => false, 'translation_domain' => 'FOSUserBundle'])
+             ->add('telefono', 'integer', ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('plainPassword', 'repeated', [
                 'label' => false,
                 'type' => 'password',

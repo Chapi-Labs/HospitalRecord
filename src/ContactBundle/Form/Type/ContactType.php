@@ -8,8 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Contact type class.
- *
- * 
  */
 class ContactType extends AbstractType
 {
@@ -22,27 +20,26 @@ class ContactType extends AbstractType
 
             ->add('nombre', 'text',  ['label' => 'Nombre',
                 'attr' => ['placeholder' => 'nombre'],
-                
+
                 ])
             ->add('apellidos', 'text',  ['label' => 'Apellidos',
                 'attr' => ['placeholder' => 'Apellidos'],
-                
+
                 ])
             ->add('correo',     'email', ['label' => 'Correo',
                 'attr' => ['placeholder' => 'Correo'],
-                 
+
                 ])
             ->add('asunto', 'text', ['label' => 'Asunto',
                 'attr' => ['placeholder' => 'Asunto'],
 
-                
                 ])
             ->add('mensaje', 'textarea', ['label' => 'Mensaje',
                 'attr' => ['placeholder' => 'Mensaje'],
-                
+
                 ])
            ->add('submit', 'submit', ['label' => 'Enviar',
-            'attr' => ['class' => 'btn btn-primary btn-block']
+            'attr' => ['class' => 'btn btn-primary btn-block'],
             ])
            ;
     }
@@ -52,7 +49,6 @@ class ContactType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        
     }
 
     public function getName()

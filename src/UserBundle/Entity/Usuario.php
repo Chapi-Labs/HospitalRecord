@@ -27,7 +27,7 @@ class Usuario extends BaseUser
      * @ORM\Column(name="nombre", type="string", length=100)
      */
     private $nombre;
-   
+
     /**
      * @var string
      * @ORM\Column(name="apellidos", type="string", length=100)
@@ -45,7 +45,6 @@ class Usuario extends BaseUser
     public function __construct()
     {
         parent::__construct();// construye los metodos y atributos de Base
-      
     }
     /**
      * Get id.
@@ -56,8 +55,7 @@ class Usuario extends BaseUser
     {
         return $this->id;
     }
-    
-    
+
     /**
      * Get expiresAt.
      *
@@ -77,7 +75,6 @@ class Usuario extends BaseUser
     {
         return $this->credentialsExpireAt;
     }
-   
 
     public function hasRole($role)
     {
@@ -89,7 +86,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Set nombre
+     * Set nombre.
      *
      * @param string $nombre
      *
@@ -103,7 +100,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get nombre
+     * Get nombre.
      *
      * @return string
      */
@@ -113,7 +110,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Set apellidos
+     * Set apellidos.
      *
      * @param string $apellidos
      *
@@ -127,7 +124,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get apellidos
+     * Get apellidos.
      *
      * @return string
      */
@@ -137,9 +134,9 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Set telefono
+     * Set telefono.
      *
-     * @param integer $telefono
+     * @param int $telefono
      *
      * @return Usuario
      */
@@ -151,16 +148,16 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get telefono
+     * Get telefono.
      *
-     * @return integer
+     * @return int
      */
     public function getTelefono()
     {
         return $this->telefono;
     }
 
-     public function __toString()
+    public function __toString()
     {
         return $this->nombre.' '.$this->apellidos;
     }

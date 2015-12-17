@@ -5,7 +5,6 @@ namespace ContactBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use ContactBundle\Entity\Contact;
 use FOS\UserBundle\Model\UserInterface;
@@ -16,7 +15,6 @@ use ContactBundle\Form\Type\ContactType;
  */
 class ContactController extends Controller
 {
-  
     /**
      * @Route("/send",name ="send_email")
      * @Template("ContactBundle:Contact:contact.html.twig")
@@ -43,7 +41,7 @@ class ContactController extends Controller
                 $this->renderView(
                     // app/Resources/views/Emails/registration.html.twig
                     'ContactBundle:Contact:contactEmail.html.twig',
-                    ['contenido' => $varMensaje, 'nombre' => $varNombre, 'apellidos' => $varApellidos,'correo' => $varCorreo]
+                    ['contenido' => $varMensaje, 'nombre' => $varNombre, 'apellidos' => $varApellidos, 'correo' => $varCorreo]
                 ),
                 'text/html'
             )
@@ -58,11 +56,9 @@ class ContactController extends Controller
                 )
             );
         }
-
-        
     }
 
-     /**
+    /**
      * Displays a form to create a new Contact entity.
      *
      * @Route("/",name="contact")
@@ -71,16 +67,15 @@ class ContactController extends Controller
     public function showContactAction()
     {
         $usuario = $this->get('security.token_storage')->getToken()->getUser();
-      
+
         if (!is_object($usuario) || !$usuario instanceof UserInterface) {
-           $nombreUsuario = '';
-           $apellidoUsuario= '';
-           $correoUsuario = '';
-        }
-        else{
-        	$nombreUsuario = $usuario->getNombre();
-	        $apellidoUsuario = $usuario->getApellidos();
-	        $correoUsuario = $usuario->getEmail();
+            $nombreUsuario = '';
+            $apellidoUsuario = '';
+            $correoUsuario = '';
+        } else {
+            $nombreUsuario = $usuario->getNombre();
+            $apellidoUsuario = $usuario->getApellidos();
+            $correoUsuario = $usuario->getEmail();
         }
 
         $form = $this->createCreateFormAction(new Contact());
@@ -93,17 +88,16 @@ class ContactController extends Controller
         ];
     }
 
- 	/**
+    /**
      * @return [type] [description]
      */
     public function createCreateFormAction(Contact $entity)
     {
-        $form = $this->createForm(new ContactType(),$entity, [
+        $form = $this->createForm(new ContactType(), $entity, [
             'action' => $this->generateUrl('send_email'),
 
         ]);
 
         return $form;
     }
-
 }

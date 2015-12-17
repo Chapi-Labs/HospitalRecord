@@ -22,7 +22,7 @@ class IngresoPacienteType extends AbstractType
             ->add('diagnistico2')
             ->add('diagnistico3')
             ->add('fechaSalida')
-           
+
         ;
     }
 

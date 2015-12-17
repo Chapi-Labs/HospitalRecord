@@ -17,10 +17,10 @@ class RegistrationFormType extends AbstractType
             ],
 
             ])
-            ->add('apellidos',null,['label' => false,
-                'attr'  => [
+            ->add('apellidos', null, ['label' => false,
+                'attr' => [
                  'placeholder' => 'Apellidos',
-                ]
+                ],
                 ])
             ->add('username', null, ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('email', 'email', ['label' => false, 'translation_domain' => 'FOSUserBundle'])
@@ -33,9 +33,8 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => false],
                 'invalid_message' => 'fos_user.password.mismatch',
             ])
-          
-            ;
 
+            ;
     }
 
     /**

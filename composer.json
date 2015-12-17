@@ -39,7 +39,9 @@
         "genemu/form-bundle": "2.2.*",
        "jquery/jquery": "1.11.*",
         "twbs/bootstrap": "3.*",
-        "oyejorge/less.php": "~1.5"
+        "oyejorge/less.php": "~1.5",
+        "stephanecollot/datetimepicker-bundle": "^1.0",
+        "stof/doctrine-extensions-bundle": "^1.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

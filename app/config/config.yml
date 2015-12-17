@@ -91,3 +91,15 @@ genemu_form:
 braincrafted_bootstrap:
     less_filter: lessphp
     jquery_path: %kernel.root_dir%/../web/js/jquery-2.1.1.min.js
+
+sc_datetimepicker:
+    picker: ~
+
+stof_doctrine_extensions:
+    default_locale: es
+    translation_fallback: true
+    orm:
+        default:
+            sluggable: true
+            loggable: true
+            timestampable: true

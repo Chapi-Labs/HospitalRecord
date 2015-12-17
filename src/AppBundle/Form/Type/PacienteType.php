@@ -15,12 +15,23 @@ class PacienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dpi')
-            ->add('nombre')
-            ->add('apellidos')
-            ->add('telefono')
-            ->add('direccion')
-            ->add('edad')
+            ->add('dpi',null,['label'=>'Documento Personal de Identificación','required' => 'true'])
+            ->add('nombre',null, ['label' => 'Nombre','required' => 'true'])
+            ->add('apellidos',null, ['label' => 'Apellidos','required' => 'true'])
+            ->add('telefono','integer', ['label' => 'Teléfono','required' => 'true'])
+            ->add('direccion',null,['label' => 'Dirección','required' => 'true'])
+            ->add('edad',null, ['label' => 'Edad','required' => 'true'])
+           ->add('genero', 'choice', [
+            'choices'  => [
+                'Masculino' => 'Masculino',
+                'Femenino' => 'Femenino',
+               
+            ],
+            // *this line is important*
+            'choices_as_values' => true,
+            'label' => 'Género',
+            'required' => 'true'
+        ]);
         ;
     }
 

@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+	<div class="row">
+    	<div class="col-md-1"></div>
+    	<div class="col-md-10">
+    	<h1>Ingresar datos personales del paciente</h1>
+		<p>Todos los campos son obligatorios.</p>
+    	{{ form(form) }}
+
+	  
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+{% endblock %}

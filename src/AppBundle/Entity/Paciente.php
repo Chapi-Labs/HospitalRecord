@@ -28,11 +28,11 @@ class Paciente
      *
      * @ORM\Column(name="dpi", type="integer")
      * 
-     * @Assert\Range(
+     * @Assert\Length(
      *      min = 13,
      *      max = 13,
-     *      minMessage = "El DPI tiene que ser de 13 dígitos",
-     *      maxMessage = "El DPI tiene que ser de 13 dígitos"
+     *      minMessage = "El DPI tiene que ser de {{ limit }} dígitos",
+     *      maxMessage = "El DPI tiene que ser de {{ limit }} dígitos"
      * )
      */
     private $dpi;
@@ -55,7 +55,7 @@ class Paciente
      * @var int
      *
      * @ORM\Column(name="telefono", type="integer")
-     * @Assert\Range(
+     * @Assert\Length(
      *      min = 8,
      *      max = 8,
      *      minMessage = "El teléfono tiene que ser de 8 dígitos",
@@ -75,11 +75,11 @@ class Paciente
      * @var int
      *
      * @ORM\Column(name="edad", type="integer")
-     * @Assert\Range(
+     * @Assert\Length(
      *      min = 1,
      *      max = 2,
-     *      minMessage = "La  edad tiene que ser de {{limit}} dígitos",
-     *      maxMessage = "La edad tiene que ser de {{limit}}dígitos"
+     *      minMessage = "La  edad tiene que ser de {{ limit }} dígitos",
+     *      maxMessage = "La edad tiene que ser de {{ limit }} dígitos"
      * )
      */
     private $edad;

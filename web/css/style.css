@@ -987,4 +987,17 @@ body{
 	.top-nav li a {
 		padding: 1em 2.4em;
 	}
+	.stripped {
+    background-color:rgba(0, 109, 204, 1);
+    color: white;
+	}
+
+	thead th {
+	    background-color: #006DCC;
+	    color: white;
+	}
+	.table tbody tr:hover td, .table tbody tr:hover th {
+	    background-color: #eeeeea;
+	}
+
 }

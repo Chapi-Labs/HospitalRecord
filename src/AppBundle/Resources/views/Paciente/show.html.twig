@@ -1,72 +1,78 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Paciente</h1>
+    
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+        <h1>Paciente</h1>
+        <table class="table table-striped table-hover">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ entity.id }}</td>
+                </tr>
+                <tr>
+                    <th>DPI</th>
+                    <td>{{ entity.dpi }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td>{{ entity.nombre }}</td>
+                </tr>
+                <tr>
+                    <th>Apellidos</th>
+                    <td>{{ entity.apellidos }}</td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td>{{ entity.telefono }}</td>
+                </tr>
+                <tr>
+                    <th>Dirección</th>
+                    <td>{{ entity.direccion }}</td>
+                </tr>
+                <tr>
+                    <th>Edad</th>
+                    <td>{{ entity.edad }}</td>
+                </tr>
+                <tr>
+                    <th>Género</th>
+                    <td>{{ entity.genero }}</td>
+                </tr>
+                <tr>
+                    <th>Slug</th>
+                    <td>{{ entity.slug }}</td>
+                </tr>
+                <tr>
+                    <th>Creado</th>
+                    <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Actualizado</th>
+                    <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Modificado</th>
+                    <td>{{ entity.contentChanged|date('d-m-Y H:i:s') }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Dpi</th>
-                <td>{{ entity.dpi }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ entity.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Apellidos</th>
-                <td>{{ entity.apellidos }}</td>
-            </tr>
-            <tr>
-                <th>Telefono</th>
-                <td>{{ entity.telefono }}</td>
-            </tr>
-            <tr>
-                <th>Direccion</th>
-                <td>{{ entity.direccion }}</td>
-            </tr>
-            <tr>
-                <th>Edad</th>
-                <td>{{ entity.edad }}</td>
-            </tr>
-            <tr>
-                <th>Genero</th>
-                <td>{{ entity.genero }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ entity.slug }}</td>
-            </tr>
-            <tr>
-                <th>Created</th>
-                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Updated</th>
-                <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Contentchanged</th>
-                <td>{{ entity.contentChanged|date('Y-m-d H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('paciente') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('paciente_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+            <ul class="record_actions">
+        <li>
+            <a class="btn btn-default" href="{{ path('paciente') }}">
+               Regresar
+            </a>
+        </li>
+        <li>
+            <a class = "btn btn-warning" href="{{ path('paciente_edit', { 'slug': entity.slug }) }}">
+                Editar
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+    </div>
+        <div class="col-md-1"></div>
+    </div>
 {% endblock %}

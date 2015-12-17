@@ -17,7 +17,6 @@ use AppBundle\Form\Type\IngresoPacienteType;
  */
 class IngresoPacienteController extends Controller
 {
-
     /**
      * Lists all IngresoPaciente entities.
      *
@@ -58,7 +57,7 @@ class IngresoPacienteController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -91,11 +90,11 @@ class IngresoPacienteController extends Controller
     public function newAction()
     {
         $entity = new IngresoPaciente();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -119,7 +118,7 @@ class IngresoPacienteController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -145,19 +144,19 @@ class IngresoPacienteController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a IngresoPaciente entity.
-    *
-    * @param IngresoPaciente $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a IngresoPaciente entity.
+     *
+     * @param IngresoPaciente $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(IngresoPaciente $entity)
     {
         $form = $this->createForm(new IngresoPacienteType(), $entity, array(
@@ -197,8 +196,8 @@ class IngresoPacienteController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

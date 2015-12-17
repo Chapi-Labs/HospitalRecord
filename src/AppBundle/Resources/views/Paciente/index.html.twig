@@ -9,7 +9,7 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Dpi</th>
+                <th>DPI</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
                 <th>Teléfono</th>
@@ -29,12 +29,13 @@
                 <td>{{ entity.direccion }}</td>
                 <td>{{ entity.edad }}</td>
                 <td>{{ entity.genero }}</td>
+                <td>
                 <ul>
                     <li>
-                        <a href="{{ path('paciente_show', { 'id': entity.id }) }}">show</a>
+                        <a class ="btn btn-xs btn-warning"href="{{ path('paciente_show', { 'slug': entity.slug }) }}">Mostrar</a>
                     </li>
                     <li>
-                        <a href="{{ path('paciente_edit', { 'id': entity.id }) }}">edit</a>
+                        <a class="btn btn-xs btn-danger" href="{{ path('paciente_edit', { 'slug': entity.slug }) }}">Editar</a>
                     </li>
                 </ul>
                 </td>
@@ -45,7 +46,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('paciente_new') }}">
+            <a class = "btn btn-primary" href="{{ path('paciente_new') }}">
                 Ingresar Nuevo Paciente
             </a>
         </li>

@@ -1,16 +1,23 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Paciente edit</h1>
+	 <div class="row">
+	<div class="col-md-1"></div>
+	    <div class="col-md-10">
+		    <h1>Editar Paciente</h1>
 
-    {{ form(edit_form) }}
+		    {{ form(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('paciente') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+		    <ul class="record_actions">
+			    <li>
+			        <a class ="btn btn-default" href="{{ path('paciente') }}">
+			            Regresar
+			        </a>
+			    </li>
+		   		 <li>{{ form(delete_form) }}</li>
+			</ul>
+		</div>
+ 	<div class="col-md-1"></div>
+	</div>
+
 {% endblock %}

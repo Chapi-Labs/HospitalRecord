@@ -17,7 +17,6 @@ use AppBundle\Form\Type\PacienteType;
  */
 class PacienteController extends Controller
 {
-
     /**
      * Lists all Paciente entities.
      *
@@ -53,12 +52,18 @@ class PacienteController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('paciente_show', array('id' => $entity->getId())));
+            return $this->redirect(
+                        $this->generateUrl(
+                            'paciente_show', [
+                            'slug' => $entity->getSlug(),
+                            ]
+                        )
+                    );
         }
 
         return [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ];
     }
 
@@ -77,7 +82,7 @@ class PacienteController extends Controller
         ]);
 
         $form->add('submit', 'submit', ['label' => 'Guardar',
-            'attr' => ['class' => 'btn btn-success']
+            'attr' => ['class' => 'btn btn-success'],
             ]);
 
         return $form;
@@ -93,35 +98,35 @@ class PacienteController extends Controller
     public function newAction()
     {
         $entity = new Paciente();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return [
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ];
     }
 
     /**
      * Finds and displays a Paciente entity.
      *
-     * @Route("/{id}", name="paciente_show")
+     * @Route("/{slug}", name="paciente_show")
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Paciente')->find($id);
+        $entity = $em->getRepository('AppBundle:Paciente')->findOneBy(['slug' => $slug]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Paciente entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($slug);
 
         return [
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ];
     }
@@ -129,46 +134,46 @@ class PacienteController extends Controller
     /**
      * Displays a form to edit an existing Paciente entity.
      *
-     * @Route("/{id}/edit", name="paciente_edit")
+     * @Route("/{slug}/edit", name="paciente_edit")
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Paciente')->find($id);
+        $entity = $em->getRepository('AppBundle:Paciente')->findOneBy(['slug' => $slug]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Paciente entity.');
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($slug);
 
         return [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ];
     }
 
     /**
-    * Creates a form to edit a Paciente entity.
-    *
-    * @param Paciente $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Paciente entity.
+     *
+     * @param Paciente $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Paciente $entity)
     {
         $form = $this->createForm(new PacienteType(), $entity, [
-            'action' => $this->generateUrl('paciente_update', ['id' => $entity->getId() ]),
+            'action' => $this->generateUrl('paciente_update', ['slug' => $entity->getSlug()]),
             'method' => 'PUT',
         ]);
 
         $form->add('submit', 'submit', ['label' => 'Actualizar',
-            'attr' => ['class'=>'btn btn-success']
+            'attr' => ['class' => 'btn btn-success'],
             ]);
 
         return $form;
@@ -176,50 +181,50 @@ class PacienteController extends Controller
     /**
      * Edits an existing Paciente entity.
      *
-     * @Route("/{id}", name="paciente_update")
+     * @Route("/{slug}", name="paciente_update")
      * @Method("PUT")
      * @Template("AppBundle:Paciente:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Paciente')->find($id);
+        $entity = $em->getRepository('AppBundle:Paciente')->findOneBy(['slug' => $slug]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Paciente entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($slug);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('paciente_edit', ['id' => $id]));
+            return $this->redirect($this->generateUrl('paciente_edit', ['slug' => $slug]));
         }
 
         return [
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ];
     }
     /**
      * Deletes a Paciente entity.
      *
-     * @Route("/{id}", name="paciente_delete")
+     * @Route("/{slug}", name="paciente_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $slug)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($slug);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Paciente')->find($id);
+            $entity = $em->getRepository('AppBundle:Paciente')->findOneBy(['slug' => $slug]);
 
             if (!$entity) {
                 throw $this->createNotFoundException('No se puedo encontrar la entidad paciente.');
@@ -239,12 +244,14 @@ class PacienteController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($slug)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('paciente_delete', [ 'id' => $id ]))
+            ->setAction($this->generateUrl('paciente_delete', ['slug' => $slug]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', ['label' => 'Eliminar'])
+            ->add('submit', 'submit', ['label' => 'Eliminar',
+                 'attr' => ['class' => 'btn btn-danger'],
+                ])
             ->getForm()
         ;
     }

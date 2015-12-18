@@ -13,6 +13,10 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }} ">
         <link rel="stylesheet" href="{{ asset('css/minimalMenu.css')}}">
         <link rel="stylesheet" href="{{ asset('css/tables.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/select2.min.css')}}">
+      
+       
+
    
       
         <script>
@@ -25,7 +29,8 @@
                     speed: 600
                   });
             });
-          </script>
+        </script>
+        
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -79,12 +84,16 @@
        
         
         <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
-        <scritp src="{{ asset('js/minimalMenu.js')}}"></script>
+        <script src="{{ asset('js/minimalMenu.js')}}"></script>
+        <script src="{{ asset('js/select2.min.js')}}"></script> 
         <script>
                  $('.navbar-toggler').on('click', function(event) {
                     event.preventDefault();
                     $(this).closest('.navbar-minimal').toggleClass('open');
                 });
+        </script>
+        <script type="text/javascript">
+        $('select').select2();
         </script>
         {% block javascripts %}{% endblock %}
     </body>

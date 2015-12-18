@@ -38,6 +38,15 @@ class IngresoPacienteType extends AbstractType
                 
                 ],
             ]) 
+              ->add('paciente', 'entity', [
+                'empty_value' => 'Seleccionar Paciente',
+                'class' => 'AppBundle:Paciente',
+                'property' => 'nombre',
+                'label' => 'Buscador de Pacientes',
+                'attr' => [
+                    'class' => 'select2',
+                ],
+            ])
             ->add('motivoIngreso')
             ->add('procedimientoRealizado')
             ->add('diagnostico1','textarea',['label' => 'Diagnóstico 1'])

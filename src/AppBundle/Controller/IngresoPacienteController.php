@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\IngresoPaciente;
 use AppBundle\Form\Type\IngresoPacienteType;
+use FOS\UserBundle\Model\UserInterface;
+use UserBundle\Entity\Usuario;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * IngresoPaciente controller.
@@ -43,7 +46,13 @@ class IngresoPacienteController extends Controller
      */
     public function createAction(Request $request)
     {
+        $usuario = $this->get('security.token_storage')->getToken()->getUser();
+        if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+            throw new AccessDeniedException('El usuario no tiene acceso.');
+        }
+
         $entity = new IngresoPaciente();
+        $entity->setUsuario($usuario);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -75,7 +84,7 @@ class IngresoPacienteController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit', ['label' => 'Guardar','attr' => ['class' => 'btn btn-primary']]);
+        $form->add('submit', 'submit', ['label' => 'Guardar', 'attr' => ['class' => 'btn btn-primary']]);
 
         return $form;
     }
@@ -134,7 +143,7 @@ class IngresoPacienteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug'=>$id]);
+        $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug' => $slug]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find IngresoPaciente entity.');
@@ -164,7 +173,9 @@ class IngresoPacienteController extends Controller
             'method' => 'PUT',
         ]);
 
-        $form->add('submit', 'submit', ['label' => 'Actualizr']);
+        $form->add('submit', 'submit', ['label' => 'Actualizar',
+            'attr' => ['class' => 'btn btn-success'],
+            ]);
 
         return $form;
     }
@@ -179,7 +190,7 @@ class IngresoPacienteController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug'=>$slug]);
+        $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug' => $slug]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find IngresoPaciente entity.');
@@ -192,7 +203,7 @@ class IngresoPacienteController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ingresopaciente_edit', ['slug' => $id]));
+            return $this->redirect($this->generateUrl('ingresopaciente_edit', ['slug' => $slug]));
         }
 
         return array(
@@ -214,7 +225,7 @@ class IngresoPacienteController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug'=>$slug]);
+            $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug' => $slug]);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find IngresoPaciente entity.');
@@ -239,7 +250,9 @@ class IngresoPacienteController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('ingresopaciente_delete', ['slug' => $slug]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', ['label' => 'Eliminar'])
+            ->add('submit', 'submit', ['label' => 'Eliminar',
+                'attr' => ['class' => 'btn btn-danger'],
+                ])
             ->getForm()
         ;
     }

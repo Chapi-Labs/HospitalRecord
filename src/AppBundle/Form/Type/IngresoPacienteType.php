@@ -15,8 +15,7 @@ class IngresoPacienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fechaIngreso', 'collot_datetime', [ 'pickerOptions' =>
-            ['format' => 'mm/dd/yyyy',
+            ->add('fechaIngreso', 'collot_datetime', ['pickerOptions' => ['format' => 'dd/mm/yyyy',
                 'weekStart' => 0,
                 //'startDate' => date('m/d/Y'), //example
                 //'endDate' => '01/01/3000', //example
@@ -35,9 +34,9 @@ class IngresoPacienteType extends AbstractType
                 'pickerPosition' => 'bottom-right',
                 'viewSelect' => 'month',
                 'showMeridian' => false,
-                
+
                 ],
-            ]) 
+            ])
               ->add('paciente', 'entity', [
                 'empty_value' => 'Seleccionar Paciente',
                 'class' => 'AppBundle:Paciente',
@@ -49,11 +48,10 @@ class IngresoPacienteType extends AbstractType
             ])
             ->add('motivoIngreso')
             ->add('procedimientoRealizado')
-            ->add('diagnostico1','textarea',['label' => 'Diagnóstico 1'])
-            ->add('diagnostico2','textarea',['label' => 'Diagnóstico 2'])
-            ->add('diagnostico3','textarea',['label'=>'Diagnóstico 3'])
-            ->add('fechaSalida', 'collot_datetime', ['pickerOptions' =>
-              ['format' => 'mm/dd/yyyy',
+            ->add('diagnostico1', 'textarea', ['label' => 'Diagnóstico 1'])
+            ->add('diagnostico2', 'textarea', ['label' => 'Diagnóstico 2'])
+            ->add('diagnostico3', 'textarea', ['label' => 'Diagnóstico 3'])
+            ->add('fechaSalida', 'collot_datetime', ['pickerOptions' => ['format' => 'mm/dd/yyyy',
                 'weekStart' => 0,
                 //'startDate' => date('m/d/Y'), //example
                 //'endDate' => '01/01/3000', //example
@@ -72,9 +70,9 @@ class IngresoPacienteType extends AbstractType
                 'pickerPosition' => 'bottom-right',
                 'viewSelect' => 'month',
                 'showMeridian' => false,
-                
+
                 ],
-            ]) 
+            ])
 
         ;
     }

@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Paciente;
 use AppBundle\Form\Type\PacienteType;
+use FOS\UserBundle\Model\UserInterface;
+use UserBundle\Entity\Usuario;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Paciente controller.
@@ -43,7 +46,13 @@ class PacienteController extends Controller
      */
     public function createAction(Request $request)
     {
+        $usuario = $this->get('security.token_storage')->getToken()->getUser();
+        if (!is_object($usuario) || !$usuario instanceof UserInterface) {
+            throw new AccessDeniedException('El usuario no tiene acceso.');
+        }
+
         $entity = new Paciente();
+        $entity->setUsuario($usuario);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -54,7 +63,6 @@ class PacienteController extends Controller
 
             // verificar el segundo botón de submit
            if ($form->get('submit_ingreso')->isClicked()) {
-
                return $this->redirect(
                         $this->generateUrl(
                             'paciente_show', [
@@ -62,7 +70,6 @@ class PacienteController extends Controller
                             ]
                         )
                     );
-              
            }
 
             return $this->redirect(
@@ -95,10 +102,13 @@ class PacienteController extends Controller
         ]);
 
         $form->add('submit', 'submit', ['label' => 'Guardar',
-            'attr' => ['class' => 'btn btn-success'],
+                'attr' => ['class' => 'btn btn-success'],
             ])
-            ->add('submit_ingreso','submit',['label' => 'Guardar y llenar formulario de ingreso'])
+            ->add('submit_ingreso', 'submit', ['label' => 'Guardar y llenar formulario de ingreso',
+                'attr' => ['class' => 'btn btn-primary'],
+            ])
             ;
+
         return $form;
     }
 

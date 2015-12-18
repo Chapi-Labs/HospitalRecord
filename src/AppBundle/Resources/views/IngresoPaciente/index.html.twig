@@ -6,46 +6,34 @@
     <div class="col-md-10">
     <h1>IngresoPaciente list</h1>
 
-    <table class="records_list">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Fechaingreso</th>
-                <th>Motivoingreso</th>
-                <th>Procedimientorealizado</th>
-                <th>Diagnostico1</th>
-                <th>Diagnostico2</th>
-                <th>Diagnostico3</th>
-                <th>Fechasalida</th>
-                <th>Slug</th>
-                <th>Created</th>
-                <th>Updated</th>
-                <th>Contentchanged</th>
+                <th>Fecha de Ingreso</th>
+                <th>Paciente</th>
+                <th>Motivo Ingreso</th>
+                <th>Procedimiento Realizado</th>
+                <th>Fecha de Salida</th>
+                <th>Ingresado por</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('ingresopaciente_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{% if entity.fechaIngreso %}{{ entity.fechaIngreso|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaIngreso %}{{ entity.fechaIngreso|date('d-m-Y') }}{% endif %}</td>
+                <td><a href="{{ path('paciente_show', { 'slug': entity.paciente.slug }) }}">{{entity.paciente}}</a></td>
                 <td>{{ entity.motivoIngreso }}</td>
                 <td>{{ entity.procedimientoRealizado }}</td>
-                <td>{{ entity.diagnostico1 }}</td>
-                <td>{{ entity.diagnostico2 }}</td>
-                <td>{{ entity.diagnostico3 }}</td>
-                <td>{% if entity.fechaSalida %}{{ entity.fechaSalida|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.slug }}</td>
-                <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.contentChanged %}{{ entity.contentChanged|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.fechaSalida %}{{ entity.fechaSalida|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.usuario }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('ingresopaciente_show', { 'id': entity.id }) }}">show</a>
+                        <a class ="btn btn-xs btn-warning" href="{{ path('ingresopaciente_show', { 'slug': entity.slug }) }}">Mostrar</a>
                     </li>
                     <li>
-                        <a href="{{ path('ingresopaciente_edit', { 'id': entity.id }) }}">edit</a>
+                        <a class = "btn btn-xs btn-danger" href="{{ path('ingresopaciente_edit', { 'slug': entity.slug }) }}">Editar</a>
                     </li>
                 </ul>
                 </td>

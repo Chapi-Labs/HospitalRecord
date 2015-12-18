@@ -9,7 +9,6 @@
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"  media="all" />
         <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ asset('css/responsiveslides.css') }} ">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }} ">
         <link rel="stylesheet" href="{{ asset('css/minimalMenu.css')}}">
         <link rel="stylesheet" href="{{ asset('css/tables.css')}}">
@@ -86,6 +85,8 @@
         <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
         <script src="{{ asset('js/minimalMenu.js')}}"></script>
         <script src="{{ asset('js/select2.min.js')}}"></script> 
+        <script src="{{ asset('js/jquery-1.11.3.min.js')}}"></script>
+        <script src="{{ asset('js/bootstrap.min.js')}}"></script> 
         <script>
                  $('.navbar-toggler').on('click', function(event) {
                     event.preventDefault();
@@ -94,6 +95,11 @@
         </script>
         <script type="text/javascript">
         $('select').select2();
+        </script>
+       <script>
+            $(document).ready(function () {
+                $('.dropdown-toggle').dropdown();
+            });
         </script>
         {% block javascripts %}{% endblock %}
     </body>

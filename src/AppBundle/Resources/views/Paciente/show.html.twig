@@ -40,26 +40,22 @@
                     <th>Género</th>
                     <td>{{ entity.genero }}</td>
                 </tr>
-                <tr>
-                    <th>Slug</th>
-                    <td>{{ entity.slug }}</td>
+                 <tr>
+                    <th>Ingresado por</th>
+                    <td>{{ entity.usuario}}</td>
                 </tr>
                 <tr>
                     <th>Creado</th>
-                    <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ entity.created|date('d-m-Y H:i:s') }}</td>
                 </tr>
                 <tr>
                     <th>Actualizado</th>
-                    <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
-                </tr>
-                <tr>
-                    <th>Modificado</th>
-                    <td>{{ entity.contentChanged|date('d-m-Y H:i:s') }}</td>
+                    <td>{{ entity.updated|date('d-m-Y H:i:s') }}</td>
                 </tr>
             </tbody>
         </table>
 
-            <ul class="record_actions">
+       <ul class="record_actions">
         <li>
             <a class="btn btn-default" href="{{ path('paciente') }}">
                Regresar

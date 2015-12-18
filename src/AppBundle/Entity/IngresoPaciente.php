@@ -46,28 +46,28 @@ class IngresoPaciente
     /**
      * @var string
      *
-     * @ORM\Column(name="diagnostico1", type="string", length=255)
+     * @ORM\Column(name="diagnostico1", type="string", length=255,nullable=true)
      */
     private $diagnostico1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="diagnostico2", type="string", length=255)
+     * @ORM\Column(name="diagnostico2", type="string", length=255,nullable=true)
      */
     private $diagnostico2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="diagnostico3", type="string", length=255)
+     * @ORM\Column(name="diagnostico3", type="string", length=255,nullable=true)
      */
     private $diagnostico3;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaSalida", type="date")
+     * @ORM\Column(name="fechaSalida", type="date",nullable=true)
      */
     private $fechaSalida;
 

@@ -52,6 +52,19 @@ class PacienteController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            // verificar el segundo botón de submit
+           if ($form->get('submit_ingreso')->isClicked()) {
+
+               return $this->redirect(
+                        $this->generateUrl(
+                            'paciente_show', [
+                            'slug' => $entity->getSlug(),
+                            ]
+                        )
+                    );
+              
+           }
+
             return $this->redirect(
                         $this->generateUrl(
                             'paciente_show', [
@@ -83,8 +96,9 @@ class PacienteController extends Controller
 
         $form->add('submit', 'submit', ['label' => 'Guardar',
             'attr' => ['class' => 'btn btn-success'],
-            ]);
-
+            ])
+            ->add('submit_ingreso','submit',['label' => 'Guardar y llenar formulario de ingreso'])
+            ;
         return $form;
     }
 

@@ -30,9 +30,9 @@ class IngresoPacienteController extends Controller
 
         $entities = $em->getRepository('AppBundle:IngresoPaciente')->findAll();
 
-        return array(
+        return [
             'entities' => $entities,
-        );
+        ];
     }
     /**
      * Creates a new IngresoPaciente entity.
@@ -52,13 +52,13 @@ class IngresoPacienteController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ingresopaciente_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('ingresopaciente_show', ['slug' => $entity->getSlug()]));
         }
 
-        return array(
+        return [
             'entity' => $entity,
             'form' => $form->createView(),
-        );
+        ];
     }
 
     /**
@@ -70,12 +70,12 @@ class IngresoPacienteController extends Controller
      */
     private function createCreateForm(IngresoPaciente $entity)
     {
-        $form = $this->createForm(new IngresoPacienteType(), $entity, array(
+        $form = $this->createForm(new IngresoPacienteType(), $entity, [
             'action' => $this->generateUrl('ingresopaciente_create'),
             'method' => 'POST',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', ['label' => 'Guardar','attr' => ['class' => 'btn btn-primary']]);
 
         return $form;
     }
@@ -92,62 +92,62 @@ class IngresoPacienteController extends Controller
         $entity = new IngresoPaciente();
         $form = $this->createCreateForm($entity);
 
-        return array(
+        return [
             'entity' => $entity,
             'form' => $form->createView(),
-        );
+        ];
     }
 
     /**
      * Finds and displays a IngresoPaciente entity.
      *
-     * @Route("/{id}", name="ingresopaciente_show")
+     * @Route("/{slug}", name="ingresopaciente_show")
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
+    public function showAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:IngresoPaciente')->find($id);
+        $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug' => $slug]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find IngresoPaciente entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($slug);
 
-        return array(
+        return [
             'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
      * Displays a form to edit an existing IngresoPaciente entity.
      *
-     * @Route("/{id}/edit", name="ingresopaciente_edit")
+     * @Route("/{slug}/edit", name="ingresopaciente_edit")
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:IngresoPaciente')->find($id);
+        $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug'=>$id]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find IngresoPaciente entity.');
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($slug);
 
-        return array(
+        return [
             'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        );
+        ];
     }
 
     /**
@@ -159,40 +159,40 @@ class IngresoPacienteController extends Controller
      */
     private function createEditForm(IngresoPaciente $entity)
     {
-        $form = $this->createForm(new IngresoPacienteType(), $entity, array(
-            'action' => $this->generateUrl('ingresopaciente_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new IngresoPacienteType(), $entity, [
+            'action' => $this->generateUrl('ingresopaciente_update', ['slug' => $entity->getSlug()]),
             'method' => 'PUT',
-        ));
+        ]);
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', ['label' => 'Actualizr']);
 
         return $form;
     }
     /**
      * Edits an existing IngresoPaciente entity.
      *
-     * @Route("/{id}", name="ingresopaciente_update")
+     * @Route("/{slug}", name="ingresopaciente_update")
      * @Method("PUT")
      * @Template("AppBundle:IngresoPaciente:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:IngresoPaciente')->find($id);
+        $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug'=>$slug]);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find IngresoPaciente entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($slug);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ingresopaciente_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('ingresopaciente_edit', ['slug' => $id]));
         }
 
         return array(
@@ -204,17 +204,17 @@ class IngresoPacienteController extends Controller
     /**
      * Deletes a IngresoPaciente entity.
      *
-     * @Route("/{id}", name="ingresopaciente_delete")
+     * @Route("/{slug}", name="ingresopaciente_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $slug)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($slug);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:IngresoPaciente')->find($id);
+            $entity = $em->getRepository('AppBundle:IngresoPaciente')->findOneBy(['slug'=>$slug]);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find IngresoPaciente entity.');
@@ -234,12 +234,12 @@ class IngresoPacienteController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($slug)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('ingresopaciente_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('ingresopaciente_delete', ['slug' => $slug]))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', ['label' => 'Eliminar'])
             ->getForm()
         ;
     }

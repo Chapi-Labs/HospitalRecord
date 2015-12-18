@@ -1,6 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+	<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
     <h1>IngresoPaciente edit</h1>
 
     {{ form(edit_form) }}
@@ -13,4 +16,7 @@
     </li>
     <li>{{ form(delete_form) }}</li>
 </ul>
+	</div>
+ 	<div class="col-md-1"></div>
+	</div>
 {% endblock %}

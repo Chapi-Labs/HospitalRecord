@@ -15,13 +15,57 @@ class IngresoPacienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fechaIngreso')
+            ->add('fechaIngreso', 'collot_datetime', [ 'pickerOptions' =>
+            ['format' => 'mm/dd/yyyy',
+                'weekStart' => 0,
+                //'startDate' => date('m/d/Y'), //example
+                //'endDate' => '01/01/3000', //example
+                //'daysOfWeekDisabled' => '0,6', //example
+                'autoclose' => true,
+                'startView' => 'month',
+                'minView' => 'month',
+                'maxView' => 'decade',
+                'todayBtn' => true,
+                'todayHighlight' => true,
+                'keyboardNavigation' => true,
+                'language' => 'es',
+                'forceParse' => true,
+                'minuteStep' => 5,
+                'pickerReferer ' => 'default', //deprecated
+                'pickerPosition' => 'bottom-right',
+                'viewSelect' => 'month',
+                'showMeridian' => false,
+                
+                ],
+            ]) 
             ->add('motivoIngreso')
             ->add('procedimientoRealizado')
-            ->add('diagnistico1')
-            ->add('diagnistico2')
-            ->add('diagnistico3')
-            ->add('fechaSalida')
+            ->add('diagnostico1','textarea',['label' => 'Diagnóstico 1'])
+            ->add('diagnostico2','textarea',['label' => 'Diagnóstico 2'])
+            ->add('diagnostico3','textarea',['label'=>'Diagnóstico 3'])
+            ->add('fechaSalida', 'collot_datetime', ['pickerOptions' =>
+              ['format' => 'mm/dd/yyyy',
+                'weekStart' => 0,
+                //'startDate' => date('m/d/Y'), //example
+                //'endDate' => '01/01/3000', //example
+                //'daysOfWeekDisabled' => '0,6', //example
+                'autoclose' => true,
+                'startView' => 'month',
+                'minView' => 'month',
+                'maxView' => 'decade',
+                'todayBtn' => true,
+                'todayHighlight' => true,
+                'keyboardNavigation' => true,
+                'language' => 'es',
+                'forceParse' => true,
+                'minuteStep' => 5,
+                'pickerReferer ' => 'default', //deprecated
+                'pickerPosition' => 'bottom-right',
+                'viewSelect' => 'month',
+                'showMeridian' => false,
+                
+                ],
+            ]) 
 
         ;
     }
@@ -32,7 +76,7 @@ class IngresoPacienteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Paciente',
+            'data_class' => 'AppBundle\Entity\IngresoPaciente',
         ]);
     }
 

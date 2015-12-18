@@ -26,7 +26,7 @@ class Paciente
     /**
      * @var int
      *
-     * @ORM\Column(name="dpi", type="integer")
+     * @ORM\Column(name="dpi", type="integer",unique=true)
      * 
      * @Assert\Length(
      *      min = 13,
@@ -54,7 +54,7 @@ class Paciente
     /**
      * @var int
      *
-     * @ORM\Column(name="telefono", type="integer")
+     * @ORM\Column(name="telefono", type="integer",nullable=true)
      * @Assert\Length(
      *      min = 8,
      *      max = 8,
@@ -67,7 +67,7 @@ class Paciente
     /**
      * @var string
      *
-     * @ORM\Column(name="direccion", type="string", length=255)
+     * @ORM\Column(name="direccion", type="string", length=255,nullable=true)
      */
     private $direccion;
 
@@ -98,7 +98,7 @@ class Paciente
     private $usuario;
 
     /**
-     * @Gedmo\Slug(fields={"nombre", "apellidos"})
+     * @Gedmo\Slug(fields={"nombre", "apellidos"},updatable=true)
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
@@ -123,7 +123,7 @@ class Paciente
      * @var \DateTime
      *
      * @ORM\Column(name="content_changed", type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="change", field={"title", "body"})
+     * @Gedmo\Timestampable(on="change", field={"nombre", "apellidos"})
      */
     private $contentChanged;
     /**

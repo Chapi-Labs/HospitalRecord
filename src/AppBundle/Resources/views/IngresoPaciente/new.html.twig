@@ -1,15 +1,30 @@
 {% extends '::base.html.twig' %}
 
+{% block stylesheets %}
+
+{{ form_stylesheet(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+  {{ form_javascript(form) }}
+{% endblock %}
+
 {% block body -%}
-    <h1>IngresoPaciente creation</h1>
+	<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+    <h1>Ingresar datos clínicos del paciente</h1>
 
     {{ form(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('ingresopaciente') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    
+	</div>
+ 	<div class="col-md-1"></div>
+	</div>
+      
+	
 {% endblock %}
+
+

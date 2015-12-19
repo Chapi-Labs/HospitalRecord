@@ -14,14 +14,14 @@ fos_user:
             
             from_email:
                 address:        noreply@xela-med.com
-                sender_name:    XelaMed Platform     
+                sender_name:    Hospital de Occidente     
 
     resetting: #password resetting
         token_ttl: 86400
         email:
             from_email:
                 address:        noreply@elearn-in.com
-                sender_name:    XelaMed Platform
+                sender_name:    Hospital de Occidente 
             template:   UserBundle:Resetting:resetting.email.twig
         form:
             type:               fos_user_resetting

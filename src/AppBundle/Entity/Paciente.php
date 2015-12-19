@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Paciente.
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @UniqueEntity("dpi")
  */
 class Paciente
 {
@@ -26,7 +28,7 @@ class Paciente
     /**
      * @var int
      *
-     * @ORM\Column(name="dpi", type="integer",unique=true)
+     * @ORM\Column(name="dpi", type="string",length=13, unique=true)
      * 
      * @Assert\Length(
      *      min = 13,
@@ -412,5 +414,20 @@ class Paciente
     public function __toString()
     {
         return $this->nombre.' '.$this->apellidos;
+    }
+
+      /**
+     * El método es llamado para mostrar los dos atributos en el select2.
+     *
+     * @return string obtener el nombre y el apellido en un solo método .
+     */
+    public function getDpiNombreApellido()
+    {
+        return sprintf(
+            '%s - %s %s',
+            $this->getDpi(),
+            $this->getNombre(),
+            $this->getApellidos()
+        );
     }
 }

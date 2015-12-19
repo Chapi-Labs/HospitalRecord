@@ -84,7 +84,7 @@ class IngresoPacienteController extends Controller
             'method' => 'POST',
         ]);
 
-        $form->add('submit', 'submit', ['label' => 'Guardar', 'attr' => ['class' => 'btn btn-primary']]);
+        $form->add('submit', 'submit', ['label' => 'Guardar', 'attr' => ['class' => 'btn btn-primary btn-block']]);
 
         return $form;
     }

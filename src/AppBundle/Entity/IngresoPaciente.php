@@ -79,7 +79,7 @@ class IngresoPaciente
 
     /**
      * @ORM\ManyToOne(targetEntity="Paciente")
-     * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $paciente;
 

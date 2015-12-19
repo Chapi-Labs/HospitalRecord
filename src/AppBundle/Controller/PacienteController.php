@@ -65,9 +65,7 @@ class PacienteController extends Controller
            if ($form->get('submit_ingreso')->isClicked()) {
                return $this->redirect(
                         $this->generateUrl(
-                            'paciente_show', [
-                            'slug' => $entity->getSlug(),
-                            ]
+                            'ingresopaciente_new'
                         )
                     );
            }

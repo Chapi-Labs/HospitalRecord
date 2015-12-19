@@ -40,7 +40,8 @@ class IngresoPacienteType extends AbstractType
               ->add('paciente', 'entity', [
                 'empty_value' => 'Seleccionar Paciente',
                 'class' => 'AppBundle:Paciente',
-                'property' => 'nombre',
+                'property' => 'DpinombreApellido',
+                'required' => true,
                 'label' => 'Buscador de Pacientes',
                 'attr' => [
                     'class' => 'select2',
@@ -52,7 +53,8 @@ class IngresoPacienteType extends AbstractType
                 'empty_value' => 'Seleccionar Diagnóstico',
                 'class' => 'AppBundle:Cie10',
                 'property' => 'diagnostico',
-                'label' => 'Buscador de Diagnóstico Cie-10',
+                'required' => false,
+                'label' => 'Buscador de Diagnóstico Cie-10 (opcional)',
                 'attr' => [
                     'class' => 'select2',
                 ],

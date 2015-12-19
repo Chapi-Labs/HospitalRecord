@@ -24,16 +24,16 @@ class Cie10
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo", type="string", length=5, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=5, nullable=false,unique=true)
      */
     private $codigo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="enfermedad", type="string", length=254, nullable=false)
+     * @ORM\Column(name="diagnostico", type="string", length=254, nullable=false)
      */
-    private $enfermedad;
+    private $diagnostico;
 
     /**
      * Get id.
@@ -69,35 +69,36 @@ class Cie10
         return $this->codigo;
     }
 
+   
     /**
-     * Set enfermedad.
+     * Set diagnostico
      *
-     * @param string $enfermedad
+     * @param string $diagnostico
      *
      * @return Cie10
      */
-    public function setEnfermedad($enfermedad)
+    public function setDiagnostico($diagnostico)
     {
-        $this->enfermedad = $enfermedad;
+        $this->diagnostico = $diagnostico;
 
         return $this;
     }
 
     /**
-     * Get enfermedad.
+     * Get diagnostico
      *
      * @return string
      */
-    public function getEnfermedad()
+    public function getDiagnostico()
     {
-        return $this->enfermedad;
+        return $this->diagnostico;
     }
 
-    /**
+     /**
      * @return string Mostrar enfermedad
      */
     public function __toString()
     {
-        return $this->enfermedad;
+        return $this->diagnostico;
     }
 }

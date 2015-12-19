@@ -115,7 +115,7 @@ class PacienteController extends Controller
     /**
      * Displays a form to create a new Paciente entity.
      *
-     * @Route("/new", name="paciente_new")
+     * @Route("/nuevo", name="paciente_new")
      * @Method("GET")
      * @Template()
      */
@@ -158,7 +158,7 @@ class PacienteController extends Controller
     /**
      * Displays a form to edit an existing Paciente entity.
      *
-     * @Route("/{slug}/edit", name="paciente_edit")
+     * @Route("/{slug}/editar", name="paciente_edit")
      * @Method("GET")
      * @Template()
      */

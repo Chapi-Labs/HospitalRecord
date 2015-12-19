@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  * IngresoPaciente controller.
  *
- * @Route("/ingresopaciente")
+ * @Route("/datos-clinicos-paciente")
  */
 class IngresoPacienteController extends Controller
 {
@@ -92,7 +92,7 @@ class IngresoPacienteController extends Controller
     /**
      * Displays a form to create a new IngresoPaciente entity.
      *
-     * @Route("/new", name="ingresopaciente_new")
+     * @Route("/nuevo", name="ingresopaciente_new")
      * @Method("GET")
      * @Template()
      */
@@ -135,7 +135,7 @@ class IngresoPacienteController extends Controller
     /**
      * Displays a form to edit an existing IngresoPaciente entity.
      *
-     * @Route("/{slug}/edit", name="ingresopaciente_edit")
+     * @Route("/{slug}/editar", name="ingresopaciente_edit")
      * @Method("GET")
      * @Template()
      */

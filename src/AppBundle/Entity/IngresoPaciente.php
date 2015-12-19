@@ -44,6 +44,12 @@ class IngresoPaciente
     private $procedimientoRealizado;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Cie10")
+     * @ORM\JoinColumn(name="cie10_", referencedColumnName="id")
+     */
+    private $diagnosticoCie10;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="diagnostico1", type="string", length=255,nullable=true)
@@ -417,6 +423,30 @@ class IngresoPaciente
     public function getUsuario()
     {
         return $this->usuario;
+    }
+
+    /**
+     * Set diagnosticoCie10.
+     *
+     * @param \AppBundle\Entity\Cie10 $diagnosticoCie10
+     *
+     * @return IngresoPaciente
+     */
+    public function setDiagnosticoCie10(\AppBundle\Entity\Cie10 $diagnosticoCie10 = null)
+    {
+        $this->diagnosticoCie10 = $diagnosticoCie10;
+
+        return $this;
+    }
+
+    /**
+     * Get diagnosticoCie10.
+     *
+     * @return \AppBundle\Entity\Cie10
+     */
+    public function getDiagnosticoCie10()
+    {
+        return $this->diagnosticoCie10;
     }
 
     public function __toString()

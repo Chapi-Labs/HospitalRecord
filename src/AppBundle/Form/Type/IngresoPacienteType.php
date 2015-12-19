@@ -48,9 +48,18 @@ class IngresoPacienteType extends AbstractType
             ])
             ->add('motivoIngreso')
             ->add('procedimientoRealizado')
-            ->add('diagnostico1', 'textarea', ['label' => 'Diagnóstico 1'])
-            ->add('diagnostico2', 'textarea', ['label' => 'Diagnóstico 2'])
-            ->add('diagnostico3', 'textarea', ['label' => 'Diagnóstico 3'])
+            ->add('diagnosticoCie10', 'entity', [
+                'empty_value' => 'Seleccionar Diagnóstico',
+                'class' => 'AppBundle:Cie10',
+                'property' => 'diagnostico',
+                'label' => 'Buscador de Diagnóstico Cie-10',
+                'attr' => [
+                    'class' => 'select2',
+                ],
+            ])
+            ->add('diagnostico1', 'textarea', ['label' => 'Diagnóstico 1', 'required' => false])
+            ->add('diagnostico2', 'textarea', ['label' => 'Diagnóstico 2', 'required' => false])
+            ->add('diagnostico3', 'textarea', ['label' => 'Diagnóstico 3', 'required' => false])
             ->add('fechaSalida', 'collot_datetime', ['pickerOptions' => ['format' => 'mm/dd/yyyy',
                 'weekStart' => 0,
                 //'startDate' => date('m/d/Y'), //example

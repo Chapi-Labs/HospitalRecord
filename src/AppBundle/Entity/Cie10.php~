@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Cie10
+ * Cie10.
  *
  * @ORM\Table(name="cie10")
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Cie10
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -31,16 +31,14 @@ class Cie10
     /**
      * @var string
      *
-     * @ORM\Column(name="enfermedad", type="string", length=254, nullable=false)
+     * @ORM\Column(name="diagnostico", type="string", length=254, nullable=false)
      */
-    private $enfermedad;
-
-
+    private $diagnostico;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -48,7 +46,7 @@ class Cie10
     }
 
     /**
-     * Set codigo
+     * Set codigo.
      *
      * @param string $codigo
      *
@@ -62,7 +60,7 @@ class Cie10
     }
 
     /**
-     * Get codigo
+     * Get codigo.
      *
      * @return string
      */
@@ -72,7 +70,7 @@ class Cie10
     }
 
     /**
-     * Set enfermedad
+     * Set enfermedad.
      *
      * @param string $enfermedad
      *
@@ -86,7 +84,7 @@ class Cie10
     }
 
     /**
-     * Get enfermedad
+     * Get enfermedad.
      *
      * @return string
      */
@@ -102,5 +100,4 @@ class Cie10
     {
         return $this->enfermedad;
     }
-
 }

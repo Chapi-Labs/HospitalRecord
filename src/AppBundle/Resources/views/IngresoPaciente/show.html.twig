@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <th>Paciente</th>
-                <td>{{ entity.paciente }}</td>
+                <td><a href="{{ path('paciente_show', { 'slug': entity.paciente.slug }) }}">{{entity.paciente}}</a></td>
             </tr>
             <tr>
                 <th>Motivo de Ingreso</th>
@@ -23,6 +23,10 @@
             <tr>
                 <th>Procedimiento Realizado</th>
                 <td>{{ entity.procedimientoRealizado }}</td>
+            </tr>
+             <tr>
+                <th>Diagnóstico Cie-10</th>
+                <td>{{ entity.diagnosticoCie10 }}</td>
             </tr>
             <tr>
                 <th>Diagnóstico 1</th>

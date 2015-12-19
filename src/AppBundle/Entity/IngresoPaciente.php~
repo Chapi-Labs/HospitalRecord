@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * IngresoPaciente
+ * IngresoPaciente.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -14,7 +14,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class IngresoPaciente
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -43,31 +43,37 @@ class IngresoPaciente
      */
     private $procedimientoRealizado;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="Cie10")
+     * @ORM\JoinColumn(name="cie10_", referencedColumnName="id")
+     */
+    private $diagnosticoCie10;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="diagnostico1", type="string", length=255)
+     * @ORM\Column(name="diagnostico1", type="string", length=255,nullable=true)
      */
     private $diagnostico1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="diagnostico2", type="string", length=255)
+     * @ORM\Column(name="diagnostico2", type="string", length=255,nullable=true)
      */
     private $diagnostico2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="diagnostico3", type="string", length=255)
+     * @ORM\Column(name="diagnostico3", type="string", length=255,nullable=true)
      */
     private $diagnostico3;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaSalida", type="date")
+     * @ORM\Column(name="fechaSalida", type="date",nullable=true)
      */
     private $fechaSalida;
 
@@ -76,7 +82,7 @@ class IngresoPaciente
      * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id")
      */
     private $paciente;
-    
+
     /**
      * @Gedmo\Slug(fields={"motivoIngreso"})
      * @ORM\Column(length=128, unique=true)
@@ -89,8 +95,8 @@ class IngresoPaciente
      */
     private $usuario;
 
-     /**
-     * @var \DateTime $created
+    /**
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -98,7 +104,7 @@ class IngresoPaciente
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -106,16 +112,16 @@ class IngresoPaciente
     private $updated;
 
     /**
-     * @var \DateTime $contentChanged
+     * @var \DateTime
      *
      * @ORM\Column(name="content_changed", type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="change", field={"title", "body"})
      */
     private $contentChanged;
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -123,7 +129,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set fechaIngreso
+     * Set fechaIngreso.
      *
      * @param \DateTime $fechaIngreso
      *
@@ -137,7 +143,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaIngreso
+     * Get fechaIngreso.
      *
      * @return \DateTime
      */
@@ -147,7 +153,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set motivoIngreso
+     * Set motivoIngreso.
      *
      * @param string $motivoIngreso
      *
@@ -161,7 +167,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get motivoIngreso
+     * Get motivoIngreso.
      *
      * @return string
      */
@@ -171,7 +177,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set procedimientoRealizado
+     * Set procedimientoRealizado.
      *
      * @param string $procedimientoRealizado
      *
@@ -185,7 +191,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get procedimientoRealizado
+     * Get procedimientoRealizado.
      *
      * @return string
      */
@@ -195,7 +201,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set diagnostico1
+     * Set diagnostico1.
      *
      * @param string $diagnostico1
      *
@@ -209,7 +215,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get diagnostico1
+     * Get diagnostico1.
      *
      * @return string
      */
@@ -219,7 +225,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set diagnostico2
+     * Set diagnostico2.
      *
      * @param string $diagnostico2
      *
@@ -233,7 +239,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get diagnostico2
+     * Get diagnostico2.
      *
      * @return string
      */
@@ -243,7 +249,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set diagnostico3
+     * Set diagnostico3.
      *
      * @param string $diagnostico3
      *
@@ -257,7 +263,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get diagnostico3
+     * Get diagnostico3.
      *
      * @return string
      */
@@ -267,7 +273,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set fechaSalida
+     * Set fechaSalida.
      *
      * @param \DateTime $fechaSalida
      *
@@ -281,7 +287,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaSalida
+     * Get fechaSalida.
      *
      * @return \DateTime
      */
@@ -290,7 +296,7 @@ class IngresoPaciente
         return $this->fechaSalida;
     }
 
-     /**
+    /**
      * Set slug.
      *
      * @param string $slug
@@ -314,7 +320,7 @@ class IngresoPaciente
         return $this->slug;
     }
 
-     public function getCreated()
+    public function getCreated()
     {
         return $this->created;
     }
@@ -328,9 +334,99 @@ class IngresoPaciente
     {
         return $this->contentChanged;
     }
+
+    /**
+     * Set created.
+     *
+     * @param \DateTime $created
+     *
+     * @return IngresoPaciente
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Set updated.
+     *
+     * @param \DateTime $updated
+     *
+     * @return IngresoPaciente
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Set contentChanged.
+     *
+     * @param \DateTime $contentChanged
+     *
+     * @return IngresoPaciente
+     */
+    public function setContentChanged($contentChanged)
+    {
+        $this->contentChanged = $contentChanged;
+
+        return $this;
+    }
+
+    /**
+     * Set paciente.
+     *
+     * @param \AppBundle\Entity\Paciente $paciente
+     *
+     * @return IngresoPaciente
+     */
+    public function setPaciente(\AppBundle\Entity\Paciente $paciente = null)
+    {
+        $this->paciente = $paciente;
+
+        return $this;
+    }
+
+    /**
+     * Get paciente.
+     *
+     * @return \AppBundle\Entity\Paciente
+     */
+    public function getPaciente()
+    {
+        return $this->paciente;
+    }
+
+    /**
+     * Set usuario.
+     *
+     * @param \UserBundle\Entity\Usuario $usuario
+     *
+     * @return IngresoPaciente
+     */
+    public function setUsuario(\UserBundle\Entity\Usuario $usuario = null)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario.
+     *
+     * @return \UserBundle\Entity\Usuario
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
     public function __toString()
     {
         return $this->motivoIngreso;
     }
 }
-

@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    {{ form_stylesheet(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block body -%}
+    {{form_start(form)}}
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-9">
+            <h1>Consulta de pacientes</h1>
+            {{form_row(form.consulta_dpi_nombre_apellidos)}}
+            {{form_row(form.consulta_fecha_ingreso)}}
+            {{form_row(form.consulta_procedimiento_realizado)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-1">
+            {{form_row(form.consultar)}}
+        </div>
+    </div>
+    {{form_end(form)}}
+
+    {% if pacientes is not null %}
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <table class="table table-condensed">
+                    <tr>
+                        <th>Nombre paciente</th>
+                        <th>Edad</th>
+                        <th>DPI</th>
+                        <th>Género</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {% for paciente in pacientes %}
+                    <tr>
+                        <td>{{ paciente.slug }}</td>
+                        <td>{{ paciente.edad }}</td>
+                        <td>{{ paciente.dpi }}</td>
+                        <td>{{ paciente.genero }}</td>
+                        <td>Ninguno</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

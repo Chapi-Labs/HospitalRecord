@@ -36,6 +36,15 @@ class Cie10
     private $diagnostico;
 
     /**
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\IngresoPaciente",
+     *     mappedBy="diagnosticoCie10"
+     * )
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $diagnosticos;
+
+    /**
      * Get id.
      *
      * @return int

@@ -128,6 +128,15 @@ class Paciente
      * @Gedmo\Timestampable(on="change", field={"nombre", "apellidos"})
      */
     private $contentChanged;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\IngresoPaciente",
+     *     mappedBy="paciente"
+     * )
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $ingreso;
     /**
      * Get id.
      *

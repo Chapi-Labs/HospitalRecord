@@ -1,3 +1,7 @@
+consulta:
+    resource: "@ConsultaBundle/Resources/config/routing.xml"
+    prefix:   /
+
 contact:
     resource: "@ContactBundle/Controller/"
     type:     annotation

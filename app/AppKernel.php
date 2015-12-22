@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),            //Add select2,
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new ConsultaBundle\ConsultaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

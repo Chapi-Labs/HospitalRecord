@@ -73,7 +73,7 @@ class ConsultaType extends AbstractType
                 [
                     'label' => 'Consultar',
                     'attr' => [
-                        'class' => 'btn btn-primary btn-block'
+                        'class' => 'btn btn-block btn-primary btn-md'
                     ]
                 ]
             );

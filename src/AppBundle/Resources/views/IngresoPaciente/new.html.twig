@@ -1,152 +1,120 @@
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
-
-{{ form_stylesheet(form) }}
-
+  {{ form_stylesheet(form) }}
 {% endblock %}
 
 {% block javascripts %}
-
   {{ form_javascript(form) }}
 {% endblock %}
 
 {% block body -%}
-	<div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-10">
-    <h1>Ingresar datos clínicos del paciente</h1>
-
-   <section>
-        <div class="wizard">
-            <div class="wizard-inner">
-                <div class="connecting-line"></div>
-                <ul class="nav nav-tabs" role="tablist">
-
-                    <li role="presentation" class="active">
-                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <h1>Ingresar datos clínicos del paciente</h1>
+        <section>
+            <div class="wizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-folder-open"></i>
+                            <i class="glyphicon glyphicon-folder-open"></i>
                             </span>
-                        </a>
-                    </li>
-
-                    <li role="presentation" class="disabled">
-                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                            </a>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-pencil"></i>
+                            <i class="glyphicon glyphicon-pencil"></i>
                             </span>
-                        </a>
-                    </li>
-                      <li role="presentation" class="disabled">
-                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            </a>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
                             <span class="round-tab">
-                                <i class="glyphicon glyphicon-ok"></i>
+                            <i class="glyphicon glyphicon-ok"></i>
                             </span>
-                        </a>
-                    </li>
-                  
-
-                 
-                </ul>
-            </div>
-
-           {{form_start(form)}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {{form_start(form)}}
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
                             <div class="row">
-                            <div class="col-md-6">
-                                {{form_row(form.fechaIngreso)}}
+                                <div class="col-md-6">
+                                    {{form_row(form.fechaIngreso)}}
+                                </div>
                             </div>
-                           
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                               {{form_row(form.paciente)}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{form_row(form.paciente)}}
+                                </div>
                             </div>
-                            
-                        </div>
-                        <div class="row">
-                        	 <div class="col-md-6">
-                               {{form_row(form.motivoIngreso)}}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    {{form_row(form.motivoIngreso)}}
+                                </div>
+                                <div class="col-md-6">
+                                    {{form_row(form.procedimientoRealizado)}}
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                               {{form_row(form.procedimientoRealizado)}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{form_row(form.diagnosticoCie10)}}
+                                </div>
                             </div>
-    
-                        </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                               {{form_row(form.diagnosticoCie10)}}
-                            </div>
-                            
-                        </div>
-                     
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Guardar y Continuar</button></li>
-                         <li><a class="btn btn-success" href="{{path('paciente_new')}}">No aparece el paciente? Haz click aquí</a>
-                         </li>
+                            <li><a class="btn btn-success" href="{{path('paciente_new')}}">No aparece el paciente? Haz click aquí</a>
+                            </li>
                         </ul>
                     </div>
-                   <div class="tab-pane" role="tabpanel" id="step2">
+                    <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="step1">
-                       
-                        <div class="row">
-                        	<div class="col-md-12">
-                               {{form_row(form.diagnostico1)}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{form_row(form.diagnostico1)}}
+                                </div>
                             </div>
-                            
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{form_row(form.diagnostico2)}}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_row(form.diagnostico2)}}
+                                </div>
+                                <div class="col-md-12">
+                                    {{form_row(form.diagnostico3)}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="row">
-
-                        	 <div class="col-md-12">
-                               {{form_row(form.diagnostico2)}}
-                            </div>
-                            <div class="col-md-12">
-                               {{form_row(form.diagnostico2)}}
-                            </div>
-                             <div class="col-md-12">
-                               {{form_row(form.diagnostico3)}}
-                            </div>
-                          
-                        </div>
-                     
-                        </div>
-                          <ul class="list-inline pull-right">
+                        <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-default prev-step">Regresar</button></li>
                             <li><button type="button" class="btn btn-primary next-step">Guardar y Continuar</button></li>
                         </ul>
-                        
                     </div>
-                     <div class="tab-pane" role="tabpanel" id="complete">
+                    <div class="tab-pane" role="tabpanel" id="complete">
                         <div class="step1">
-						  <div class="row">
-                        	<div class="col-md-12">
-                               {{form_row(form.fechaSalida)}}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{form_row(form.fechaSalida)}}
+                                </div>
                             </div>
-                            
                         </div>
-                       </div>
-                       {{ form_row(form.submit)}}
-                   </div>
-                    
-	
-                    
+                        {{ form_row(form.submit)}}
+                    </div>
                     <div class="clearfix"></div>
                 </div>
-            {{form_end(form)}}
-        </div>
-    </section>
-	
-
-    
-	</div>
- 	<div class="col-md-1"></div>
-	</div>
-      
-	
+                {{form_end(form)}}
+            </div>
+        </section>
+    </div>
+    <div class="col-md-1"></div>
+</div>
 {% endblock %}
-
-

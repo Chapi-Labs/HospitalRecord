@@ -56,7 +56,7 @@ class ConsultaType extends AbstractType
                 [
                     'label' => 'Consulta por diagnóstico',
                     'required' => false,
-                    'empty_value' => 'Seleccionar diagnóstico',
+                    'empty_value' => 'Seleccionar diagnóstico Cie-10',
                     'class' => 'AppBundle:Cie10',
                     'property' => 'Diagnostico',
                     'attr' => [

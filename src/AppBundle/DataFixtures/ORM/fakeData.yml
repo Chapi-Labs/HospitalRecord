@@ -1,0 +1,37 @@
+AppBundle\Entity\Paciente:
+    # ...
+    paciente{2..1000}:
+        dpi (unique): <current()><word()>
+        nombre: <word()>
+        apellidos: <word()>
+        edad: <randomNumber($nbDigits = 2)>
+        genero: <word()>
+        usuario: @usuario*
+        slug (unique): <slug()> 
+        # ...
+#documento
+AppBundle\Entity\IngresoPaciente:
+    IngresoPaciente{1..1000}:
+        fechaIngreso: <dateTime()>
+        motivoIngreso: <word()>
+        paciente: @paciente*
+        procedimientoRealizado: <word()>
+        motivoIngreso: <numberBetween(1,100)>
+        fechaIngreso: <dateTime()>
+        diagnosticoCie10: @cie10*
+        usuario: @usuario*
+        slug (unique): <slug()>
+#usuarios
+UserBundle\Entity\Usuario:
+     usuario{2..2000}:
+        nombre: <word()>
+        apellidos: <word()>
+        username (unique): <username()>
+        email (unique): <email()>
+        password: <word()>
+        enabled: true
+
+AppBundle\Entity\Cie10:
+     cie10{2..2000}:
+        codigo: <current()>
+        diagnostico(unique): <current()><word()>

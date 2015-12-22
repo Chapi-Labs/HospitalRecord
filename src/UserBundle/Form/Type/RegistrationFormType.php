@@ -13,7 +13,7 @@ class RegistrationFormType extends AbstractType
         // agregar campos personalizados
         $builder->add('nombre', null, ['label' => false,
             'attr' => [
-            'placeholder' => 'Nombre/s y Apellidos',
+            'placeholder' => 'Nombre/s',
             ],
 
             ])

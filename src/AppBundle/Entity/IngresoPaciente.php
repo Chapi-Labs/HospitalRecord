@@ -44,7 +44,7 @@ class IngresoPaciente
     private $procedimientoRealizado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cie10")
+     * @ORM\ManyToOne(targetEntity="Cie10",inversedBy="diagnosticos")
      * @ORM\JoinColumn(name="cie10_", referencedColumnName="id")
      */
     private $diagnosticoCie10;
@@ -78,7 +78,7 @@ class IngresoPaciente
     private $fechaSalida;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Paciente")
+     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso")
      * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $paciente;
@@ -99,7 +99,7 @@ class IngresoPaciente
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      */
     private $created;
 
@@ -107,7 +107,7 @@ class IngresoPaciente
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      */
     private $updated;
 

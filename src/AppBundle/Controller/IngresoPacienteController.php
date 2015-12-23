@@ -10,7 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\IngresoPaciente;
 use AppBundle\Form\Type\IngresoPacienteType;
 use FOS\UserBundle\Model\UserInterface;
-use UserBundle\Entity\Usuario;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 

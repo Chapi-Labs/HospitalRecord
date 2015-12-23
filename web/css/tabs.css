@@ -227,6 +227,14 @@ span.round-tab:hover {
 	border-bottom:1px solid #dcdcdc;
 }
 
+/* eliminar borde del textarea */
+textarea {
+    border-style: none; 
+    border-color: Transparent; 
+    overflow: auto;    border: none; 
+    
+}
+
 
 
 @media( max-width : 585px ) {

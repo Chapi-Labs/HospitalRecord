@@ -9,3 +9,7 @@ easy_admin:
                 fields: ['nombre','apellidos','telefono','username','email','enabled','password','roles']
             edit:
                 fields: ['nombre','apellidos','telefono','username','email','enabled','lastLogin','password','expiresAt','locked','expired','roles']
+        Paciente:
+            class: AppBundle\Entity\Paciente
+        IngresoPaciente:
+            class: AppBundle\Entity\IngresoPaciente

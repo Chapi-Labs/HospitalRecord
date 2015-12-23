@@ -16,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Paciente controller.
+ *
  * @Security("has_role('ROLE_USER')")
  * @Route("/paciente")
  */

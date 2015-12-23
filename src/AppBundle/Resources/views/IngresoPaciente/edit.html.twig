@@ -8,12 +8,13 @@
 
     {{ form(edit_form) }}
 
-        <ul class="record_actions">
+    <ul class="record_actions">
     <li>
-        <a href="{{ path('ingresopaciente') }}">
-            Back to the list
+        <a class="btn btn-default"href="{{ path('ingresopaciente') }}">
+            Regresar
         </a>
     </li>
+    <br>
     <li>{{ form(delete_form) }}</li>
 </ul>
 	</div>

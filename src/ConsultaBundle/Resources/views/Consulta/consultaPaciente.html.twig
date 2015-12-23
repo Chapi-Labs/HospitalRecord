@@ -34,6 +34,7 @@
                         <th>DPI</th>
                         <th>Teléfono</th>
                         <th>Género</th>
+                        <th>Información</th>
                         
                     </tr>
                     {% for paciente in pacientes %}
@@ -43,6 +44,9 @@
                         <td>{{ paciente.dpi }}</td>
                         <td>{{ paciente.telefono }}</td>
                         <td>{{ paciente.genero }}</td>
+                        <td>
+                            <a class ="btn btn-xs btn-warning" href="{{ path('paciente_show', { 'slug': paciente.slug }) }}">Mostrar más</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>

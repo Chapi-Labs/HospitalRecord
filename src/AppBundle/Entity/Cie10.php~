@@ -24,7 +24,7 @@ class Cie10
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo", type="string", length=5, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=5, nullable=false,unique=true)
      */
     private $codigo;
 
@@ -34,6 +34,15 @@ class Cie10
      * @ORM\Column(name="diagnostico", type="string", length=254, nullable=false)
      */
     private $diagnostico;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\IngresoPaciente",
+     *     mappedBy="diagnosticoCie10"
+     * )
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $diagnosticos;
 
     /**
      * Get id.
@@ -69,35 +78,77 @@ class Cie10
         return $this->codigo;
     }
 
+   
     /**
-     * Set enfermedad.
+     * Set diagnostico
      *
-     * @param string $enfermedad
+     * @param string $diagnostico
      *
      * @return Cie10
      */
-    public function setEnfermedad($enfermedad)
+    public function setDiagnostico($diagnostico)
     {
-        $this->enfermedad = $enfermedad;
+        $this->diagnostico = $diagnostico;
 
         return $this;
     }
 
     /**
-     * Get enfermedad.
+     * Get diagnostico
      *
      * @return string
      */
-    public function getEnfermedad()
+    public function getDiagnostico()
     {
-        return $this->enfermedad;
+        return $this->diagnostico;
     }
 
-    /**
+     /**
      * @return string Mostrar enfermedad
      */
     public function __toString()
     {
-        return $this->enfermedad;
+        return $this->diagnostico;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->diagnosticos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add diagnostico
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $diagnostico
+     *
+     * @return Cie10
+     */
+    public function addDiagnostico(\AppBundle\Entity\IngresoPaciente $diagnostico)
+    {
+        $this->diagnosticos[] = $diagnostico;
+
+        return $this;
+    }
+
+    /**
+     * Remove diagnostico
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $diagnostico
+     */
+    public function removeDiagnostico(\AppBundle\Entity\IngresoPaciente $diagnostico)
+    {
+        $this->diagnosticos->removeElement($diagnostico);
+    }
+
+    /**
+     * Get diagnosticos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDiagnosticos()
+    {
+        return $this->diagnosticos;
     }
 }

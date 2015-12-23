@@ -5,18 +5,19 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * Paciente
+ * Paciente.
  *
  * @ORM\Table()
  * @ORM\Entity
- * 
+ * @UniqueEntity("dpi")
  */
 class Paciente
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -25,17 +26,17 @@ class Paciente
     private $id;
 
     /**
-     * @var integer
+     * @var int
      *
-     * @ORM\Column(name="dpi", type="integer")
+     * @ORM\Column(name="dpi", type="string",length=13, unique=true)
      * 
-     * @Assert\Range(
+     * @Assert\Length(
      *      min = 13,
      *      max = 13,
-     *      minMessage = "El DPI tiene que ser de 13 dígitos",
-     *      maxMessage = "El DPI tiene que ser de 13 dígitos"
+     *      minMessage = "El DPI tiene que ser de {{ limit }} dígitos",
+     *      maxMessage = "El DPI tiene que ser de {{ limit }} dígitos"
      * )
-      */
+     */
     private $dpi;
 
     /**
@@ -53,10 +54,10 @@ class Paciente
     private $apellidos;
 
     /**
-     * @var integer
+     * @var int
      *
-     * @ORM\Column(name="telefono", type="integer")
-     * @Assert\Range(
+     * @ORM\Column(name="telefono", type="integer",nullable=true)
+     * @Assert\Length(
      *      min = 8,
      *      max = 8,
      *      minMessage = "El teléfono tiene que ser de 8 dígitos",
@@ -68,26 +69,26 @@ class Paciente
     /**
      * @var string
      *
-     * @ORM\Column(name="direccion", type="string", length=255)
+     * @ORM\Column(name="direccion", type="string", length=255,nullable=true)
      */
     private $direccion;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="edad", type="integer")
-     * @Assert\Range(
+     * @Assert\Length(
      *      min = 1,
      *      max = 2,
-     *      minMessage = "La  edad tiene que ser de {{limit}} dígitos",
-     *      maxMessage = "La edad tiene que ser de {{limit}}dígitos"
+     *      minMessage = "La  edad tiene que ser de {{ limit }} dígitos",
+     *      maxMessage = "La edad tiene que ser de {{ limit }} dígitos"
      * )
      */
     private $edad;
 
     /**
      * @var string
-     * Masculino o Femenino
+     *             Masculino o Femenino
      * @ORM\Column(name="genero", type="string", length=20)
      */
     private $genero;
@@ -98,14 +99,14 @@ class Paciente
      */
     private $usuario;
 
-      /**
-     * @Gedmo\Slug(fields={"nombre", "apellidos"})
+    /**
+     * @Gedmo\Slug(fields={"nombre", "apellidos"},updatable=true)
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
-     /**
-     * @var \DateTime $created
+    /**
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -113,7 +114,7 @@ class Paciente
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
@@ -121,16 +122,30 @@ class Paciente
     private $updated;
 
     /**
-     * @var \DateTime $contentChanged
+     * @var string $contentChangedBy
      *
-     * @ORM\Column(name="content_changed", type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="change", field={"title", "body"})
+     * @ORM\Column(name="content_changed_by", type="string", nullable=true)
+     * @Gedmo\Blameable(on="change", field={"nombre", "apellidos","edad","genero","dpi"})
      */
-    private $contentChanged;
+    private $contentChangedBy;
+
     /**
-     * Get id
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\IngresoPaciente",
+     *     mappedBy="paciente"
+     * )
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $ingreso;
+
+    public function __construct()
+    {
+        $this->ingreso = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    /**
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -138,9 +153,9 @@ class Paciente
     }
 
     /**
-     * Set dpi
+     * Set dpi.
      *
-     * @param integer $dpi
+     * @param int $dpi
      *
      * @return Paciente
      */
@@ -152,9 +167,9 @@ class Paciente
     }
 
     /**
-     * Get dpi
+     * Get dpi.
      *
-     * @return integer
+     * @return int
      */
     public function getDpi()
     {
@@ -162,7 +177,7 @@ class Paciente
     }
 
     /**
-     * Set nombre
+     * Set nombre.
      *
      * @param string $nombre
      *
@@ -176,7 +191,7 @@ class Paciente
     }
 
     /**
-     * Get nombre
+     * Get nombre.
      *
      * @return string
      */
@@ -186,7 +201,7 @@ class Paciente
     }
 
     /**
-     * Set apellidos
+     * Set apellidos.
      *
      * @param string $apellidos
      *
@@ -200,7 +215,7 @@ class Paciente
     }
 
     /**
-     * Get apellidos
+     * Get apellidos.
      *
      * @return string
      */
@@ -210,9 +225,9 @@ class Paciente
     }
 
     /**
-     * Set telefono
+     * Set telefono.
      *
-     * @param integer $telefono
+     * @param int $telefono
      *
      * @return Paciente
      */
@@ -224,9 +239,9 @@ class Paciente
     }
 
     /**
-     * Get telefono
+     * Get telefono.
      *
-     * @return integer
+     * @return int
      */
     public function getTelefono()
     {
@@ -234,7 +249,7 @@ class Paciente
     }
 
     /**
-     * Set direccion
+     * Set direccion.
      *
      * @param string $direccion
      *
@@ -248,7 +263,7 @@ class Paciente
     }
 
     /**
-     * Get direccion
+     * Get direccion.
      *
      * @return string
      */
@@ -258,9 +273,9 @@ class Paciente
     }
 
     /**
-     * Set edad
+     * Set edad.
      *
-     * @param integer $edad
+     * @param int $edad
      *
      * @return Paciente
      */
@@ -272,9 +287,9 @@ class Paciente
     }
 
     /**
-     * Get edad
+     * Get edad.
      *
-     * @return integer
+     * @return int
      */
     public function getEdad()
     {
@@ -282,7 +297,7 @@ class Paciente
     }
 
     /**
-     * Set genero
+     * Set genero.
      *
      * @param string $genero
      *
@@ -296,7 +311,7 @@ class Paciente
     }
 
     /**
-     * Get genero
+     * Get genero.
      *
      * @return string
      */
@@ -305,7 +320,7 @@ class Paciente
         return $this->genero;
     }
 
-     /**
+    /**
      * Set slug.
      *
      * @param string $slug
@@ -344,9 +359,124 @@ class Paciente
         return $this->contentChanged;
     }
 
+    /**
+     * Set created.
+     *
+     * @param \DateTime $created
+     *
+     * @return Paciente
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Set updated.
+     *
+     * @param \DateTime $updated
+     *
+     * @return Paciente
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Set contentChanged.
+     *
+     * @param \DateTime $contentChanged
+     *
+     * @return Paciente
+     */
+    public function setContentChanged($contentChanged)
+    {
+        $this->contentChanged = $contentChanged;
+
+        return $this;
+    }
+
+    /**
+     * Set usuario.
+     *
+     * @param \UserBundle\Entity\Usuario $usuario
+     *
+     * @return Paciente
+     */
+    public function setUsuario(\UserBundle\Entity\Usuario $usuario = null)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario.
+     *
+     * @return \UserBundle\Entity\Usuario
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+
+      /**
+     * El método es llamado para mostrar los dos atributos en el select2.
+     *
+     * @return string obtener el nombre y el apellido en un solo método .
+     */
+    public function getDpiNombreApellido()
+    {
+        return sprintf(
+            '%s - %s %s',
+            $this->getDpi(),
+            $this->getNombre(),
+            $this->getApellidos()
+        );
+    }
+
+    /**
+     * Add ingreso
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $ingreso
+     *
+     * @return Paciente
+     */
+    public function addIngreso(\AppBundle\Entity\IngresoPaciente $ingreso)
+    {
+        $this->ingreso[] = $ingreso;
+
+        return $this;
+    }
+
+    /**
+     * Remove ingreso
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $ingreso
+     */
+    public function removeIngreso(\AppBundle\Entity\IngresoPaciente $ingreso)
+    {
+        $this->ingreso->removeElement($ingreso);
+    }
+
+    /**
+     * Get ingreso
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIngreso()
+    {
+        return $this->ingreso;
+    }
+
     public function __toString()
     {
         return $this->nombre.' '.$this->apellidos;
     }
 }
-

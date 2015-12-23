@@ -103,3 +103,4 @@ stof_doctrine_extensions:
             sluggable: true
             loggable: true
             timestampable: true
+            blameable: true

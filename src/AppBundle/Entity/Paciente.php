@@ -122,21 +122,28 @@ class Paciente
     private $updated;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="content_changed", type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="change", field={"nombre", "apellidos"})
+     * @ORM\Column(name="content_changed_by", type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario")
+     * @Gedmo\Blameable(on="change", field={"nombre", "apellidos","edad","genero","dpi","telefono","direccion"})
      */
-    private $contentChanged;
+    private $contentChangedBy;
 
     /**
      * @ORM\OneToMany(
      *     targetEntity="AppBundle\Entity\IngresoPaciente",
      *     mappedBy="paciente"
      * )
+     *
      * @var \Doctrine\Common\Collections\Collection
      */
     private $ingreso;
+
+    public function __construct()
+    {
+        $this->ingreso = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     /**
      * Get id.
      *
@@ -349,11 +356,6 @@ class Paciente
         return $this->updated;
     }
 
-    public function getContentChanged()
-    {
-        return $this->contentChanged;
-    }
-
     /**
      * Set created.
      *
@@ -383,20 +385,6 @@ class Paciente
     }
 
     /**
-     * Set contentChanged.
-     *
-     * @param \DateTime $contentChanged
-     *
-     * @return Paciente
-     */
-    public function setContentChanged($contentChanged)
-    {
-        $this->contentChanged = $contentChanged;
-
-        return $this;
-    }
-
-    /**
      * Set usuario.
      *
      * @param \UserBundle\Entity\Usuario $usuario
@@ -420,12 +408,7 @@ class Paciente
         return $this->usuario;
     }
 
-    public function __toString()
-    {
-        return $this->nombre.' '.$this->apellidos;
-    }
-
-      /**
+    /**
      * El método es llamado para mostrar los dos atributos en el select2.
      *
      * @return string obtener el nombre y el apellido en un solo método .
@@ -438,5 +421,68 @@ class Paciente
             $this->getNombre(),
             $this->getApellidos()
         );
+    }
+
+    /**
+     * Add ingreso.
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $ingreso
+     *
+     * @return Paciente
+     */
+    public function addIngreso(\AppBundle\Entity\IngresoPaciente $ingreso)
+    {
+        $this->ingreso[] = $ingreso;
+
+        return $this;
+    }
+
+    /**
+     * Remove ingreso.
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $ingreso
+     */
+    public function removeIngreso(\AppBundle\Entity\IngresoPaciente $ingreso)
+    {
+        $this->ingreso->removeElement($ingreso);
+    }
+
+    /**
+     * Get ingreso.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIngreso()
+    {
+        return $this->ingreso;
+    }
+
+    /**
+     * Set contentChangedBy.
+     *
+     * @param string $contentChangedBy
+     *
+     * @return Paciente
+     */
+    public function setContentChangedBy($contentChangedBy)
+    {
+        $this->contentChangedBy = $contentChangedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get contentChangedBy.
+     *
+     * @return string
+     */
+    public function getContentChangedBy()
+    {
+        return $this->contentChangedBy;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre.' '.$this->apellidos;
     }
 }

@@ -4,12 +4,8 @@ namespace ConsultaBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use ConsultaBundle\Form\Type\ConsultaType as ConsultaForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 
 /**
  * @Security("has_role('ROLE_USER')")
@@ -34,7 +30,7 @@ class ConsultaController extends Controller
                 'ConsultaBundle:Consulta:consultaPaciente.html.twig',
                 [
                     'form' => $formConsultas->createView(),
-                    'pacientes' => null
+                    'pacientes' => null,
                 ]
             );
         }
@@ -68,7 +64,7 @@ class ConsultaController extends Controller
                 ->andWhere('ingreso.fechaIngreso < :fechaFin')
                 ->setParameters([
                     'fechaInicio' => $fechaInicio,
-                    'fechaFin' => $fechaFin
+                    'fechaFin' => $fechaFin,
                     ])
                 ->getQuery()
                 ->getResult();
@@ -84,11 +80,11 @@ class ConsultaController extends Controller
                 ->getResult();
         }
 
-         return $this->render(
+        return $this->render(
             'ConsultaBundle:Consulta:consultaPaciente.html.twig',
             [
                 'form' => $formConsultas->createView(),
-                'pacientes' => $pacientes
+                'pacientes' => $pacientes,
             ]
         );
     }

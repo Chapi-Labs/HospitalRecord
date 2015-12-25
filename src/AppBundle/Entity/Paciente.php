@@ -95,7 +95,7 @@ class Paciente
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Usuario")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $usuario;
 

@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+	 <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <h1>Ingresar nuevo diagnóstico al Cie-10</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('cie10') }}">
+           Mostrar lista completa
+        </a>
+    </li>
+</ul>
+ </div>
+    <div class="col-md-1"></div>
+</div>
+{% endblock %}

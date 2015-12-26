@@ -19,6 +19,14 @@ class ConsultaController extends Controller
 
     public function consultarPacienteAction(Request $request)
     {
+        $repositoryPaciente = $this->getDoctrine()->getRepository('AppBundle:Paciente');
+        $cantidadPacientes = $repositoryPaciente
+                ->createQueryBuilder('p')
+                ->select('COUNT(p.id)')
+                ->leftJoin('p.ingreso', 'ingreso')
+                ->getQuery()
+                ->getSingleScalarResult();
+
         $formConsultas = $this->createForm(
             new ConsultaForm()
         );
@@ -31,6 +39,7 @@ class ConsultaController extends Controller
                 [
                     'form' => $formConsultas->createView(),
                     'pacientes' => null,
+                    'contPacientes' => $cantidadPacientes
                 ]
             );
         }
@@ -46,7 +55,6 @@ class ConsultaController extends Controller
             $tipoConsulta = 3;
         }
 
-        $repositoryPaciente = $this->getDoctrine()->getRepository('AppBundle:Paciente');
         $pacientes = [];
 
         if ($tipoConsulta == 1) {
@@ -85,7 +93,9 @@ class ConsultaController extends Controller
             [
                 'form' => $formConsultas->createView(),
                 'pacientes' => $pacientes,
+                'contPacientes' => $cantidadPacientes
             ]
         );
     }
 }
+

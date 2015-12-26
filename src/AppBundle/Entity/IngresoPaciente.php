@@ -71,6 +71,20 @@ class IngresoPaciente
     private $diagnostico3;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="diagnostico4", type="string", length=255,nullable=true)
+     */
+    private $diagnostico4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="diagnostico5", type="string", length=255,nullable=true)
+     */
+    private $diagnostico5;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fechaSalida", type="date",nullable=true)
@@ -457,5 +471,53 @@ class IngresoPaciente
     public function __toString()
     {
         return date_format($this->fechaIngreso, 'd/m/Y');
+    }
+
+    /**
+     * Set diagnostico4
+     *
+     * @param string $diagnostico4
+     *
+     * @return IngresoPaciente
+     */
+    public function setDiagnostico4($diagnostico4)
+    {
+        $this->diagnostico4 = $diagnostico4;
+
+        return $this;
+    }
+
+    /**
+     * Get diagnostico4
+     *
+     * @return string
+     */
+    public function getDiagnostico4()
+    {
+        return $this->diagnostico4;
+    }
+
+    /**
+     * Set diagnostico5
+     *
+     * @param string $diagnostico5
+     *
+     * @return IngresoPaciente
+     */
+    public function setDiagnostico5($diagnostico5)
+    {
+        $this->diagnostico5 = $diagnostico5;
+
+        return $this;
+    }
+
+    /**
+     * Get diagnostico5
+     *
+     * @return string
+     */
+    public function getDiagnostico5()
+    {
+        return $this->diagnostico5;
     }
 }

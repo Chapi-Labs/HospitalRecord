@@ -71,6 +71,20 @@ class IngresoPaciente
     private $diagnostico3;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="diagnostico4", type="string", length=255,nullable=true)
+     */
+    private $diagnostico4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="diagnostico5", type="string", length=255,nullable=true)
+     */
+    private $diagnostico5;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fechaSalida", type="date",nullable=true)

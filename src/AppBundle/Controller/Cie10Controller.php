@@ -53,7 +53,7 @@ class Cie10Controller extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('cie10_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('ingresopaciente_new'));
         }
 
         return array(

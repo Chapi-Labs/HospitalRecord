@@ -1,17 +1,12 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
         <h1>Paciente</h1>
         <table class="table table-striped table-hover">
             <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ entity.id }}</td>
-                </tr>
                 <tr>
                     <th>DPI</th>
                     <td>{{ entity.dpi }}</td>
@@ -40,7 +35,7 @@
                     <th>Género</th>
                     <td>{{ entity.genero }}</td>
                 </tr>
-                 <tr>
+                <tr>
                     <th>Ingresado por</th>
                     <td>{{ entity.usuario}}</td>
                 </tr>
@@ -52,23 +47,29 @@
                     <th>Actualizado</th>
                     <td>{{ entity.updated|date('d-m-Y H:i:s') }}</td>
                 </tr>
+                {% for ingreso in entity.ingreso %}
+                <tr>
+                    <th>Ingreso al hospital</th>
+                        <td><a href="{{path('ingresopaciente_show',{'slug':ingreso.slug})}}">{{ingreso}}</a></td>
+
+                    {% endfor %}
+                </tr>
             </tbody>
         </table>
-
-       <ul class="record_actions">
-        <li>
-            <a class="btn btn-default" href="{{ path('paciente') }}">
-               Regresar
-            </a>
-        </li>
-        <li>
-            <a class = "btn btn-warning" href="{{ path('paciente_edit', { 'slug': entity.slug }) }}">
+        <ul class="record_actions">
+            <li>
+                <a class="btn btn-default" href="{{ path('paciente') }}">
+                Regresar
+                </a>
+            </li>
+            <li>
+                <a class = "btn btn-warning" href="{{ path('paciente_edit', { 'slug': entity.slug }) }}">
                 Editar
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
     </div>
-        <div class="col-md-1"></div>
-    </div>
+    <div class="col-md-1"></div>
+</div>
 {% endblock %}

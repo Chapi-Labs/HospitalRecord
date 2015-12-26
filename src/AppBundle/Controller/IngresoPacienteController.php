@@ -10,12 +10,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\IngresoPaciente;
 use AppBundle\Form\Type\IngresoPacienteType;
 use FOS\UserBundle\Model\UserInterface;
-use UserBundle\Entity\Usuario;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * IngresoPaciente controller.
  *
+ * @Security("has_role('ROLE_USER')")
  * @Route("/datos-clinicos-paciente")
  */
 class IngresoPacienteController extends Controller

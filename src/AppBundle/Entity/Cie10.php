@@ -40,6 +40,7 @@ class Cie10
      *     targetEntity="AppBundle\Entity\IngresoPaciente",
      *     mappedBy="diagnosticoCie10"
      * )
+     *
      * @var \Doctrine\Common\Collections\Collection
      */
     private $diagnosticos;
@@ -78,9 +79,8 @@ class Cie10
         return $this->codigo;
     }
 
-   
     /**
-     * Set diagnostico
+     * Set diagnostico.
      *
      * @param string $diagnostico
      *
@@ -94,7 +94,7 @@ class Cie10
     }
 
     /**
-     * Get diagnostico
+     * Get diagnostico.
      *
      * @return string
      */
@@ -103,11 +103,52 @@ class Cie10
         return $this->diagnostico;
     }
 
-     /**
+    /**
      * @return string Mostrar enfermedad
      */
     public function __toString()
     {
         return $this->diagnostico;
+    }
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->diagnosticos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add diagnostico.
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $diagnostico
+     *
+     * @return Cie10
+     */
+    public function addDiagnostico(\AppBundle\Entity\IngresoPaciente $diagnostico)
+    {
+        $this->diagnosticos[] = $diagnostico;
+
+        return $this;
+    }
+
+    /**
+     * Remove diagnostico.
+     *
+     * @param \AppBundle\Entity\IngresoPaciente $diagnostico
+     */
+    public function removeDiagnostico(\AppBundle\Entity\IngresoPaciente $diagnostico)
+    {
+        $this->diagnosticos->removeElement($diagnostico);
+    }
+
+    /**
+     * Get diagnosticos.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDiagnosticos()
+    {
+        return $this->diagnosticos;
     }
 }

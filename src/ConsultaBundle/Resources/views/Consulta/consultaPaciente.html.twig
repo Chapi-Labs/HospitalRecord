@@ -13,7 +13,7 @@
 
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <h1>Consulta de pacientes</h1>
             {{form_row(form.consulta_dpi_nombre_apellidos)}}
             {{form_row(form.consulta_fecha_ingreso)}}
@@ -22,36 +22,36 @@
     </div>
     <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-1">
+        <div class="col-md-10">
             {{form_row(form.consultar)}}
-        </div>
-    </div>
     {{form_end(form)}}
 
     {% if pacientes is not null %}
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                <table class="table table-condensed">
+                <table class="table table-condensed  table-striped">
                     <tr>
                         <th>Nombre paciente</th>
                         <th>Edad</th>
                         <th>DPI</th>
+                        <th>Teléfono</th>
                         <th>Género</th>
-                        <th>Acciones</th>
+                        <th>Información</th>
+                        
                     </tr>
                     {% for paciente in pacientes %}
                     <tr>
-                        <td>{{ paciente.slug }}</td>
+                        <td><a href="{{path('paciente_show',{'slug':paciente.slug})}}">{{ paciente.nombre }} {{paciente.apellidos}}</a></td>
                         <td>{{ paciente.edad }}</td>
                         <td>{{ paciente.dpi }}</td>
+                        <td>{{ paciente.telefono }}</td>
                         <td>{{ paciente.genero }}</td>
-                        <td>Ninguno</td>
+                        <td>
+                            <a class ="btn btn-xs btn-warning" href="{{ path('paciente_show', { 'slug': paciente.slug }) }}">Mostrar más</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </table>
-            </div>
-        </div>
     {% endif %}
+        </div>
+    </div>
 
 {% endblock %}

@@ -44,7 +44,7 @@ class IngresoPaciente
     private $procedimientoRealizado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cie10")
+     * @ORM\ManyToOne(targetEntity="Cie10",inversedBy="diagnosticos")
      * @ORM\JoinColumn(name="cie10_", referencedColumnName="id")
      */
     private $diagnosticoCie10;
@@ -78,20 +78,20 @@ class IngresoPaciente
     private $fechaSalida;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Paciente")
+     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso")
      * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $paciente;
 
     /**
-     * @Gedmo\Slug(fields={"motivoIngreso"})
+     * @Gedmo\Slug(fields={"motivoIngreso"},updatable=true)
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Usuario")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $usuario;
 
@@ -99,7 +99,7 @@ class IngresoPaciente
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      */
     private $created;
 
@@ -107,17 +107,17 @@ class IngresoPaciente
      * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime",nullable=true)
      */
     private $updated;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="content_changed", type="datetime", nullable=true)
-     * @Gedmo\Timestampable(on="change", field={"title", "body"})
+     * @ORM\Column(name="content_changed_by", type="string", nullable=true)
+     * @Gedmo\Blameable(on="change", field={"fechaIngreso", "motivoIngreso","procedimientoRealizado","fechaSalida"})
      */
-    private $contentChanged;
+    private $contentChangedBy;
     /**
      * Get id.
      *
@@ -330,11 +330,6 @@ class IngresoPaciente
         return $this->updated;
     }
 
-    public function getContentChanged()
-    {
-        return $this->contentChanged;
-    }
-
     /**
      * Set created.
      *
@@ -359,20 +354,6 @@ class IngresoPaciente
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-
-        return $this;
-    }
-
-    /**
-     * Set contentChanged.
-     *
-     * @param \DateTime $contentChanged
-     *
-     * @return IngresoPaciente
-     */
-    public function setContentChanged($contentChanged)
-    {
-        $this->contentChanged = $contentChanged;
 
         return $this;
     }
@@ -449,8 +430,32 @@ class IngresoPaciente
         return $this->diagnosticoCie10;
     }
 
+    /**
+     * Set contentChangedBy.
+     *
+     * @param string $contentChangedBy
+     *
+     * @return IngresoPaciente
+     */
+    public function setContentChangedBy($contentChangedBy)
+    {
+        $this->contentChangedBy = $contentChangedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get contentChangedBy.
+     *
+     * @return string
+     */
+    public function getContentChangedBy()
+    {
+        return $this->contentChangedBy;
+    }
+
     public function __toString()
     {
-        return $this->motivoIngreso;
+        return date_format($this->fechaIngreso, 'd/m/Y');
     }
 }

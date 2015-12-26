@@ -1,7 +1,8 @@
 {
-    "name": "Pablo/hospital-record",
+    "name": "pablo/hospital-record",
+    "description":"proyecto para administrar emergencia en el hospital de Xela",
     "license": "proprietary",
-    "type": "proyecot para administrar emergencia en el hospital de Xela",
+    "type": "project",
     "autoload": {
         "psr-4": {
             "": "src/"
@@ -37,14 +38,17 @@
         "javiereguiluz/easyadmin-bundle": "^1.9",
         "braincrafted/bootstrap-bundle": "^2.1",
         "genemu/form-bundle": "2.2.*",
-       "jquery/jquery": "1.11.*",
+        "jquery/jquery": "1.11.*",
         "twbs/bootstrap": "3.*",
         "oyejorge/less.php": "~1.5",
         "stephanecollot/datetimepicker-bundle": "^1.0",
         "stof/doctrine-extensions-bundle": "^1.2"
+        
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "hautelook/alice-bundle": "^1.1",
+         "doctrine/doctrine-fixtures-bundle": "@stable"
     },
     "scripts": {
         "post-install-cmd": [

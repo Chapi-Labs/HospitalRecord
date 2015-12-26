@@ -1,42 +1,48 @@
- <!---start-header---->
-            <div class="header">
-                    <div class="main-header">
-                        <div class="wrap">
-                            <div class="logo">
-                                <a href="{{ path('homepage')}}"><img src="{{ asset('images/logo.png')}}" title="logo" /></a>
-                            </div>
-                            <div class="social-links">
-                                <ul>
-                                    <li><a class="btn btn-primary" href="{{ path('fos_user_security_login')}}">Iniciar Sesión</a></li>
-                                   <li><a class="btn btn-primary" href="{{ path('fos_user_registration_register')}} ">Crear Cuenta</a></li>
-                                  
-                                    <div class="clear"> </div>
-                                </ul>
-                            </div>
-                            <div class="clear"> </div>
-                        </div>
-                    </div>
-                    <div class="clear"> </div>
-                    <div class="top-nav">
-                        <div class="wrap">
-                            <ul>
-                                <li class="active"><a href="{{ path('homepage')}}">Inicio</a></li>
-                                <li class="btn-group">
-                                  <a  class="dropdown-toggle" data-toggle="dropdown">
-                                    Ingresar datos paciente <span class="caret"></span>
-                                  </a>
-                                  <ul class="dropdown-menu" role="menu">
-                                    <a href="{{ path('paciente_new')}}">Datos Personales</a>
-                                    <a href="{{ path('ingresopaciente_new')}}">Datos clínicos</a>
-                                  </ul>
-                                </li>
-                                
-                                <li><a href="{{ path('consulta_realizar') }}">Consultas Pacientes</a></li>
-                                <li><a href="{{ path('fos_user_profile_show') }}">Cuenta</a></li>
-                                <li><a href="{{ path('contact')}} ">Contacto</a></li>
-
-                                <div class="clear"> </div>
-                            </ul>
-                        </div>
-                    </div>
+<!---start-header---->
+<div class="header">
+    <div class="main-header">
+        <div class="wrap">
+            <div class="logo">
+                <a href="{{ path('homepage')}}"><img src="{{ asset('images/logo.png')}}" title="logo" /></a>
             </div>
+            <div class="social-links">
+                <ul>
+                    <li><a class="btn btn-primary" href="{{ path('fos_user_security_login')}}">Iniciar Sesión</a></li>
+                    <li><a class="btn btn-primary" href="{{ path('fos_user_registration_register')}} ">Crear Cuenta</a></li>
+                    <div class="clear"> </div>
+                </ul>
+            </div>
+            <div class="clear"> </div>
+        </div>
+    </div>
+    <div class="clear"> </div>
+    <div class="top-nav">
+        <div class="wrap">
+            <ul>
+                <li class="active"><a href="{{ path('homepage')}}">Inicio</a></li>
+                <li class="btn-group">
+                    <a  class="dropdown-toggle" data-toggle="dropdown">
+                    Ingresar datos paciente <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <a href="{{ path('paciente_new')}}">Datos Personales</a>
+                        <a href="{{ path('ingresopaciente_new')}}">Datos clínicos</a>
+                    </ul>
+                </li>
+                 <li class="btn-group">
+                    <a  class="dropdown-toggle" data-toggle="dropdown">
+                    Consultas Pacientes<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <a href="{{ path('consulta_realizar') }}">Buscar Pacientes</a>
+                        <a href="{{ path('paciente')}}">Mostrar listado de pacientes</a>
+                        <a href="{{ path('ingresopaciente')}}">Mostrar listado de ingresos de pacientes</a>
+                    </ul>
+                </li>
+                <li><a href="{{ path('fos_user_profile_show') }}">Cuenta</a></li>
+                <li><a href="{{ path('contact')}} ">Contacto</a></li>
+                <div class="clear"> </div>
+            </ul>
+        </div>
+    </div>
+</div>

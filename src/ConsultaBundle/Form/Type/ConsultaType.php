@@ -5,7 +5,6 @@ namespace ConsultaBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -32,8 +31,7 @@ class ConsultaType extends AbstractType
                 [
                     'label' => 'Consulta por fecha de ingreso',
                     'required' => false,
-                    'pickerOptions' => 
-                    [
+                    'pickerOptions' => [
                         'format' => 'mm/dd/yyyy',
                         'weekStart' => 0,
                         'autoclose' => true,
@@ -56,11 +54,11 @@ class ConsultaType extends AbstractType
                 [
                     'label' => 'Consulta por diagnóstico',
                     'required' => false,
-                    'empty_value' => 'Seleccionar diagnóstico',
+                    'empty_value' => 'Seleccionar diagnóstico Cie-10',
                     'class' => 'AppBundle:Cie10',
                     'property' => 'Diagnostico',
                     'attr' => [
-                        'class' => 'select2'
+                        'class' => 'select2',
                     ],
                     'query_builder' => function (EntityRepository $er) {
 
@@ -73,8 +71,8 @@ class ConsultaType extends AbstractType
                 [
                     'label' => 'Consultar',
                     'attr' => [
-                        'class' => 'btn btn-primary btn-block'
-                    ]
+                        'class' => 'btn btn-block btn-primary btn-md',
+                    ],
                 ]
             );
     }
@@ -119,5 +117,3 @@ class ConsultaType extends AbstractType
         }
     }
 }
-
-

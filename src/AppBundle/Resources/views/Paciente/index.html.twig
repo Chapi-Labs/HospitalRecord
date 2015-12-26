@@ -4,7 +4,7 @@
     <div class="row">
          <div class="col-md-1"></div>
         <div class="col-md-10">
-    <h1>Lista de Pacientes</h1>
+    <h1>Listado completo de pacientes</h1>
 
     <table class="table table-striped table-hover">
         <thead>
@@ -16,7 +16,7 @@
                 <th>Dirección</th>
                 <th>Edad</th>
                 <th>Género</th>
-                <th>Actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +32,7 @@
                 <td>
                 <ul>
                     <li>
-                        <a class ="btn btn-xs btn-warning"href="{{ path('paciente_show', { 'slug': entity.slug }) }}">Mostrar</a>
+                        <a class ="btn btn-xs btn-warning" href="{{ path('paciente_show', { 'slug': entity.slug }) }}">Mostrar</a>
                     </li>
                     <li>
                         <a class="btn btn-xs btn-danger" href="{{ path('paciente_edit', { 'slug': entity.slug }) }}">Editar</a>

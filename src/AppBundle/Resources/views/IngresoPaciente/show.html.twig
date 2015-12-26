@@ -1,78 +1,87 @@
 {% extends '::base.html.twig' %}
-
 {% block body -%}
-    <div class="row">
+<div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-    <h1>Ingreso del Paciente: {{entity.paciente}}</h1>
+        <h1>Ingreso del Paciente: {{entity.paciente}}</h1>
+        <table class="table table-striped table-hover">
+            <tbody>
+                <tr>
+                    <th>Fecha De Ingreso</th>
+                    <td>{{ entity.fechaIngreso|date('d-m-Y') }}</td>
+                </tr>
+                <tr>
+                    <th>Paciente</th>
+                    <td><a href="{{ path('paciente_show', { 'slug': entity.paciente.slug }) }}">{{entity.paciente}}</a></td>
+                </tr>
+                <tr>
+                    <th>Motivo de Ingreso</th>
+                    <td>{{ entity.motivoIngreso }}</td>
+                </tr>
+                <tr>
+                    <th>Procedimiento Realizado</th>
+                    <td>{{ entity.procedimientoRealizado }}</td>
+                </tr>
+                <tr>
+                    <th>Diagnóstico Cie-10</th>
+                    <td>{{ entity.diagnosticoCie10 }}</td>
+                </tr>
+                <tr>
+                    <th>Diagnóstico 1</th>
+                    <td>
+                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico1 }}
+                        </textarea>
 
-    <table class="table table-striped table-hover">
-        <tbody>
-            <tr>
-                <th>Fecha De Ingreso</th>
-                <td>{{ entity.fechaIngreso|date('d-m-Y') }}</td>
-            </tr>
-            <tr>
-                <th>Paciente</th>
-                <td><a href="{{ path('paciente_show', { 'slug': entity.paciente.slug }) }}">{{entity.paciente}}</a></td>
-            </tr>
-            <tr>
-                <th>Motivo de Ingreso</th>
-                <td>{{ entity.motivoIngreso }}</td>
-            </tr>
-            <tr>
-                <th>Procedimiento Realizado</th>
-                <td>{{ entity.procedimientoRealizado }}</td>
-            </tr>
-             <tr>
-                <th>Diagnóstico Cie-10</th>
-                <td>{{ entity.diagnosticoCie10 }}</td>
-            </tr>
-            <tr>
-                <th>Diagnóstico 1</th>
-                <td>{{ entity.diagnostico1 }}</td>
-            </tr>
-            <tr>
-                <th>Diagnóstico 2</th>
-                <td>{{ entity.diagnostico2 }}</td>
-            </tr>
-            <tr>
-                <th>Diagnóstico 3</th>
-                <td>{{ entity.diagnostico3 }}</td>
-            </tr>
-            <tr>
-                <th>Fecha de salida</th>
-                <td>{{ entity.fechaSalida|date('d-m-Y') }}</td>
-            </tr>
-            <tr>
-                <th>Ingresado por</th>
-                <td>{{ entity.usuario }}</td>
-            </tr>
-            <tr>
-                <th>Creado</th>
-                <td>{{ entity.created|date('d-m-Y H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Actualizado</th>
-                <td>{{ entity.updated|date('d-m-Y H:i:s') }}</td>
-            </tr>
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Diagnóstico 2</th>
+                    <td>
+                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico2 }}
+                        </textarea>
 
-     <ul class="record_actions">
-        <li>
-            <a class="btn btn-default" href="{{ path('ingresopaciente') }}">
-               Regresar
-            </a>
-        </li>
-        <li>
-            <a class = "btn btn-warning" href="{{ path('ingresopaciente_edit', { 'slug': entity.slug }) }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Diagnóstico 3</th>
+                    <td>
+                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico3 }}
+                        </textarea>
+
+                    </td>
+                </tr>
+                <tr>
+                    <th>Fecha de salida</th>
+                    <td>{{ entity.fechaSalida|date('d-m-Y') }}</td>
+                </tr>
+                <tr>
+                    <th>Ingresado por</th>
+                    <td>{{ entity.usuario }}</td>
+                </tr>
+                <tr>
+                    <th>Creado</th>
+                    <td>{{ entity.created|date('d-m-Y H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Actualizado</th>
+                    <td>{{ entity.updated|date('d-m-Y H:i:s') }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="record_actions">
+            <li>
+                <a class="btn btn-default" href="{{ path('ingresopaciente') }}">
+                Regresar
+                </a>
+            </li>
+            <li>
+                <a class = "btn btn-warning" href="{{ path('ingresopaciente_edit', { 'slug': entity.slug }) }}">
                 Editar
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
+                </a>
+            </li>
+            <li>{{ form(delete_form) }}</li>
+        </ul>
     </div>
     <div class="col-md-1"></div>
-    </div>
+</div>
 {% endblock %}

@@ -9,19 +9,19 @@ fos_user:
             type:  user_registration #custom user registration service
             validation_groups:  [EmailDomainValidation,Default,Registration]
         confirmation:
-            enabled:    true # change to true for required email confirmation
+            enabled:    false # change to true for required email confirmation
             template:   UserBundle:Registration:registration.email.twig  
             
             from_email:
-                address:        noreply@xela-med.com
-                sender_name:    Hospital de Occidente     
+                address:        noresponder@hospital.com
+                sender_name:    Hospital Regional de Occidente     
 
     resetting: #password resetting
         token_ttl: 86400
         email:
             from_email:
-                address:        noreply@elearn-in.com
-                sender_name:    Hospital de Occidente 
+                address:        noresponder@hospital.com
+                sender_name:    Hospital Regional de Occidente 
             template:   UserBundle:Resetting:resetting.email.twig
         form:
             type:               fos_user_resetting

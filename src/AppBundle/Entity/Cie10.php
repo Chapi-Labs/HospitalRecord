@@ -24,7 +24,7 @@ class Cie10
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo", type="string", length=5, nullable=false,unique=true)
+     * @ORM\Column(name="codigo", type="string", length=5, nullable=true,unique=true)
      */
     private $codigo;
 

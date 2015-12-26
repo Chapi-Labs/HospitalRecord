@@ -15,7 +15,7 @@ class Cie10Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('diagnostico')
+            ->add('diagnostico',null,['label'=>'Diagnóstico'])
         ;
     }
     

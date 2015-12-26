@@ -76,7 +76,7 @@ class Cie10Controller extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Agregar y guardar'));
 
         return $form;
     }

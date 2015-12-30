@@ -44,45 +44,11 @@ class IngresoPaciente
     private $procedimientoRealizado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cie10",inversedBy="diagnosticos")
-     * @ORM\JoinColumn(name="cie10_", referencedColumnName="id")
-     */
-    private $diagnosticoCie10;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="diagnostico1", type="string", length=255,nullable=true)
+     * @ORM\OneToMany(targetEntity="Diagnostico", mappedBy="diagnostico",cascade={"persist"})
      */
-    private $diagnostico1;
+    private $arrayDiagnosticos;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico2", type="string", length=255,nullable=true)
-     */
-    private $diagnostico2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico3", type="string", length=255,nullable=true)
-     */
-    private $diagnostico3;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico4", type="string", length=255,nullable=true)
-     */
-    private $diagnostico4;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico5", type="string", length=255,nullable=true)
-     */
-    private $diagnostico5;
 
     /**
      * @var \DateTime
@@ -132,6 +98,13 @@ class IngresoPaciente
      * @Gedmo\Blameable(on="change", field={"fechaIngreso", "motivoIngreso","procedimientoRealizado","fechaSalida"})
      */
     private $contentChangedBy;
+
+     public function __construct()
+    {
+        $this->arrayDiagnosticos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
     /**
      * Get id.
      *
@@ -214,78 +187,7 @@ class IngresoPaciente
         return $this->procedimientoRealizado;
     }
 
-    /**
-     * Set diagnostico1.
-     *
-     * @param string $diagnostico1
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico1($diagnostico1)
-    {
-        $this->diagnostico1 = $diagnostico1;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico1.
-     *
-     * @return string
-     */
-    public function getDiagnostico1()
-    {
-        return $this->diagnostico1;
-    }
-
-    /**
-     * Set diagnostico2.
-     *
-     * @param string $diagnostico2
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico2($diagnostico2)
-    {
-        $this->diagnostico2 = $diagnostico2;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico2.
-     *
-     * @return string
-     */
-    public function getDiagnostico2()
-    {
-        return $this->diagnostico2;
-    }
-
-    /**
-     * Set diagnostico3.
-     *
-     * @param string $diagnostico3
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico3($diagnostico3)
-    {
-        $this->diagnostico3 = $diagnostico3;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico3.
-     *
-     * @return string
-     */
-    public function getDiagnostico3()
-    {
-        return $this->diagnostico3;
-    }
-
+   
     /**
      * Set fechaSalida.
      *
@@ -420,29 +322,6 @@ class IngresoPaciente
         return $this->usuario;
     }
 
-    /**
-     * Set diagnosticoCie10.
-     *
-     * @param \AppBundle\Entity\Cie10 $diagnosticoCie10
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnosticoCie10(\AppBundle\Entity\Cie10 $diagnosticoCie10 = null)
-    {
-        $this->diagnosticoCie10 = $diagnosticoCie10;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnosticoCie10.
-     *
-     * @return \AppBundle\Entity\Cie10
-     */
-    public function getDiagnosticoCie10()
-    {
-        return $this->diagnosticoCie10;
-    }
 
     /**
      * Set contentChangedBy.
@@ -467,57 +346,45 @@ class IngresoPaciente
     {
         return $this->contentChangedBy;
     }
+   
 
-    public function __toString()
+    /**
+     * Add arrayDiagnostico
+     *
+     * @param \AppBundle\Entity\Diagnostico $arrayDiagnostico
+     *
+     * @return IngresoPaciente
+     */
+    public function addArrayDiagnostico(\AppBundle\Entity\Diagnostico $arrayDiagnostico)
+    {
+        $this->arrayDiagnosticos[] = $arrayDiagnostico;
+
+        return $this;
+    }
+
+    /**
+     * Remove arrayDiagnostico
+     *
+     * @param \AppBundle\Entity\Diagnostico $arrayDiagnostico
+     */
+    public function removeArrayDiagnostico(\AppBundle\Entity\Diagnostico $arrayDiagnostico)
+    {
+        $this->arrayDiagnosticos->removeElement($arrayDiagnostico);
+    }
+
+    /**
+     * Get arrayDiagnosticos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArrayDiagnosticos()
+    {
+        return $this->arrayDiagnosticos;
+    }
+
+     public function __toString()
     {
         return date_format($this->fechaIngreso, 'd/m/Y');
     }
 
-    /**
-     * Set diagnostico4
-     *
-     * @param string $diagnostico4
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico4($diagnostico4)
-    {
-        $this->diagnostico4 = $diagnostico4;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico4
-     *
-     * @return string
-     */
-    public function getDiagnostico4()
-    {
-        return $this->diagnostico4;
-    }
-
-    /**
-     * Set diagnostico5
-     *
-     * @param string $diagnostico5
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico5($diagnostico5)
-    {
-        $this->diagnostico5 = $diagnostico5;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico5
-     *
-     * @return string
-     */
-    public function getDiagnostico5()
-    {
-        return $this->diagnostico5;
-    }
 }

@@ -5,6 +5,7 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Form\DiagnosticoType;
 
 class IngresoPacienteType extends AbstractType
 {
@@ -49,21 +50,17 @@ class IngresoPacienteType extends AbstractType
             ])
             ->add('motivoIngreso')
             ->add('procedimientoRealizado')
-            ->add('diagnosticoCie10', 'entity', [
-                'empty_value' => 'Seleccionar Diagnóstico',
-                'class' => 'AppBundle:Cie10',
-                'property' => 'diagnostico',
-                'required' => false,
-                'label' => 'Buscador de Diagnóstico Cie-10 (opcional)',
-                'attr' => [
-                    'class' => 'select2',
-                ],
-            ])
-            ->add('diagnostico1', 'textarea', ['label' => 'Diagnóstico 1', 'required' => false])
-            ->add('diagnostico2', 'textarea', ['label' => 'Diagnóstico 2', 'required' => false])
-            ->add('diagnostico3', 'textarea', ['label' => 'Diagnóstico 3', 'required' => false])
-            ->add('diagnostico4', 'textarea', ['label' => 'Diagnóstico 4', 'required' => false])
-            ->add('diagnostico5', 'textarea', ['label' => 'Diagnóstico 5', 'required' => false])
+            ->add('arrayDiagnosticos', 'collection', [
+                'type' => new DiagnosticoType(),
+               'allow_add' => true,
+                    'allow_delete' => true,
+                    'prototype' => true,
+                    'attr' => array(
+                            'class' => 'my-selector',
+                    ),
+
+                ])
+           
             ->add('fechaSalida', 'collot_datetime', ['pickerOptions' => ['format' => 'mm/dd/yyyy',
                 'weekStart' => 0,
                 //'startDate' => date('m/d/Y'), //example

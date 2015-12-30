@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table()
  * @ORM\Entity
- * @UniqueEntity("dpi")
  */
 class Paciente
 {
@@ -23,7 +22,7 @@ class Paciente
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @var int
@@ -44,14 +43,14 @@ class Paciente
      *
      * @ORM\Column(name="nombre", type="string", length=100)
      */
-    private $nombre;
+    public $nombre;
 
     /**
      * @var string
      *
      * @ORM\Column(name="apellidos", type="string", length=100)
      */
-    private $apellidos;
+    public $apellidos;
 
     /**
      * @var int

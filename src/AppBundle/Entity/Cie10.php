@@ -24,14 +24,14 @@ class Cie10
     /**
      * @var string
      *
-     * @ORM\Column(name="codigo", type="string", length=5, nullable=true,unique=true)
+     * @ORM\Column(name="codigo", type="string", length=100, nullable=true, unique=true)
      */
     private $codigo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="diagnostico", type="string", length=254, nullable=false)
+     * @ORM\Column(name="diagnostico", type="string", length=255, nullable=false)
      */
     private $diagnostico;
 

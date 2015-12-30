@@ -63,14 +63,6 @@
                                     {{form_row(form.procedimientoRealizado)}}
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnosticoCie10)}}
-                                </div>
-                                <div class="col-md-12">
-                                    <a class="btn btn-success" href="{{path('cie10_new')}}">Agregar un diagnóstico</a>
-                                </div>
-                            </div>
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Guardar y Continuar</button></li>
@@ -82,24 +74,10 @@
                         <div class="step1">
                             <div class="row">
                                 <div class="col-md-12">
-                                    {{form_row(form.diagnostico1)}}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnostico2)}}
-                                </div>
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnostico2)}}
-                                </div>
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnostico3)}}
-                                </div>
-                                 <div class="col-md-12">
-                                    {{form_row(form.diagnostico4)}}
-                                </div>
-                                 <div class="col-md-12">
-                                    {{form_row(form.diagnostico5)}}
+                                    <ul class="record_actions" data-prototype="{{ form_widget(form.arrayDiagnosticos.vars.prototype)|e }}">
+    
+                                    {{ form_widget(form.arrayDiagnosticos.vars.prototype.diagnostico)|e }}
+                                </ul>
                                 </div>
                             </div>
                         </div>

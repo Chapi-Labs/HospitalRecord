@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Hospital Regional de Occidente {% endblock %}</title>
 
-        {% block stylesheets %}{% endblock %}
+      
     
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"  media="all" />
         <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ asset('css/tables.css')}}">
         <link rel="stylesheet" href="{{ asset('css/select2.min.css')}}">
         <link rel="stylesheet" href="{{ asset('css/tabs.css')}}">
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
       
        
 
@@ -89,6 +90,8 @@
         <script src="{{ asset('js/bootstrap.min.js')}}"></script> 
         <script src="{{ asset('js/select2.min.js')}}"></script> 
          <script src="{{ asset('js/tabs.js')}}"></script> 
+         <script src="http://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+         <script src="{{asset('jquery.collection.js')}}"></script>
         <script>
                  $('.navbar-toggler').on('click', function(event) {
                     event.preventDefault();
@@ -103,6 +106,19 @@
                 $('.dropdown-toggle').dropdown();
             });
         </script>
+        <script>
+            $('table').dataTable();
+        </script>
+         <script type="text/javascript">
+        $('.my-selector').collection();
+    </script>
         {% block javascripts %}{% endblock %}
+        {#
+        <script>
+        $('#consulta_type_consulta_dpi_nombre_apellidos').select2({
+            tags: "true"
+        });
+        </script>
+        #}
     </body>
 </html>

@@ -237,7 +237,7 @@ class PacienteController extends Controller
     /**
      * Deletes a Paciente entity.
      *
-     * @Route("/{slug}", name="paciente_delete")
+     * @Route("/{slug}", name="paciente_delete",options={"expose"=true})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $slug)

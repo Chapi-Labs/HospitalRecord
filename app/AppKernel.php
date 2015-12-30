@@ -20,14 +20,14 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle(),
             new ContactBundle\ContactBundle(),
+            new ConsultaBundle\ConsultaBundle(),
 
             new FOS\UserBundle\FOSUserBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),            //Add select2,
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-            new ConsultaBundle\ConsultaBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),    
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -35,7 +35,6 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
              $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 

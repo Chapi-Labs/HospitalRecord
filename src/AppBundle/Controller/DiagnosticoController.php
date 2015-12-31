@@ -7,21 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use AppBundle\Entity\Cie10;
-use AppBundle\Form\Cie10Type;
+use AppBundle\Entity\Diagnostico;
+use AppBundle\Form\DiagnosticoType;
 
 /**
- * Cie10 controller.
+ * Diagnostico controller.
  *
- * @Route("/cie10")
+ * @Route("/diagnostico")
  */
-class Cie10Controller extends Controller
+class DiagnosticoController extends Controller
 {
 
     /**
-     * Lists all Cie10 entities.
+     * Lists all Diagnostico entities.
      *
-     * @Route("/", name="cie10")
+     * @Route("/", name="diagnostico")
      * @Method("GET")
      * @Template()
      */
@@ -29,22 +29,22 @@ class Cie10Controller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AppBundle:Cie10')->findAll();
+        $entities = $em->getRepository('AppBundle:Diagnostico')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new Cie10 entity.
+     * Creates a new Diagnostico entity.
      *
-     * @Route("/", name="cie10_create")
+     * @Route("/", name="diagnostico_create")
      * @Method("POST")
-     * @Template("AppBundle:Cie10:new.html.twig")
+     * @Template("AppBundle:Diagnostico:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Cie10();
+        $entity = new Diagnostico();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -53,7 +53,7 @@ class Cie10Controller extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('ingresopaciente_new'));
+            return $this->redirect($this->generateUrl('diagnostico_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -63,34 +63,34 @@ class Cie10Controller extends Controller
     }
 
     /**
-     * Creates a form to create a Cie10 entity.
+     * Creates a form to create a Diagnostico entity.
      *
-     * @param Cie10 $entity The entity
+     * @param Diagnostico $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Cie10 $entity)
+    private function createCreateForm(Diagnostico $entity)
     {
-        $form = $this->createForm(new Cie10Type(), $entity, array(
-            'action' => $this->generateUrl('cie10_create'),
+        $form = $this->createForm(new DiagnosticoType(), $entity, array(
+            'action' => $this->generateUrl('diagnostico_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Agregar y guardar'));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new Cie10 entity.
+     * Displays a form to create a new Diagnostico entity.
      *
-     * @Route("/new", name="cie10_new")
+     * @Route("/new", name="diagnostico_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Cie10();
+        $entity = new Diagnostico();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -100,9 +100,9 @@ class Cie10Controller extends Controller
     }
 
     /**
-     * Finds and displays a Cie10 entity.
+     * Finds and displays a Diagnostico entity.
      *
-     * @Route("/{id}", name="cie10_show")
+     * @Route("/{id}", name="diagnostico_show")
      * @Method("GET")
      * @Template()
      */
@@ -110,10 +110,10 @@ class Cie10Controller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Cie10')->find($id);
+        $entity = $em->getRepository('AppBundle:Diagnostico')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Cie10 entity.');
+            throw $this->createNotFoundException('Unable to find Diagnostico entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -125,9 +125,9 @@ class Cie10Controller extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Cie10 entity.
+     * Displays a form to edit an existing Diagnostico entity.
      *
-     * @Route("/{id}/edit", name="cie10_edit")
+     * @Route("/{id}/edit", name="diagnostico_edit")
      * @Method("GET")
      * @Template()
      */
@@ -135,10 +135,10 @@ class Cie10Controller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Cie10')->find($id);
+        $entity = $em->getRepository('AppBundle:Diagnostico')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Cie10 entity.');
+            throw $this->createNotFoundException('Unable to find Diagnostico entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -152,16 +152,16 @@ class Cie10Controller extends Controller
     }
 
     /**
-    * Creates a form to edit a Cie10 entity.
+    * Creates a form to edit a Diagnostico entity.
     *
-    * @param Cie10 $entity The entity
+    * @param Diagnostico $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Cie10 $entity)
+    private function createEditForm(Diagnostico $entity)
     {
-        $form = $this->createForm(new Cie10Type(), $entity, array(
-            'action' => $this->generateUrl('cie10_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new DiagnosticoType(), $entity, array(
+            'action' => $this->generateUrl('diagnostico_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -170,20 +170,20 @@ class Cie10Controller extends Controller
         return $form;
     }
     /**
-     * Edits an existing Cie10 entity.
+     * Edits an existing Diagnostico entity.
      *
-     * @Route("/{id}", name="cie10_update")
+     * @Route("/{id}", name="diagnostico_update")
      * @Method("PUT")
-     * @Template("AppBundle:Cie10:edit.html.twig")
+     * @Template("AppBundle:Diagnostico:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AppBundle:Cie10')->find($id);
+        $entity = $em->getRepository('AppBundle:Diagnostico')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Cie10 entity.');
+            throw $this->createNotFoundException('Unable to find Diagnostico entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -193,7 +193,7 @@ class Cie10Controller extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('cie10_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('diagnostico_edit', array('id' => $id)));
         }
 
         return array(
@@ -203,9 +203,9 @@ class Cie10Controller extends Controller
         );
     }
     /**
-     * Deletes a Cie10 entity.
+     * Deletes a Diagnostico entity.
      *
-     * @Route("/{id}", name="cie10_delete")
+     * @Route("/{id}", name="diagnostico_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -215,21 +215,21 @@ class Cie10Controller extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Cie10')->find($id);
+            $entity = $em->getRepository('AppBundle:Diagnostico')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Cie10 entity.');
+                throw $this->createNotFoundException('Unable to find Diagnostico entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('cie10'));
+        return $this->redirect($this->generateUrl('diagnostico'));
     }
 
     /**
-     * Creates a form to delete a Cie10 entity by id.
+     * Creates a form to delete a Diagnostico entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -238,7 +238,7 @@ class Cie10Controller extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('cie10_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('diagnostico_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

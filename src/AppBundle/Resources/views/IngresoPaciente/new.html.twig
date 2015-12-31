@@ -6,6 +6,73 @@
 
 {% block javascripts %}
   {{ form_javascript(form) }}
+ <script src="{{asset('js/jquery.collection.js')}}"></script>
+<script>
+var $addTagLink = $('<a href="#" class="btn btn-primary">Agregar un diagnóstico</a>');
+var $newLinkLi = $('<li></li>').append($addTagLink);
+
+jQuery(document).ready(function() {
+    // Get the ul that holds the collection of tags
+   var $collectionHolder = $('ul.tags');
+    
+    // add the "add a tag" anchor and li to the tags ul
+    $collectionHolder.append($newLinkLi);
+    
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+    
+    $addTagLink.on('click', function(e) {
+        // prevent the link from creating a "#" on the URL
+        e.preventDefault();
+        
+        // add a new tag form (see code block below)
+        addTagForm($collectionHolder, $newLinkLi);
+    });
+    
+    
+});
+
+function addTagForm($collectionHolder, $newLinkLi) {
+    // Get the data-prototype explained earlier
+    var prototype = $collectionHolder.data('prototype');
+    
+    // get the new index
+    var index = $collectionHolder.data('index');
+    
+    // Replace '$$name$$' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    var newForm = prototype.replace(/__name__/g, index);
+    
+    // increase the index with one for the next item
+    $collectionHolder.data('index', index + 1);
+    
+    // Display the form in the page in an li, before the "Add a tag" link li
+    var $newFormLi = $('<li></li>').append(newForm);
+    
+    // also add a remove button, just for this example
+      
+    
+    $newFormLi.append('<a href="#" class="btn btn-danger remove-tag">Quitar</a>');
+    $newFormLi.append('<br>');
+    $newLinkLi.before($newFormLi);
+     $newFormLi.append('<br>');
+    
+    
+    // handle the removal, just for this example
+    $('.remove-tag').click(function(e) {
+        e.preventDefault();
+        
+        $(this).parent().remove();
+        
+        return false;
+    });
+}
+</script>
+<script type="text/javascript">
+   $('.my-selector').collection();
+</script>
+
 {% endblock %}
 
 {% block body -%}
@@ -41,6 +108,7 @@
                         </li>
                     </ul>
                 </div>
+                 {% form_theme form '::jquery.collection.html.twig' %}
                 {{form_start(form)}}
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
@@ -74,10 +142,14 @@
                         <div class="step1">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <ul class="tags" data-prototype="{{ form_widget(form.arrayDiagnosticos.vars.prototype)|e }}">
-    
-                                    {{form_row(form.arrayDiagnosticos)}}
+                                  
+                                     <ul class="tags" data-prototype="{{ form_widget(form.arrayDiagnosticos.vars.prototype)|e }}">
+                                    {# iterate over each existing tag and render its only field: name #}
+                                   
+                                        <li>{{ form_row(form.arrayDiagnosticos) }}</li>
+                                   
                                 </ul>
+                                                            
                                 </div>
                             </div>
                         </div>
@@ -104,12 +176,5 @@
     </div>
     <div class="col-md-1"></div>
 </div>
-<script>
-jQuery(document).ready(function() {
-    // ...
 
-    // Add empty form on page loading
-    addTagForm(collectionHolder, $newLinkLi);
-});
-</script>
 {% endblock %}

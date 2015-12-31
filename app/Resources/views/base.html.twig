@@ -91,7 +91,6 @@
         <script src="{{ asset('js/select2.min.js')}}"></script> 
          <script src="{{ asset('js/tabs.js')}}"></script> 
          <script src="http://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-         <script src="{{asset('jquery.collection.js')}}"></script>
         <script>
                  $('.navbar-toggler').on('click', function(event) {
                     event.preventDefault();
@@ -109,9 +108,7 @@
         <script>
             $('table').dataTable();
         </script>
-         <script type="text/javascript">
-        $('.my-selector').collection();
-    </script>
+       
         {% block javascripts %}{% endblock %}
         {#
         <script>

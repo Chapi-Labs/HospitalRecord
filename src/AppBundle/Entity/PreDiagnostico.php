@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Diagnostico
+ * PreDiagnostico
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Diagnostico
+class PreDiagnostico
 {
     /**
      * @var integer
@@ -24,9 +24,9 @@ class Diagnostico
     /**
      * @var string
      *
-     * @ORM\Column(name="nombreDiagnostico", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Diagnostico")
      */
-    private $nombreDiagnostico;
+    private $preDiagnostico;
 
 
     /**
@@ -39,33 +39,35 @@ class Diagnostico
         return $this->id;
     }
 
+   
+
     /**
-     * Set nombreDiagnostico
+     * Set preDiagnostico
      *
-     * @param string $nombreDiagnostico
+     * @param \AppBundle\Entity\Diagnostico $preDiagnostico
      *
-     * @return Diagnostico
+     * @return PreDiagnostico
      */
-    public function setNombreDiagnostico($nombreDiagnostico)
+    public function setPreDiagnostico(\AppBundle\Entity\Diagnostico $preDiagnostico = null)
     {
-        $this->nombreDiagnostico = $nombreDiagnostico;
+        $this->preDiagnostico = $preDiagnostico;
 
         return $this;
     }
 
     /**
-     * Get nombreDiagnostico
+     * Get preDiagnostico
      *
-     * @return string
+     * @return \AppBundle\Entity\Diagnostico
      */
-    public function getNombreDiagnostico()
+    public function getPreDiagnostico()
     {
-        return $this->nombreDiagnostico;
+        return $this->preDiagnostico;
     }
 
     public function __toString()
     {
-        return $this->nombreDiagnostico;
+        return $this->preDiagnostico->__toString();
     }
 
 }

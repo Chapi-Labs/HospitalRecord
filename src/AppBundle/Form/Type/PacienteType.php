@@ -21,7 +21,7 @@ class PacienteType extends AbstractType
             ->add('telefono', 'integer', ['label' => 'Teléfono', 'required' => 'true'])
             ->add('direccion', null, ['label' => 'Dirección', 'required' => 'true'])
             ->add('edad', null, ['label' => 'Edad', 'required' => 'true'])
-           ->add('genero', 'choice', [
+            ->add('genero', 'choice', [
             'choices' => [
                 'Masculino' => 'Masculino',
                 'Femenino' => 'Femenino',

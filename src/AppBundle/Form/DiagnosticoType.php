@@ -15,7 +15,7 @@ class DiagnosticoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('diagnostico')
+           ->add('nombreDiagnostico','textarea',['label'=>'Diagnóstico'])
         ;
     }
     

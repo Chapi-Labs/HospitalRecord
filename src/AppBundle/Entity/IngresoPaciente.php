@@ -45,7 +45,9 @@ class IngresoPaciente
 
     /**
      * @var string
-     * @ORM\OneToMany(targetEntity="Diagnostico", mappedBy="diagnostico",cascade={"persist"})
+     *  
+     * 
+     * @ORM\Column(name="arrayDiagnosticos",type="array")
      */
     private $arrayDiagnosticos;
 
@@ -99,16 +101,18 @@ class IngresoPaciente
      */
     private $contentChangedBy;
 
-     public function __construct()
+
+     public function __toString()
     {
-        $this->arrayDiagnosticos = new \Doctrine\Common\Collections\ArrayCollection();
+        return date_format($this->fechaIngreso, 'd/m/Y');
     }
 
 
+
     /**
-     * Get id.
+     * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -116,7 +120,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set fechaIngreso.
+     * Set fechaIngreso
      *
      * @param \DateTime $fechaIngreso
      *
@@ -130,7 +134,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaIngreso.
+     * Get fechaIngreso
      *
      * @return \DateTime
      */
@@ -140,7 +144,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set motivoIngreso.
+     * Set motivoIngreso
      *
      * @param string $motivoIngreso
      *
@@ -154,7 +158,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get motivoIngreso.
+     * Get motivoIngreso
      *
      * @return string
      */
@@ -164,7 +168,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set procedimientoRealizado.
+     * Set procedimientoRealizado
      *
      * @param string $procedimientoRealizado
      *
@@ -178,7 +182,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get procedimientoRealizado.
+     * Get procedimientoRealizado
      *
      * @return string
      */
@@ -187,9 +191,46 @@ class IngresoPaciente
         return $this->procedimientoRealizado;
     }
 
-   
     /**
-     * Set fechaSalida.
+     * Set arrayDiagnosticos
+     *
+     * @param array $arrayDiagnosticos
+     *
+     * @return IngresoPaciente
+     */
+    public function setArrayDiagnosticos($arrayDiagnosticos)
+    {
+        $this->arrayDiagnosticos = $arrayDiagnosticos;
+
+        return $this;
+    }
+
+     /**
+     * Set arrayDiagnosticos
+     *
+     * @param array $arrayDiagnosticos
+     *
+     * @return IngresoPaciente
+     */
+    public function addArrayDiagnosticos($arrayDiagnosticos)
+    {
+        $this->arrayDiagnosticos->add($arrayDiagnosticos);
+
+        return $this;
+    }
+
+    /**
+     * Get arrayDiagnosticos
+     *
+     * @return array
+     */
+    public function getArrayDiagnosticos()
+    {
+        return $this->arrayDiagnosticos;
+    }
+
+    /**
+     * Set fechaSalida
      *
      * @param \DateTime $fechaSalida
      *
@@ -203,7 +244,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaSalida.
+     * Get fechaSalida
      *
      * @return \DateTime
      */
@@ -213,11 +254,11 @@ class IngresoPaciente
     }
 
     /**
-     * Set slug.
+     * Set slug
      *
      * @param string $slug
      *
-     * @return Curso
+     * @return IngresoPaciente
      */
     public function setSlug($slug)
     {
@@ -227,7 +268,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get slug.
+     * Get slug
      *
      * @return string
      */
@@ -236,18 +277,8 @@ class IngresoPaciente
         return $this->slug;
     }
 
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
     /**
-     * Set created.
+     * Set created
      *
      * @param \DateTime $created
      *
@@ -261,7 +292,17 @@ class IngresoPaciente
     }
 
     /**
-     * Set updated.
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
      *
      * @param \DateTime $updated
      *
@@ -275,56 +316,17 @@ class IngresoPaciente
     }
 
     /**
-     * Set paciente.
+     * Get updated
      *
-     * @param \AppBundle\Entity\Paciente $paciente
-     *
-     * @return IngresoPaciente
+     * @return \DateTime
      */
-    public function setPaciente(\AppBundle\Entity\Paciente $paciente = null)
+    public function getUpdated()
     {
-        $this->paciente = $paciente;
-
-        return $this;
+        return $this->updated;
     }
 
     /**
-     * Get paciente.
-     *
-     * @return \AppBundle\Entity\Paciente
-     */
-    public function getPaciente()
-    {
-        return $this->paciente;
-    }
-
-    /**
-     * Set usuario.
-     *
-     * @param \UserBundle\Entity\Usuario $usuario
-     *
-     * @return IngresoPaciente
-     */
-    public function setUsuario(\UserBundle\Entity\Usuario $usuario = null)
-    {
-        $this->usuario = $usuario;
-
-        return $this;
-    }
-
-    /**
-     * Get usuario.
-     *
-     * @return \UserBundle\Entity\Usuario
-     */
-    public function getUsuario()
-    {
-        return $this->usuario;
-    }
-
-
-    /**
-     * Set contentChangedBy.
+     * Set contentChangedBy
      *
      * @param string $contentChangedBy
      *
@@ -338,7 +340,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get contentChangedBy.
+     * Get contentChangedBy
      *
      * @return string
      */
@@ -346,45 +348,53 @@ class IngresoPaciente
     {
         return $this->contentChangedBy;
     }
-   
 
     /**
-     * Add arrayDiagnostico
+     * Set paciente
      *
-     * @param \AppBundle\Entity\Diagnostico $arrayDiagnostico
+     * @param \AppBundle\Entity\Paciente $paciente
      *
      * @return IngresoPaciente
      */
-    public function addArrayDiagnostico(\AppBundle\Entity\Diagnostico $arrayDiagnostico)
+    public function setPaciente(\AppBundle\Entity\Paciente $paciente = null)
     {
-        $this->arrayDiagnosticos[] = $arrayDiagnostico;
+        $this->paciente = $paciente;
 
         return $this;
     }
 
     /**
-     * Remove arrayDiagnostico
+     * Get paciente
      *
-     * @param \AppBundle\Entity\Diagnostico $arrayDiagnostico
+     * @return \AppBundle\Entity\Paciente
      */
-    public function removeArrayDiagnostico(\AppBundle\Entity\Diagnostico $arrayDiagnostico)
+    public function getPaciente()
     {
-        $this->arrayDiagnosticos->removeElement($arrayDiagnostico);
+        return $this->paciente;
     }
 
     /**
-     * Get arrayDiagnosticos
+     * Set usuario
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param \UserBundle\Entity\Usuario $usuario
+     *
+     * @return IngresoPaciente
      */
-    public function getArrayDiagnosticos()
+    public function setUsuario(\UserBundle\Entity\Usuario $usuario = null)
     {
-        return $this->arrayDiagnosticos;
+        $this->usuario = $usuario;
+
+        return $this;
     }
 
-     public function __toString()
+    /**
+     * Get usuario
+     *
+     * @return \UserBundle\Entity\Usuario
+     */
+    public function getUsuario()
     {
-        return date_format($this->fechaIngreso, 'd/m/Y');
+        return $this->usuario;
     }
-
+  
 }

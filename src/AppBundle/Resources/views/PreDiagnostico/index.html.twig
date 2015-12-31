@@ -1,29 +1,26 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Cie10 list</h1>
+    <h1>PreDiagnostico list</h1>
 
     <table class="records_list">
         <thead>
             <tr>
-                <th>Código</th>
-                <th>Diagnóstico</th>
-                <th>Acciones</th>
+                <th>Id</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('cie10_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.codigo }}</td>
-                <td>{{ entity.diagnostico }}</td>
+                <td><a href="{{ path('prediagnostico_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('cie10_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('prediagnostico_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('cie10_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('prediagnostico_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -34,7 +31,7 @@
 
         <ul>
         <li>
-            <a href="{{ path('cie10_new') }}">
+            <a href="{{ path('prediagnostico_new') }}">
                 Create a new entry
             </a>
         </li>

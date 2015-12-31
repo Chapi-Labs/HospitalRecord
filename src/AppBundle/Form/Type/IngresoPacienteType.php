@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\DiagnosticoType;
+use AppBundle\Form\PreDiagnosticoType;
+
 
 class IngresoPacienteType extends AbstractType
 {
@@ -51,15 +53,17 @@ class IngresoPacienteType extends AbstractType
             ->add('motivoIngreso')
             ->add('procedimientoRealizado')
             ->add('arrayDiagnosticos', 'collection', [
-                'type' => new DiagnosticoType(),
-               'allow_add' => true,
+                    'type' => new PreDiagnosticoType(),
+                    'label' => ' ',
+                    'allow_add' => true,
                     'allow_delete' => true,
                     'prototype' => true,
-                    'attr' => array(
+                    'by_reference' => false,
+                    'attr' => [
                             'class' => 'my-selector',
-                    ),
-
+                    ],
                 ])
+                
            
             ->add('fechaSalida', 'collot_datetime', ['pickerOptions' => ['format' => 'mm/dd/yyyy',
                 'weekStart' => 0,

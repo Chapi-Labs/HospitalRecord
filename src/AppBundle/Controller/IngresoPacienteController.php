@@ -55,9 +55,6 @@ class IngresoPacienteController extends Controller
 
         $entity = new IngresoPaciente();
         $entity->setUsuario($usuario);
-        $diagnostico = new Diagnostico();
-        $diagnostico->setDiagnostico('test');
-        $entity->getArrayDiagnosticos()->add($diagnostico);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 

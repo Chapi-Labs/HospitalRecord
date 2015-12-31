@@ -27,7 +27,10 @@ class Diagnostico
      * @ORM\Column(name="nombreDiagnostico", type="string", length=255)
      */
     private $nombreDiagnostico;
-   
+    /**
+     * @ORM\ManyToOne(targetEntity="IngresoPaciente", inversedBy="arrayDiagnosticos")
+     */
+    private $ingreso;
 
     /**
      * Get id

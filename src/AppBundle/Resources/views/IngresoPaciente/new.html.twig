@@ -69,8 +69,13 @@ function addTagForm($collectionHolder, $newLinkLi) {
     });
 }
 </script>
-<script type="text/javascript">
-   $('.my-selector').collection();
+<script>
+ $('.my-selector').collection({
+        prototype_name: '{{ form.arrayDiagnosticos.vars.prototype.vars.name }}',
+        enable_add: false,
+        enable_delete: false,
+        name_prefix:  '{{ form.arrayDiagnosticos.vars.full_name }}'
+    });
 </script>
 
 {% endblock %}
@@ -108,8 +113,9 @@ function addTagForm($collectionHolder, $newLinkLi) {
                         </li>
                     </ul>
                 </div>
-                 {% form_theme form '::jquery.collection.html.twig' %}
+                
                 {{form_start(form)}}
+                 {% form_theme form '::jquery.collection.html.twig' %}
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
@@ -143,10 +149,14 @@ function addTagForm($collectionHolder, $newLinkLi) {
                             <div class="row">
                                 <div class="col-md-12">
                                   
-                                     <ul class="tags" data-prototype="{{ form_widget(form.arrayDiagnosticos.vars.prototype)|e }}">
+                                     <ul class="tags select2" data-prototype="{{ form_widget(form.arrayDiagnosticos.vars.prototype,{'attr': {'class': 'select2'}})|e }}">
                                     {# iterate over each existing tag and render its only field: name #}
                                    
-                                        <li>{{ form_row(form.arrayDiagnosticos) }}</li>
+                                       {% for diagnostico in form.arrayDiagnosticos %}
+                                        <li>
+                                             {{ form_row(diagnostico.nombreDiagnostico,{'attr': {'class': 'select2'}})}}
+                                        </li>
+                                    {% endfor %}
                                    
                                 </ul>
                                                             

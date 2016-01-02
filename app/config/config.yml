@@ -87,8 +87,6 @@ swiftmailer:
     port:       "%mailer_port%"
     spool:     { type: memory }
 
-genemu_form:
-    select2: ~
 braincrafted_bootstrap:
     less_filter: lessphp
     jquery_path: %kernel.root_dir%/../web/js/jquery-2.1.1.min.js

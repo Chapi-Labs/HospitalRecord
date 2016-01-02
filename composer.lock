@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "da3cfa104f2b08a7ee39c71c9b979f28",
-    "content-hash": "e1e0074e02f3027f0df7d545c9e942d8",
+    "hash": "0126cec2b7ec24f99a01dc6636c94127",
+    "content-hash": "cbb3b4d1af4fa5d1b8cd71f6f6705734",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -177,33 +177,33 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.5.4",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "47cdc76ceb95cc591d9c79a36dc3794975b5d136"
+                "reference": "f8af318d14bdb0eff0336795b428b547bd39ccb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/47cdc76ceb95cc591d9c79a36dc3794975b5d136",
-                "reference": "47cdc76ceb95cc591d9c79a36dc3794975b5d136",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/f8af318d14bdb0eff0336795b428b547bd39ccb6",
+                "reference": "f8af318d14bdb0eff0336795b428b547bd39ccb6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": "~5.5|~7.0"
             },
             "conflict": {
                 "doctrine/common": ">2.2,<2.4"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.7",
+                "phpunit/phpunit": "~4.8|~5.0",
                 "predis/predis": "~1.0",
                 "satooshi/php-coveralls": "~0.6"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -243,7 +243,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-12-19 05:03:47"
+            "time": "2015-12-31 16:37:02"
         },
         {
             "name": "doctrine/collections",
@@ -1019,76 +1019,6 @@
             "time": "2015-12-18 20:34:21"
         },
         {
-            "name": "genemu/form-bundle",
-            "version": "v2.2.2",
-            "target-dir": "Genemu/Bundle/FormBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/genemu/GenemuFormBundle.git",
-                "reference": "9fecbe7a12fba1761228909e843301c4d1a11e7c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/genemu/GenemuFormBundle/zipball/9fecbe7a12fba1761228909e843301c4d1a11e7c",
-                "reference": "9fecbe7a12fba1761228909e843301c4d1a11e7c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2",
-                "symfony/form": "~2.3",
-                "symfony/framework-bundle": "~2.3"
-            },
-            "require-dev": {
-                "doctrine/doctrine-bundle": "1.*",
-                "doctrine/mongodb-odm-bundle": "*",
-                "doctrine/orm": "2.*",
-                "propel/propel-bundle": "*",
-                "symfony/doctrine-bridge": "~2.3",
-                "symfony/finder": "2.*"
-            },
-            "suggest": {
-                "symfony/doctrine-bundle": "In order to use some form types with Doctrine",
-                "symfony/finder": "For an image type",
-                "symfony/mongodb-odm-bundle": "For MongoDB integration",
-                "symfony/twig-bridge": "For integration into Twig templates"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Genemu\\Bundle\\FormBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Olivier Chauvel",
-                    "email": "olivier@generation-multiple.com"
-                },
-                {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/genemu/GenemuFormBundle/contributors"
-                },
-                {
-                    "name": "Bilal Amarni",
-                    "email": "bilal.amarni@gmail.com"
-                }
-            ],
-            "description": "Extra form types for your Symfony2 projects",
-            "keywords": [
-                "extra form",
-                "form"
-            ],
-            "time": "2014-03-23 12:12:05"
-        },
-        {
             "name": "incenteev/composer-parameter-handler",
             "version": "v2.1.2",
             "source": {
@@ -1141,16 +1071,16 @@
         },
         {
             "name": "javiereguiluz/easyadmin-bundle",
-            "version": "v1.9.8",
+            "version": "v1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/javiereguiluz/EasyAdminBundle.git",
-                "reference": "9b557757a19f4d3a7345421d4baa6e1c53af7cfa"
+                "reference": "4d095c59a7f8a2c06528c93d0643740ef1273e33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/9b557757a19f4d3a7345421d4baa6e1c53af7cfa",
-                "reference": "9b557757a19f4d3a7345421d4baa6e1c53af7cfa",
+                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/4d095c59a7f8a2c06528c93d0643740ef1273e33",
+                "reference": "4d095c59a7f8a2c06528c93d0643740ef1273e33",
                 "shasum": ""
             },
             "require": {
@@ -1216,7 +1146,7 @@
                 "backend",
                 "generator"
             ],
-            "time": "2015-12-24 18:20:13"
+            "time": "2015-12-31 17:45:02"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2392,6 +2322,63 @@
                 "templating"
             ],
             "time": "2015-11-05 12:49:06"
+        },
+        {
+            "name": "zenstruck/form-bundle",
+            "version": "v1.6.0",
+            "target-dir": "Zenstruck/Bundle/FormBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kbond/ZenstruckFormBundle.git",
+                "reference": "c7a79f9e125af9b1cc6e75619c09f2295265f409"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kbond/ZenstruckFormBundle/zipball/c7a79f9e125af9b1cc6e75619c09f2295265f409",
+                "reference": "c7a79f9e125af9b1cc6e75619c09f2295265f409",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/symfony": "~2.1"
+            },
+            "require-dev": {
+                "cocur/slugify": "~0.8",
+                "doctrine/doctrine-bundle": "*",
+                "doctrine/orm": "*",
+                "zendframework/zend-crypt": "~2.0,!=2.1.1"
+            },
+            "suggest": {
+                "cocur/slugify": "CocurSlugifyBundle is required for the grouped form feature",
+                "zendframework/zend-crypt": "Required when using the ajax entity type 'use_controller' option. Version: ~2.0,!=2.1.1",
+                "zenstruck/slugify-bundle": "If not using CocurSlugifyBundle, then this is required for the grouped form feature"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zenstruck\\Bundle\\FormBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Bond",
+                    "email": "kevinbond@gmail.com"
+                }
+            ],
+            "description": "Provides Twitter Bootstrap form theme, a help type extension, Ajax/Tunnel/Select2 entity form types and javascript helpers",
+            "homepage": "http://zenstruck.com/project/ZenstruckFormBundle",
+            "keywords": [
+                "form"
+            ],
+            "time": "2015-10-08 14:22:34"
         }
     ],
     "packages-dev": [

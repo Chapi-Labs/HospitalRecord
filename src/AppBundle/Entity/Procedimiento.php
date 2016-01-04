@@ -3,16 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * ClasificacionAO
+ * Procedimiento
  *
  * @ORM\Table()
  * @ORM\Entity
- * @UniqueEntity("identificadorAO")
  */
-class ClasificacionAO
+class Procedimiento
 {
     /**
      * @var integer
@@ -26,9 +24,9 @@ class ClasificacionAO
     /**
      * @var string
      *
-     * @ORM\Column(name="identificadorAO", type="string", length=255,unique=true)
+     * @ORM\Column(name="descripcionProcedimiento", type="text")
      */
-    private $identificadorAO;
+    private $descripcionProcedimiento;
 
 
     /**
@@ -42,33 +40,32 @@ class ClasificacionAO
     }
 
     /**
-     * Set identificadorAO
+     * Set descripcionProcedimiento
      *
-     * @param string $identificadorAO
+     * @param string $descripcionProcedimiento
      *
-     * @return ClasificacionAO
+     * @return Procedimiento
      */
-    public function setIdentificadorAO($identificadorAO)
+    public function setDescripcionProcedimiento($descripcionProcedimiento)
     {
-        $this->identificadorAO = $identificadorAO;
+        $this->descripcionProcedimiento = $descripcionProcedimiento;
 
         return $this;
     }
 
     /**
-     * Get identificadorAO
+     * Get descripcionProcedimiento
      *
      * @return string
      */
-    public function getIdentificadorAO()
+    public function getDescripcionProcedimiento()
     {
-        return $this->identificadorAO;
+        return $this->descripcionProcedimiento;
     }
 
     public function __toString()
     {
-        return $this->identificadorAO;
+        return $this->descripcionProcedimiento;
     }
-
 }
 

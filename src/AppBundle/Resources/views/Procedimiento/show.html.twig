@@ -1,9 +1,11 @@
 {% extends '::base.html.twig' %}
+
 {% block body -%}
+
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <h1>ClasificaciónAO</h1>
+        <h1>Procedimiento</h1>
         <table class="record_properties">
             <tbody>
                 <tr>
@@ -11,19 +13,19 @@
                     <td>{{ entity.id }}</td>
                 </tr>
                 <tr>
-                    <th>IdentificadorAO</th>
-                    <td>{{ entity.identificadorAO }}</td>
+                    <th>Descripcionprocedimiento</th>
+                    <td>{{ entity.descripcionProcedimiento }}</td>
                 </tr>
             </tbody>
         </table>
         <ul class="record_actions">
             <li>
-                <a class="btn btn-default" href="{{ path('clasificacionao') }}">
-                Regresar 
+                <a class="btn btn-default" href="{{ path('procedimiento') }}">
+                Regresar al listado
                 </a>
             </li>
             <li>
-                <a href="{{ path('clasificacionao_edit', { 'id': entity.id }) }}">
+                <a class="btn btn-warning" href="{{ path('procedimiento_edit', { 'id': entity.id }) }}">
                 Edit
                 </a>
             </li>
@@ -32,4 +34,5 @@
     </div>
     <div class="col-md-1"></div>
 </div>
+
 {% endblock %}

@@ -59,6 +59,7 @@ class IngresoPacienteType extends AbstractType
                     ]
                 ])
             ->add('clasificacionAO','entity',[
+                 'empty_value' => 'Seleccionar Clasificación AO',
                 'label' => 'Clasificación AO',
                 'class' => 'AppBundle:ClasificacionAO',
                 'attr' =>[
@@ -66,9 +67,12 @@ class IngresoPacienteType extends AbstractType
                     'class => select2'
                     ]
                 ])
-            ->add('procedimientoRealizado',null, [
+            ->add('procedimientoRealizado','entity', [
+                 'empty_value' => 'Seleccionar Procedimiento',
+                'class' => 'AppBundle:Procedimiento',
                 'attr' =>  [
-                        'placeholder' => 'Procedimiento realizado'
+                        'placeholder' => 'Procedimiento realizado',
+                        'class' => 'select2'
                     ]
                 ])
             ->add('arrayDiagnosticos', 'bootstrap_collection', [

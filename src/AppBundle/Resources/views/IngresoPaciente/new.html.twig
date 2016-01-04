@@ -91,6 +91,9 @@
                               <div class="row">
                                 <div class="col-md-12">
                                     {{form_row(form.procedimientoRealizado)}}
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalProcedimiento">
+                                     Crear nuevo procedimiento
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -135,5 +138,6 @@
 </div>
 
 {% include 'AppBundle:IngresoPaciente:modalAO.html.twig' %}
+{% include 'AppBundle:IngresoPaciente:modalProcedimiento.html.twig' %}
 
 {% endblock %}

@@ -1,13 +1,15 @@
 {% extends '::base.html.twig' %}
+
 {% block body -%}
+
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-        <h1>ClasificacionAO edit</h1>
+        <h1>Procedimiento edit</h1>
         {{ form(edit_form) }}
         <ul class="record_actions">
             <li>
-                <a href="{{ path('clasificacionao') }}">
+                <a href="{{ path('procedimiento') }}">
                 Back to the list
                 </a>
             </li>
@@ -16,4 +18,5 @@
     </div>
     <div class="col-md-1"></div>
 </div>
+
 {% endblock %}

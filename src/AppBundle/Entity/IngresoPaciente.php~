@@ -67,7 +67,7 @@ class IngresoPaciente
     private $fechaSalida;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso",cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso")
      * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $paciente;

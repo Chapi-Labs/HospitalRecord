@@ -10,14 +10,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Diagnostico;
 use AppBundle\Form\DiagnosticoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 /**
  * Diagnostico controller.
+ *
  * @Security("has_role('ROLE_USER')")
  * @Route("/diagnostico")
  */
 class DiagnosticoController extends Controller
 {
-
     /**
      * Lists all Diagnostico entities.
      *
@@ -58,7 +59,7 @@ class DiagnosticoController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -91,11 +92,11 @@ class DiagnosticoController extends Controller
     public function newAction()
     {
         $entity = new Diagnostico();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -119,7 +120,7 @@ class DiagnosticoController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -145,19 +146,19 @@ class DiagnosticoController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Diagnostico entity.
-    *
-    * @param Diagnostico $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Diagnostico entity.
+     *
+     * @param Diagnostico $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Diagnostico $entity)
     {
         $form = $this->createForm(new DiagnosticoType(), $entity, array(
@@ -197,8 +198,8 @@ class DiagnosticoController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

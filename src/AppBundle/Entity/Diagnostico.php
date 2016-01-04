@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Diagnostico
+ * Diagnostico.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Diagnostico
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -27,12 +27,11 @@ class Diagnostico
      * @ORM\Column(name="nombreDiagnostico", type="string", length=255)
      */
     private $nombreDiagnostico;
-   
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -40,7 +39,7 @@ class Diagnostico
     }
 
     /**
-     * Set nombreDiagnostico
+     * Set nombreDiagnostico.
      *
      * @param string $nombreDiagnostico
      *
@@ -54,7 +53,7 @@ class Diagnostico
     }
 
     /**
-     * Get nombreDiagnostico
+     * Get nombreDiagnostico.
      *
      * @return string
      */
@@ -68,9 +67,8 @@ class Diagnostico
         return $this->nombreDiagnostico;
     }
 
-
     /**
-     * Set ingreso
+     * Set ingreso.
      *
      * @param \AppBundle\Entity\IngresoPaciente $ingreso
      *
@@ -84,7 +82,7 @@ class Diagnostico
     }
 
     /**
-     * Get ingreso
+     * Get ingreso.
      *
      * @return \AppBundle\Entity\IngresoPaciente
      */

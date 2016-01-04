@@ -10,22 +10,22 @@ class DiagnosticoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           ->add('nombreDiagnostico','textarea',['label'=>'Diagnóstico'])
+           ->add('nombreDiagnostico', 'textarea', ['label' => 'Diagnóstico'])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Diagnostico'
+            'data_class' => 'AppBundle\Entity\Diagnostico',
         ));
     }
 

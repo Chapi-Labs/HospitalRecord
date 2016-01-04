@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Procedimiento;
 use AppBundle\Form\ProcedimientoType;
+
 /**
  * Procedimiento controller.
  *
@@ -16,7 +17,6 @@ use AppBundle\Form\ProcedimientoType;
  */
 class ProcedimientoController extends Controller
 {
-
     /**
      * Lists all Procedimiento entities.
      *
@@ -57,7 +57,7 @@ class ProcedimientoController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -75,7 +75,11 @@ class ProcedimientoController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Guardar',
+            'attr' => [
+                    'class' => 'btn btn-primary',
+                ],
+            ));
 
         return $form;
     }
@@ -90,11 +94,11 @@ class ProcedimientoController extends Controller
     public function newAction()
     {
         $entity = new Procedimiento();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -118,7 +122,7 @@ class ProcedimientoController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -144,19 +148,19 @@ class ProcedimientoController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a Procedimiento entity.
-    *
-    * @param Procedimiento $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Procedimiento entity.
+     *
+     * @param Procedimiento $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Procedimiento $entity)
     {
         $form = $this->createForm(new ProcedimientoType(), $entity, array(
@@ -196,8 +200,8 @@ class ProcedimientoController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * ClasificacionAO
+ * ClasificacionAO.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class ClasificacionAO
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -30,11 +30,10 @@ class ClasificacionAO
      */
     private $identificadorAO;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -42,7 +41,7 @@ class ClasificacionAO
     }
 
     /**
-     * Set identificadorAO
+     * Set identificadorAO.
      *
      * @param string $identificadorAO
      *
@@ -56,7 +55,7 @@ class ClasificacionAO
     }
 
     /**
-     * Get identificadorAO
+     * Get identificadorAO.
      *
      * @return string
      */
@@ -69,6 +68,4 @@ class ClasificacionAO
     {
         return $this->identificadorAO;
     }
-
 }
-

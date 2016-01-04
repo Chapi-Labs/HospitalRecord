@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Procedimiento
+ * Procedimiento.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Procedimiento
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -28,11 +28,10 @@ class Procedimiento
      */
     private $descripcionProcedimiento;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -40,7 +39,7 @@ class Procedimiento
     }
 
     /**
-     * Set descripcionProcedimiento
+     * Set descripcionProcedimiento.
      *
      * @param string $descripcionProcedimiento
      *
@@ -54,7 +53,7 @@ class Procedimiento
     }
 
     /**
-     * Get descripcionProcedimiento
+     * Get descripcionProcedimiento.
      *
      * @return string
      */
@@ -68,4 +67,3 @@ class Procedimiento
         return $this->descripcionProcedimiento;
     }
 }
-

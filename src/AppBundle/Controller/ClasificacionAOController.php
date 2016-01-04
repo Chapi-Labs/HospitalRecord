@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * ClasificacionAO controller.
+ *
  * @Security("has_role('ROLE_USER')")
  * @Route("/clasificacion-AO")
  */
 class ClasificacionAOController extends Controller
 {
-
     /**
      * Lists all ClasificacionAO entities.
      *
@@ -59,21 +59,16 @@ class ClasificacionAOController extends Controller
             $em->persist($entity);
             $em->flush();
 
-
             $this->get('braincrafted_bootstrap.flash')->success(
                 sprintf('Se ha creado la clasificación AO %s correctamente', $entity->getIdentificadorAO()
                 ));
-        }
-        else {
-
-          $this->get('braincrafted_bootstrap.flash')->error(
+        } else {
+            $this->get('braincrafted_bootstrap.flash')->error(
             sprintf('No se ha creado la clasificación AO'
             ));
         }
 
-       
         return new JsonResponse();
-         
     }
 
     /**
@@ -91,7 +86,7 @@ class ClasificacionAOController extends Controller
         ));
 
         $form->add('submit', 'submit', array('label' => 'Guardar',
-            'attr' => ['class' => 'btn btn-primary']
+            'attr' => ['class' => 'btn btn-primary'],
 
             ));
 
@@ -108,11 +103,11 @@ class ClasificacionAOController extends Controller
     public function newAction()
     {
         $entity = new ClasificacionAO();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -136,7 +131,7 @@ class ClasificacionAOController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -162,19 +157,19 @@ class ClasificacionAOController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
 
     /**
-    * Creates a form to edit a ClasificacionAO entity.
-    *
-    * @param ClasificacionAO $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a ClasificacionAO entity.
+     *
+     * @param ClasificacionAO $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(ClasificacionAO $entity)
     {
         $form = $this->createForm(new ClasificacionAOType(), $entity, array(
@@ -214,8 +209,8 @@ class ClasificacionAOController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }

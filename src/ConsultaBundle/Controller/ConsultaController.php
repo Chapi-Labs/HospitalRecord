@@ -39,7 +39,7 @@ class ConsultaController extends Controller
                 [
                     'form' => $formConsultas->createView(),
                     'pacientes' => null,
-                    'contPacientes' => $cantidadPacientes
+                    'contPacientes' => $cantidadPacientes,
                 ]
             );
         }
@@ -93,9 +93,8 @@ class ConsultaController extends Controller
             [
                 'form' => $formConsultas->createView(),
                 'pacientes' => $pacientes,
-                'contPacientes' => $cantidadPacientes
+                'contPacientes' => $cantidadPacientes,
             ]
         );
     }
 }
-

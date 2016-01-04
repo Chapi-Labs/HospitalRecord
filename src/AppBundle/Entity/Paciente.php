@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity
  * @UniqueEntity("dpi")
- * @UniqueEntity("correlativo")
+ * @UniqueEntity("expediente")
  */
 class Paciente
 {
@@ -26,8 +26,7 @@ class Paciente
      */
     private $id;
 
-
-      /**
+    /**
      * @var string
      *
      * @ORM\Column(name="expediente", type="string", length=255,unique=true)
@@ -490,9 +489,8 @@ class Paciente
         return $this->contentChangedBy;
     }
 
-
     /**
-     * Set expediente
+     * Set expediente.
      *
      * @param string $expediente
      *
@@ -506,7 +504,7 @@ class Paciente
     }
 
     /**
-     * Get expediente
+     * Get expediente.
      *
      * @return string
      */

@@ -44,7 +44,7 @@ class IngresoPaciente
      */
     private $procedimientoRealizado;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="ClasificacionAO")
      * @ORM\JoinColumn(name="clasificacionao_id", referencedColumnName="id",onDelete="SET NULL")
      */
@@ -52,12 +52,11 @@ class IngresoPaciente
 
     /**
      * @var string
-     *  
+     *              
      * 
      * @ORM\Column(name="arrayDiagnosticos",type="array")
      */
     private $arrayDiagnosticos;
-
 
     /**
      * @var \DateTime
@@ -108,16 +107,15 @@ class IngresoPaciente
      */
     private $contentChangedBy;
 
-
     public function __toString()
     {
         return date_format($this->fechaIngreso, 'd/m/Y');
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -125,7 +123,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set fechaIngreso
+     * Set fechaIngreso.
      *
      * @param \DateTime $fechaIngreso
      *
@@ -139,7 +137,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaIngreso
+     * Get fechaIngreso.
      *
      * @return \DateTime
      */
@@ -149,7 +147,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set motivoIngreso
+     * Set motivoIngreso.
      *
      * @param string $motivoIngreso
      *
@@ -163,7 +161,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get motivoIngreso
+     * Get motivoIngreso.
      *
      * @return string
      */
@@ -173,7 +171,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set procedimientoRealizado
+     * Set procedimientoRealizado.
      *
      * @param string $procedimientoRealizado
      *
@@ -187,7 +185,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get procedimientoRealizado
+     * Get procedimientoRealizado.
      *
      * @return string
      */
@@ -197,7 +195,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set arrayDiagnosticos
+     * Set arrayDiagnosticos.
      *
      * @param array $arrayDiagnosticos
      *
@@ -210,8 +208,8 @@ class IngresoPaciente
         return $this;
     }
 
-     /**
-     * Set arrayDiagnosticos
+    /**
+     * Set arrayDiagnosticos.
      *
      * @param array $arrayDiagnosticos
      *
@@ -225,7 +223,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get arrayDiagnosticos
+     * Get arrayDiagnosticos.
      *
      * @return array
      */
@@ -235,7 +233,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set fechaSalida
+     * Set fechaSalida.
      *
      * @param \DateTime $fechaSalida
      *
@@ -249,7 +247,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaSalida
+     * Get fechaSalida.
      *
      * @return \DateTime
      */
@@ -259,7 +257,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -273,7 +271,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -283,7 +281,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set created
+     * Set created.
      *
      * @param \DateTime $created
      *
@@ -297,7 +295,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get created
+     * Get created.
      *
      * @return \DateTime
      */
@@ -307,7 +305,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set updated
+     * Set updated.
      *
      * @param \DateTime $updated
      *
@@ -321,7 +319,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get updated
+     * Get updated.
      *
      * @return \DateTime
      */
@@ -331,7 +329,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set contentChangedBy
+     * Set contentChangedBy.
      *
      * @param string $contentChangedBy
      *
@@ -345,7 +343,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get contentChangedBy
+     * Get contentChangedBy.
      *
      * @return string
      */
@@ -355,7 +353,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set paciente
+     * Set paciente.
      *
      * @param \AppBundle\Entity\Paciente $paciente
      *
@@ -369,7 +367,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get paciente
+     * Get paciente.
      *
      * @return \AppBundle\Entity\Paciente
      */
@@ -379,7 +377,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set usuario
+     * Set usuario.
      *
      * @param \UserBundle\Entity\Usuario $usuario
      *
@@ -393,7 +391,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get usuario
+     * Get usuario.
      *
      * @return \UserBundle\Entity\Usuario
      */
@@ -401,10 +399,9 @@ class IngresoPaciente
     {
         return $this->usuario;
     }
-  
 
     /**
-     * Set clasificacionAO
+     * Set clasificacionAO.
      *
      * @param \AppBundle\Entity\ClasificacionAO $clasificacionAO
      *
@@ -418,7 +415,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get clasificacionAO
+     * Get clasificacionAO.
      *
      * @return \AppBundle\Entity\ClasificacionAO
      */

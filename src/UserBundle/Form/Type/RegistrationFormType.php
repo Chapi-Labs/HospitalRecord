@@ -24,10 +24,10 @@ class RegistrationFormType extends AbstractType
                 ])
             ->add('username', null, ['label' => false, 'translation_domain' => 'FOSUserBundle'])
             ->add('email', 'email', ['label' => false, 'translation_domain' => 'FOSUserBundle',
-                'required'=>false
+                'required' => false,
                 ])
              ->add('telefono', 'integer', ['label' => false, 'translation_domain' => 'FOSUserBundle',
-                'required'=>false
+                'required' => false,
                 ])
             ->add('plainPassword', 'repeated', [
                 'label' => false,

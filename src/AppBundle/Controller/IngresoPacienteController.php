@@ -12,7 +12,6 @@ use AppBundle\Form\Type\IngresoPacienteType;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Entity\Diagnostico;
 
 /**
  * IngresoPaciente controller.

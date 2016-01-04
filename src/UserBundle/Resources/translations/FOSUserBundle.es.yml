@@ -16,7 +16,7 @@ group:
 
 security:
     login:
-        username: "Nombre de usuario:"
+        username: "Nombre de Servicio:"
         password: "Contraseña:"
         remember_me: Recordar
         submit: Entrar
@@ -24,7 +24,7 @@ security:
 # Perfil
 profile:
     show:
-        username: Nombre de usuario
+        username: Nombre de Servicio
         email: Email
     edit:
         submit: Actualizar usuario
@@ -61,7 +61,7 @@ resetting:
     check_email: Un email ha sido enviado a %email%. Contiene un enlace de activación que debes presionar para restablecer tu contraseña.
     request:
         invalid_username: El usuario o dirección de correo "%username%" no existe.
-        username: "Nombre de usuario:"
+        username: "Nombre de Servicio:"
         submit: Restablecer contraseña
     reset:
         submit: Cambiar contraseña
@@ -87,7 +87,7 @@ layout:
 # labels para los formularios
 form:
     group_name: "Nombre de grupo:"
-    username: "Nombre de usuario:"
+    username: "Nombre de Servicio:"
     email: "Email:"
     current_password: "Contraseña actual:"
     password: "Contraseña:"

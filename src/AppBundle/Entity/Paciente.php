@@ -12,6 +12,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @UniqueEntity("dpi")
+ * @UniqueEntity("correlativo")
  */
 class Paciente
 {
@@ -24,10 +26,18 @@ class Paciente
      */
     private $id;
 
+
+      /**
+     * @var string
+     *
+     * @ORM\Column(name="correlativo", type="string", length=255,unique=true)
+     */
+    private $correlativo;
+
     /**
      * @var int
      *
-     * @ORM\Column(name="dpi", type="string",length=13, unique=true)
+     * @ORM\Column(name="dpi", type="string",length=13, unique=true,nullable=true)
      * 
      * @Assert\Length(
      *      min = 13,
@@ -478,6 +488,30 @@ class Paciente
     public function getContentChangedBy()
     {
         return $this->contentChangedBy;
+    }
+
+    /**
+     * Set correlativo
+     *
+     * @param string $correlativo
+     *
+     * @return Paciente
+     */
+    public function setCorrelativo($correlativo)
+    {
+        $this->correlativo = $correlativo;
+
+        return $this;
+    }
+
+    /**
+     * Get correlativo
+     *
+     * @return string
+     */
+    public function getCorrelativo()
+    {
+        return $this->correlativo;
     }
 
     public function __toString()

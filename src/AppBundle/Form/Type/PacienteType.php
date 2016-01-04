@@ -15,22 +15,66 @@ class PacienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dpi', null, ['label' => 'Documento Personal de Identificación', 'required' => 'true'])
-            ->add('nombre', null, ['label' => 'Nombre', 'required' => 'true'])
-            ->add('apellidos', null, ['label' => 'Apellidos', 'required' => 'true'])
-            ->add('telefono', 'integer', ['label' => 'Teléfono', 'required' => 'true'])
-            ->add('direccion', null, ['label' => 'Dirección', 'required' => 'true'])
-            ->add('edad', null, ['label' => 'Edad', 'required' => 'true'])
+            ->add('correlativo',null,[
+                'label' => 'Número de Correlativo*',
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Ingresar número de expediente'
+                    ]
+                ])
+            ->add('dpi', null, [ 
+                'label' => 'Documento Personal de Identificación', 
+                'required' => false,
+                'attr' => [ 
+                    'placeholder' => 'DPI' 
+                    ]
+                ])
+            ->add('nombre', null, [
+                'label' => 'Nombre*', 
+                'required' => true,
+                'attr' =>[
+                    'placeholder'=>'Nombre/s del paciente' 
+                    ]
+                ])
+            ->add('apellidos', null, [
+                'label' => 'Apellidos*', 
+                'required' => true,
+                'attr' =>[
+                    'placeholder'=>'Apellidos del paciente'
+                    ]
+                ])
+            ->add('telefono', 'integer', [
+                'label' => 'Teléfono', 
+                'required' => false,
+                'attr'=> [
+                    'placeholder' => 'Número de contacto'
+                    ]
+                ])
+            ->add('direccion', null, [
+                'label' => 'Dirección', 
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'dirección'
+                    ]
+                ])
+            ->add('edad', null, [
+                'label' => 'Edad', 
+                'required' => true,
+                'attr'=>[
+                    'placeholder' => 'Edad del paciente'
+                ]
+                ])
             ->add('genero', 'choice', [
             'choices' => [
                 'Masculino' => 'Masculino',
                 'Femenino' => 'Femenino',
+                'Otro' => 'Otro'
 
             ],
             // *this line is important*
             'choices_as_values' => true,
-            'label' => 'Género',
-            'required' => 'true',
+            'label' => 'Género*',
+            'required' => true,
         ]);
     }
 

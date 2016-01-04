@@ -7,9 +7,15 @@
         <h1>Paciente</h1>
         <table class="table table-striped table-hover">
             <tbody>
+                {% if entity.dpi is not null %}
                 <tr>
                     <th>DPI</th>
                     <td>{{ entity.dpi }}</td>
+                </tr>
+               {% endif %}
+                <tr>
+                    <th>Número de Expediente</th>
+                    <td>{{ entity.expediente}} </th>
                 </tr>
                 <tr>
                     <th>Nombre</th>

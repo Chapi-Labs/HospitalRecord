@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Diagnostico;
 use AppBundle\Form\DiagnosticoType;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * Diagnostico controller.
  * @Security("has_role('ROLE_USER')")

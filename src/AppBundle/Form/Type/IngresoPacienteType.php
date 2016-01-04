@@ -39,6 +39,9 @@ class IngresoPacienteType extends AbstractType
                 'showMeridian' => false,
 
                 ],
+                'attr' => [
+                    'placeholder' => 'Fecha de Ingreso del paciente'
+                ]
             ])
               ->add('paciente', 'entity', [
                 'empty_value' => 'Seleccionar Paciente',
@@ -50,8 +53,22 @@ class IngresoPacienteType extends AbstractType
                     'class' => 'select2',
                 ],
             ])
-            ->add('motivoIngreso')
-            ->add('procedimientoRealizado')
+            ->add('motivoIngreso',null,[
+                'attr' => [
+                    'placeholder' => 'Motivo de ingreso del paciente'
+                    ]
+                ])
+            ->add('clasificacionAO',null,[
+                'label' => 'Clasificación AO',
+                'attr' =>[
+                    'placeholder' => 'AO'
+                    ]
+                ])
+            ->add('procedimientoRealizado',null, [
+                'attr' =>  [
+                        'placeholder' => 'Procedimiento realizado'
+                    ]
+                ])
             ->add('arrayDiagnosticos', 'collection', [
                     'type' => 'entity',
                     'label' => ' ',
@@ -96,6 +113,11 @@ class IngresoPacienteType extends AbstractType
                 'showMeridian' => false,
 
                 ],
+                'attr' => [
+                    'placeholder' => 'Fecha de salida del paciente'
+                    ]
+
+
             ])
 
         ;

@@ -15,7 +15,7 @@ class PacienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('correlativo',null,[
+            ->add('expediente',null,[
                 'label' => 'Número de Correlativo*',
                 'required' => true,
                 'attr' => [

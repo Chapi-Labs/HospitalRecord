@@ -22,6 +22,10 @@
                     <th>Procedimiento Realizado</th>
                     <td>{{ entity.procedimientoRealizado }}</td>
                 </tr>
+                <tr>
+                    <th>Clasificación AO</th>
+                    <td>{{ entity.clasificacionAO}}</td>
+                </tr>
                 {{entity.arrayDiagnosticos|length}}
                 {{dump(entity.arrayDiagnosticos)}}
                 {% for diagnostico in entity.arrayDiagnosticos %}

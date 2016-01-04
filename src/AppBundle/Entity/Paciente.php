@@ -30,9 +30,9 @@ class Paciente
       /**
      * @var string
      *
-     * @ORM\Column(name="correlativo", type="string", length=255,unique=true)
+     * @ORM\Column(name="expediente", type="string", length=255,unique=true)
      */
-    private $correlativo;
+    private $expediente;
 
     /**
      * @var int
@@ -490,28 +490,29 @@ class Paciente
         return $this->contentChangedBy;
     }
 
+
     /**
-     * Set correlativo
+     * Set expediente
      *
-     * @param string $correlativo
+     * @param string $expediente
      *
      * @return Paciente
      */
-    public function setCorrelativo($correlativo)
+    public function setExpediente($expediente)
     {
-        $this->correlativo = $correlativo;
+        $this->expediente = $expediente;
 
         return $this;
     }
 
     /**
-     * Get correlativo
+     * Get expediente
      *
      * @return string
      */
-    public function getCorrelativo()
+    public function getExpediente()
     {
-        return $this->correlativo;
+        return $this->expediente;
     }
 
     public function __toString()

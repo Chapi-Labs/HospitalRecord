@@ -43,6 +43,12 @@ class IngresoPaciente
      */
     private $procedimientoRealizado;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="ClasificacionAO")
+     * @ORM\JoinColumn(name="clasificacionao_id", referencedColumnName="id",onDelete="SET NULL")
+     */
+    private $clasificacionAO;
+
     /**
      * @var string
      *  
@@ -397,4 +403,28 @@ class IngresoPaciente
         return $this->usuario;
     }
   
+
+    /**
+     * Set clasificacionAO
+     *
+     * @param \AppBundle\Entity\ClasificacionAO $clasificacionAO
+     *
+     * @return IngresoPaciente
+     */
+    public function setClasificacionAO(\AppBundle\Entity\ClasificacionAO $clasificacionAO = null)
+    {
+        $this->clasificacionAO = $clasificacionAO;
+
+        return $this;
+    }
+
+    /**
+     * Get clasificacionAO
+     *
+     * @return \AppBundle\Entity\ClasificacionAO
+     */
+    public function getClasificacionAO()
+    {
+        return $this->clasificacionAO;
+    }
 }

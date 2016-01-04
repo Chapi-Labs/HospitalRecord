@@ -62,5 +62,11 @@ class ClasificacionAO
     {
         return $this->identificadorAO;
     }
+
+    public function __toString()
+    {
+        return $this->identificadorAO;
+    }
+
 }
 

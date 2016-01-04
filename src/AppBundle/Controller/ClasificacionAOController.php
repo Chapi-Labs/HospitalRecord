@@ -12,8 +12,8 @@ use AppBundle\Form\ClasificacionAOType;
 
 /**
  * ClasificacionAO controller.
- *
- * @Route("/clasificacionao")
+ * @Security("has_role('ROLE_USER')")
+ * @Route("/clasificacion-AO")
  */
 class ClasificacionAOController extends Controller
 {

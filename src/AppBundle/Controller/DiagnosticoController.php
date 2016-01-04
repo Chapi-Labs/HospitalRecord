@@ -12,7 +12,7 @@ use AppBundle\Form\DiagnosticoType;
 
 /**
  * Diagnostico controller.
- *
+ * @Security("has_role('ROLE_USER')")
  * @Route("/diagnostico")
  */
 class DiagnosticoController extends Controller

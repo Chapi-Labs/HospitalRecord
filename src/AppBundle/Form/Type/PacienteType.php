@@ -54,7 +54,7 @@ class PacienteType extends AbstractType
                 'label' => 'Dirección', 
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'dirección'
+                    'placeholder' => 'Dirección en caso de emergencia'
                     ]
                 ])
             ->add('edad', null, [

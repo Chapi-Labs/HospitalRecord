@@ -7,82 +7,16 @@
 {% block javascripts %}
   {{ form_javascript(form) }}
  <script src="{{asset('js/jquery.collection.js')}}"></script>
-<script>
-var $addTagLink = $('<a href="#" class="btn btn-primary">Agregar un diagnóstico</a>');
-var $newLinkLi = $('<li></li>').append($addTagLink);
-
-jQuery(document).ready(function() {
-    // Get the ul that holds the collection of tags
-   var $collectionHolder = $('ul.select2');
-    
-    // add the "add a tag" anchor and li to the tags ul
-    $collectionHolder.append($newLinkLi);
-    
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
-    $collectionHolder.data('index', $collectionHolder.find(':input').length);
-    
-    $addTagLink.on('click', function(e) {
-        // prevent the link from creating a "#" on the URL
-        e.preventDefault();
-        
-        // add a new tag form (see code block below)
-        addTagForm($collectionHolder, $newLinkLi);
-    });
-    
-    
-});
-
-function addTagForm($collectionHolder, $newLinkLi) {
-    // Get the data-prototype explained earlier
-    var prototype = $collectionHolder.data('prototype');
-    
-    // get the new index
-    var index = $collectionHolder.data('index');
-    
-    // Replace '$$name$$' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    var newForm = prototype.replace(/__name__/g, index);
-    
-    // increase the index with one for the next item
-    $collectionHolder.data('index', index + 1);
-    
-    // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<li></li>').append(newForm);
-    
-    // also add a remove button, just for this example
-      
-    
-    $newFormLi.append('<a href="#" class="btn btn-danger remove-tag">Quitar</a>');
-    $newFormLi.append('<br>');
-    $newLinkLi.before($newFormLi);
-     $newFormLi.append('<br>');
-    
-    
-    // handle the removal, just for this example
-    $('.remove-tag').click(function(e) {
-        e.preventDefault();
-        
-        $(this).parent().remove();
-        
-        return false;
-    });
-}
+ <script src="{{asset('js/mainAjax.js')}}"></script>
+ <script>
+    initAjaxForm();
 </script>
-<script>
- $('.my-selector').collection({
-        prototype_name: '{{ form.arrayDiagnosticos.vars.prototype.vars.name }}',
-        enable_add: false,
-        enable_delete: false,
-        name_prefix:  '{{ form.arrayDiagnosticos.vars.full_name }}'
-    });
-</script>
- <script type="text/javascript">
+<script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
+<script type="text/javascript">
         $('select').select2({
     theme: "bootstrap"
 });
 </script>
-
 {% endblock %}
 
 {% block body -%}
@@ -120,7 +54,7 @@ function addTagForm($collectionHolder, $newLinkLi) {
                 </div>
                 
                 {{form_start(form)}}
-             
+               
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
@@ -140,8 +74,13 @@ function addTagForm($collectionHolder, $newLinkLi) {
                                 </div>
                                 <div class="col-md-6">
                                     {{form_row(form.clasificacionAO)}}
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                                     Crear nueva clasificación AO
+                                    </button>
                                 </div>
                             </div>
+                            {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
                               <div class="row">
                                 <div class="col-md-12">
                                     {{form_row(form.procedimientoRealizado)}}
@@ -159,11 +98,7 @@ function addTagForm($collectionHolder, $newLinkLi) {
                             <div class="row">
                                 <div class="col-md-12">
                                   
-                                     <ul class="select2" data-prototype="  {{form_row(form.arrayDiagnosticos.vars.prototype)|e}}">
-                                    {# iterate over each existing tag and render its only field: name #}
-                                    
-                                     
-                                </ul>
+                                     {{form_row(form.arrayDiagnosticos)}}
                                            
                                 </div>
                             </div>
@@ -191,5 +126,7 @@ function addTagForm($collectionHolder, $newLinkLi) {
     </div>
     <div class="col-md-1"></div>
 </div>
+
+{% include 'AppBundle:IngresoPaciente:modalAO.html.twig' %}
 
 {% endblock %}

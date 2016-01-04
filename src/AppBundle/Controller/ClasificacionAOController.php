@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\ClasificacionAO;
 use AppBundle\Form\ClasificacionAOType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * ClasificacionAO controller.
@@ -45,6 +46,10 @@ class ClasificacionAOController extends Controller
      */
     public function createAction(Request $request)
     {
+        //This is optional. Do not do this check if you want to call the same action using a regular request.
+        if (!$request->isXmlHttpRequest()) {
+            return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
+        }
         $entity = new ClasificacionAO();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -54,13 +59,21 @@ class ClasificacionAOController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('clasificacionao_show', array('id' => $entity->getId())));
+
+            $this->get('braincrafted_bootstrap.flash')->success(
+                sprintf('Se ha creado la clasificación AO %s correctamente', $entity->getIdentificadorAO()
+                ));
+        }
+        else {
+
+          $this->get('braincrafted_bootstrap.flash')->error(
+            sprintf('No se ha creado la clasificación AO'
+            ));
         }
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+       
+        return new JsonResponse();
+         
     }
 
     /**
@@ -77,7 +90,10 @@ class ClasificacionAOController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Guardar',
+            'attr' => ['class' => 'btn btn-primary']
+
+            ));
 
         return $form;
     }

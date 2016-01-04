@@ -58,10 +58,12 @@ class IngresoPacienteType extends AbstractType
                     'placeholder' => 'Motivo de ingreso del paciente'
                     ]
                 ])
-            ->add('clasificacionAO',null,[
+            ->add('clasificacionAO','entity',[
                 'label' => 'Clasificación AO',
+                'class' => 'AppBundle:ClasificacionAO',
                 'attr' =>[
-                    'placeholder' => 'AO'
+                    'placeholder' => 'AO',
+                    'class => select2'
                     ]
                 ])
             ->add('procedimientoRealizado',null, [
@@ -69,16 +71,18 @@ class IngresoPacienteType extends AbstractType
                         'placeholder' => 'Procedimiento realizado'
                     ]
                 ])
-            ->add('arrayDiagnosticos', 'collection', [
+            ->add('arrayDiagnosticos', 'bootstrap_collection', [
                     'type' => 'entity',
-                    'label' => ' ',
+                    'label' => 'Diagnósticos dinámicos',
                     'allow_add' => true,
                     'allow_delete' => true,
-                    'prototype' => true,
-                    'by_reference' => false,
+                    'add_button_text'    => 'Agregar Diagnóstico',
+                    'delete_button_text' => 'Eliminar Diagnóstico',
+                    'sub_widget_col'     => 9,
+                    'button_col'         => 3,
                     'attr' => [
                             'class' => 'select2',
-                    ],
+                        ],
                     'options'=>[
                        'empty_value' => 'Seleccionar Diagnóstico',
                         'class' => 'AppBundle:Diagnostico',

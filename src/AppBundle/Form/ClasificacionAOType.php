@@ -15,7 +15,12 @@ class ClasificacionAOType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('identificadorAO')
+            ->add('identificadorAO',null,[
+                'label' => 'Identificador',
+                'attr' => [
+                    'placeholder' => 'Ingrese el nombre de la clasificación AO',
+                    ]
+                ])
         ;
     }
     

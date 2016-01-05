@@ -18,6 +18,8 @@
     theme: "bootstrap"
 });
 </script>
+<script src="{{ asset('js/jquery.bsAlerts.min.js')}}"></script>
+
 {% endblock %}
 
 {% block body -%}
@@ -81,8 +83,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
+                            <div data-alerts="alerts" data-titles="{'warning': '<em>Warning!</em>'}" data-ids="myid" data-fade="3000"></div>
                             </button>
                               <div class="row">
                                 <div class="col-md-12">
@@ -92,6 +93,7 @@
                                     </button>
                                 </div>
                             </div>
+
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Guardar y Continuar</button></li>

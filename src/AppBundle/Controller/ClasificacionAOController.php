@@ -75,32 +75,29 @@ class ClasificacionAOController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            $this->get('braincrafted_bootstrap.flash')->success(
-                sprintf('Se ha creado la clasificación AO %s correctamente', $entity->getIdentificadorAO()
-                ));
+            
             $em = $this->getDoctrine()->getManager();
 
             $entities = $em->getRepository('AppBundle:ClasificacionAO')->findAll();
             foreach ($entities as $entity) {
-                $response1[] = array(
+                $response1[] = [
                     'key' => $entity->getIdentificadorAO(),
                     // other fields
-                );
-                $response2[] = array(
+                ];
+                $response2[] = [
                     'value' => $entity->getId(),
                     // other fields
-                );
+                ];
             }
 
             return new JsonResponse(([$response1,$response2]));
            
         } else {
-            $this->get('braincrafted_bootstrap.flash')->error(
-            sprintf('No se ha creado la clasificación AO'
-            ));
-        }
+           
 
-        return new JsonResponse();
+            //llega aquí cuando no cumple la validación del formulario
+            return new JsonResponse(['error'=>$form->getErrorsAsString()], 400);
+        }
     }
 
     /**

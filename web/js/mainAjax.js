@@ -33,12 +33,19 @@ function ajaxAO()
             
             
             $('#myModal').modal('hide');
+
+            $(document).trigger("add-alerts", {
+              message: "Se ha guardado correctamente",
+              priority: "success"
+            });
+
          }
         })
         .done(function (data) {
             if (typeof data.message !== 'undefined') {
                 alert(data.message);
             }
+
             
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
@@ -50,8 +57,15 @@ function ajaxAO()
                 $('.form_error').html(jqXHR.responseJSON.message);
 
             } else {
-                alert(errorThrown);
+
             }
+            $('#myModal').modal('hide');
+           
+            
+             $(document).trigger("add-alerts", {
+              message: (jqXHR.responseJSON.error).substring(16),
+              priority: "error"
+            });
 
         });
     });
@@ -89,8 +103,18 @@ function ajaxProcedimiento()
                 select.options.add(opt1);
             }
             
+            $('#myModal').modal('hide');
+
+            $("#appbundle_clasificacionao_identificadorAO").reset();
+
+             
+
+            $(document).trigger("add-alerts", {
+              message: "Se ha guardado correctamente",
+              priority: "success"
+            });
+          
             
-            $('#modalProcedimiento').modal('hide');
          }
         })
         .done(function (data) {
@@ -99,7 +123,7 @@ function ajaxProcedimiento()
             }
             
         })
-        .fail(function (jqXHR, textStatus, errorThrown) {
+        .fail(function (jqXHR, textStatus, errorThrown,data) {
             if (typeof jqXHR.responseJSON !== 'undefined') {
                 if (jqXHR.responseJSON.hasOwnProperty('form')) {
                     $('#form_body').html(jqXHR.responseJSON.form);
@@ -108,8 +132,17 @@ function ajaxProcedimiento()
                 $('.form_error').html(jqXHR.responseJSON.message);
 
             } else {
-                alert(errorThrown);
+               
             }
+           
+           
+
+             $('#myModal').modal('hide');
+                  
+             $(document).trigger("add-alerts", {
+              message: (jqXHR.responseJSON.error).substring(16),
+              priority: "error"
+            });
 
         });
     });

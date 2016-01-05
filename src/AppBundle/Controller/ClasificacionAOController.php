@@ -32,16 +32,31 @@ class ClasificacionAOController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('AppBundle:ClasificacionAO')->findAll();
-
+        $response = array();
+      
         return array(
             'entities' => $entities,
         );
+        
+    }
+     /**
+     * Lists all ClasificacionAO entities.
+     *
+     * @Route("/index", name="returnAll")
+     * @Method("GET")
+     * @Template()
+     */
+    public function indexAllAction()
+    {
+        
+       
+        
     }
     /**
      * Creates a new ClasificacionAO entity.
      *
      * @Route("/", name="clasificacionao_create")
-     * @Method("POST")
+     * @Method({"GET", "POST"})
      * @Template("AppBundle:ClasificacionAO:new.html.twig")
      */
     public function createAction(Request $request)
@@ -51,9 +66,10 @@ class ClasificacionAOController extends Controller
             return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
         }
         $entity = new ClasificacionAO();
+        
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
+        $data = $this->getDoctrine()->getManager()->getRepository('AppBundle:ClasificacionAO')->find(1);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
@@ -62,6 +78,17 @@ class ClasificacionAOController extends Controller
             $this->get('braincrafted_bootstrap.flash')->success(
                 sprintf('Se ha creado la clasificación AO %s correctamente', $entity->getIdentificadorAO()
                 ));
+            $em = $this->getDoctrine()->getManager();
+
+            $entities = $em->getRepository('AppBundle:ClasificacionAO')->findAll();
+               foreach ($entities as $entity) {
+            $response[] = array(
+                'identificador' => $entity->getIdentificadorAO(),
+                // other fields
+            );
+            }
+            return new JsonResponse(($response));
+           
         } else {
             $this->get('braincrafted_bootstrap.flash')->error(
             sprintf('No se ha creado la clasificación AO'

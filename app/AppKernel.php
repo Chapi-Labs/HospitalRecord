@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),    
+            new JMS\SerializerBundle\JMSSerializerBundle(),
           
         );
 

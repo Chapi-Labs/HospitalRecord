@@ -42,7 +42,8 @@
         "oyejorge/less.php": "~1.5",
         "stephanecollot/datetimepicker-bundle": "^1.0",
         "stof/doctrine-extensions-bundle": "^1.2",
-        "zenstruck/form-bundle": "^1.6"
+        "zenstruck/form-bundle": "^1.6",
+        "jms/serializer-bundle": "^1.1"
         
     },
     "require-dev": {

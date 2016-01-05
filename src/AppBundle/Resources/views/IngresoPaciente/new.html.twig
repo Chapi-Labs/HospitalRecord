@@ -17,13 +17,6 @@
     theme: "bootstrap"
 });
 </script>
-<script>
-  $('#appbundle_clasificacionao_submit').on('click', function () {
-    var $btn = $(this).button('Cargando')
-    // business logic...
-   
-  })
-</script>
 {% endblock %}
 
 {% block body -%}
@@ -100,6 +93,7 @@
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Guardar y Continuar</button></li>
                             <li><a class="btn btn-success" href="{{path('paciente_new')}}">No aparece el paciente? Haz click aquí</a>
+                                
                             </li>
                         </ul>
                     </div>
@@ -109,6 +103,10 @@
                                 <div class="col-md-12">
                                   
                                      {{form_row(form.arrayDiagnosticos)}}
+                                     <br>
+                                       <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalDiagnostico">
+                                     Crear nuevo diagnóstico
+                                    </button>
                                            
                                 </div>
                             </div>
@@ -138,6 +136,5 @@
 </div>
 
 {% include 'AppBundle:IngresoPaciente:modalAO.html.twig' %}
-{% include 'AppBundle:IngresoPaciente:modalProcedimiento.html.twig' %}
 
 {% endblock %}

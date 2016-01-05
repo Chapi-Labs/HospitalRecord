@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DiagnosticoType extends AbstractType
+class ProcedimientoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,7 +15,7 @@ class DiagnosticoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           ->add('nombreDiagnostico', 'textarea', ['label' => 'Diagnóstico'])
+            ->add('descripcionProcedimiento')
         ;
     }
 
@@ -25,7 +25,7 @@ class DiagnosticoType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Diagnostico',
+            'data_class' => 'AppBundle\Entity\Procedimiento',
         ));
     }
 
@@ -34,6 +34,6 @@ class DiagnosticoType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_diagnostico';
+        return 'appbundle_procedimiento';
     }
 }

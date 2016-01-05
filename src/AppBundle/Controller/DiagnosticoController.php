@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Diagnostico;
-use AppBundle\Form\DiagnosticoType;
+use AppBundle\Form\Type\DiagnosticoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**

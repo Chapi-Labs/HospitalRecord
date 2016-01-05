@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Procedimiento;
-use AppBundle\Form\ProcedimientoType;
+use AppBundle\Form\Type\ProcedimientoType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -70,8 +70,7 @@ class ProcedimientoController extends Controller
                 );
             }
 
-            return new JsonResponse(([$key,$value]));
-           
+            return new JsonResponse(([$key, $value]));
         }
 
         return array(

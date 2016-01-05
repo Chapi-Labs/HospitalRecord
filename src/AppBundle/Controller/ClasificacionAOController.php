@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\ClasificacionAO;
-use AppBundle\Form\ClasificacionAOType;
+use AppBundle\Form\Type\ClasificacionAOType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -33,13 +33,12 @@ class ClasificacionAOController extends Controller
 
         $entities = $em->getRepository('AppBundle:ClasificacionAO')->findAll();
         $response = array();
-      
+
         return array(
             'entities' => $entities,
         );
-        
     }
-     /**
+    /**
      * Lists all ClasificacionAO entities.
      *
      * @Route("/index", name="returnAll")
@@ -48,9 +47,6 @@ class ClasificacionAOController extends Controller
      */
     public function indexAllAction()
     {
-        
-       
-        
     }
     /**
      * Creates a new ClasificacionAO entity.
@@ -66,7 +62,7 @@ class ClasificacionAOController extends Controller
             return new JsonResponse(array('message' => 'You can access this only using Ajax!'), 400);
         }
         $entity = new ClasificacionAO();
-        
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
         $data = $this->getDoctrine()->getManager()->getRepository('AppBundle:ClasificacionAO')->find(1);
@@ -75,7 +71,6 @@ class ClasificacionAOController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            
             $em = $this->getDoctrine()->getManager();
 
             $entities = $em->getRepository('AppBundle:ClasificacionAO')->findAll();
@@ -90,13 +85,11 @@ class ClasificacionAOController extends Controller
                 ];
             }
 
-            return new JsonResponse(([$response1,$response2]));
-           
+            return new JsonResponse(([$response1, $response2]));
         } else {
-           
 
             //llega aquí cuando no cumple la validación del formulario
-            return new JsonResponse(['error'=>$form->getErrorsAsString()], 400);
+            return new JsonResponse(['error' => $form->getErrorsAsString()], 400);
         }
     }
 

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "43b9bc885fc2939b05f32b3559e147da",
-    "content-hash": "ee569663c59a5b8e37d447122ccc6206",
+    "hash": "0d9dcd5cf8af5efb1d2916a2bcbc585e",
+    "content-hash": "5f52cc46a51ca68a850361ea52dbcfbf",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -871,53 +871,6 @@
                 "orm"
             ],
             "time": "2015-12-25 15:50:05"
-        },
-        {
-            "name": "fcpauldiaz/flash-message-bundle",
-            "version": "v1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fcpauldiaz/FlashMessageBundle.git",
-                "reference": "1ef139330f37300b1a871210d8b6be508556b271"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fcpauldiaz/FlashMessageBundle/zipball/1ef139330f37300b1a871210d8b6be508556b271",
-                "reference": "1ef139330f37300b1a871210d8b6be508556b271",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "symfony/symfony": ">=2.3",
-                "twig/twig": "~1.14,>=1.14.2|~2.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "FCPaulDiaz\\Bundle\\FlashMessageBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Pablo Díaz",
-                    "email": "pablo5_diaz@hotmail.com"
-                },
-                {
-                    "name": "Niels Krijger",
-                    "homepage": "https://github.com/nielskrijger"
-                }
-            ],
-            "description": "Bundle to show flash messages in Symfony2",
-            "homepage": "https://github.com/fcpauldiaz/FlashMessageBundle",
-            "keywords": [
-                "flash",
-                "messsages"
-            ],
-            "time": "2016-01-05 03:45:17"
         },
         {
             "name": "friendsofsymfony/user-bundle",

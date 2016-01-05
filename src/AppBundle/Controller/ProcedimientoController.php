@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Procedimiento;
 use AppBundle\Form\ProcedimientoType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Procedimiento controller.
@@ -52,7 +53,25 @@ class ProcedimientoController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('procedimiento_show', array('id' => $entity->getId())));
+            $this->get('braincrafted_bootstrap.flash')->success(
+                sprintf('Se ha creado el procedimiento %s correctamente', $entity->getDescripcionProcedimiento()
+                ));
+            $em = $this->getDoctrine()->getManager();
+
+            $entities = $em->getRepository('AppBundle:Procedimiento')->findAll();
+            foreach ($entities as $entity) {
+                $key[] = array(
+                    'key' => $entity->getDescripcionProcedimiento(),
+                    // other fields
+                );
+                $value[] = array(
+                    'value' => $entity->getId(),
+                    // other fields
+                );
+            }
+
+            return new JsonResponse(([$key,$value]));
+           
         }
 
         return array(

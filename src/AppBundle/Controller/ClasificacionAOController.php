@@ -81,15 +81,15 @@ class ClasificacionAOController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $entities = $em->getRepository('AppBundle:ClasificacionAO')->findAll();
-               foreach ($entities as $entity) {
-            $response1[] = array(
-                'identificador' => $entity->getIdentificadorAO(),
-                // other fields
-            );
-            $response2[] = array(
-                'idNum' => $entity->getId(),
-                // other fields
-            );
+            foreach ($entities as $entity) {
+                $response1[] = array(
+                    'key' => $entity->getIdentificadorAO(),
+                    // other fields
+                );
+                $response2[] = array(
+                    'value' => $entity->getId(),
+                    // other fields
+                );
             }
 
             return new JsonResponse(([$response1,$response2]));

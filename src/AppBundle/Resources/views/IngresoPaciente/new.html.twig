@@ -9,7 +9,8 @@
  <script src="{{asset('js/jquery.collection.js')}}"></script>
  <script src="{{asset('js/mainAjax.js')}}"></script>
  <script>
-    initAjaxForm();
+    ajaxAO();
+    ajaxProcedimiento();
 </script>
 <script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
 <script type="text/javascript">
@@ -80,7 +81,9 @@
                                     </button>
                                 </div>
                             </div>
-                            {% include 'BraincraftedBootstrapBundle::flash.html.twig' with { 'close': true } %}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
                               <div class="row">
                                 <div class="col-md-12">
                                     {{form_row(form.procedimientoRealizado)}}
@@ -136,5 +139,6 @@
 </div>
 
 {% include 'AppBundle:IngresoPaciente:modalAO.html.twig' %}
+{% include 'AppBundle:IngresoPaciente:modalProcedimiento.html.twig' %}
 
 {% endblock %}

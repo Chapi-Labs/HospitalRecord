@@ -5,6 +5,7 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Form\Type\DiagnosticoType;
 
 class IngresoPacienteType extends AbstractType
 {
@@ -73,7 +74,7 @@ class IngresoPacienteType extends AbstractType
                     ],
                 ])
             ->add('arrayDiagnosticos', 'bootstrap_collection', [
-                    'type' => 'entity',
+                    'type' => new DiagnosticoType(),
                     'label' => 'Diagnósticos dinámicos',
                     'allow_add' => true,
                     'allow_delete' => true,
@@ -85,10 +86,7 @@ class IngresoPacienteType extends AbstractType
                             'class' => 'select2',
                         ],
                     'options' => [
-                       'empty_value' => 'Seleccionar Diagnóstico',
-                        'class' => 'AppBundle:Diagnostico',
-                        'required' => true,
-                        'label' => 'Buscador de Diagnósticos',
+                       'data_class' => 'AppBundle\Entity\Diagnostico',
                         'attr' => [
                             'class' => 'select2',
                         ],

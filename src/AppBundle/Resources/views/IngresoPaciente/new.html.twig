@@ -19,6 +19,10 @@
 });
 </script>
 <script src="{{ asset('js/jquery.bsAlerts.min.js')}}"></script>
+<script>
+$(function(){
+    $('#paciente_form_arrayDiagnosticos').addClass('select2')});
+</script>
 
 {% endblock %}
 
@@ -109,9 +113,6 @@
                                   
                                      {{form_row(form.arrayDiagnosticos)}}
                                      <br>
-                                       <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalDiagnostico">
-                                     Crear nuevo diagnóstico
-                                    </button>
                                            
                                 </div>
                             </div>

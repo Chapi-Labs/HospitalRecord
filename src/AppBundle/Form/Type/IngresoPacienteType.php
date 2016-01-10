@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\Type\DiagnosticoType;
+use Symfony\Component\Validator\Constraints;
 
 class IngresoPacienteType extends AbstractType
 {
@@ -73,8 +74,8 @@ class IngresoPacienteType extends AbstractType
                         'class' => 'select2',
                     ],
                 ])
-            ->add('arrayDiagnosticos', 'bootstrap_collection', [
-                    'type' => new DiagnosticoType(),
+           ->add('arrayDiagnosticos', 'bootstrap_collection', [
+                    'type' => 'entity',
                     'label' => 'Diagnósticos dinámicos',
                     'allow_add' => true,
                     'allow_delete' => true,
@@ -86,11 +87,13 @@ class IngresoPacienteType extends AbstractType
                             'class' => 'select2',
                         ],
                     'options' => [
-                       'data_class' => 'AppBundle\Entity\Diagnostico',
+                       'empty_value' => 'Seleccionar Diagnóstico',
+                        'class' => 'AppBundle:Diagnostico',
+                        'required' => true,
+                        'label' => 'Buscador de Diagnósticos',
                         'attr' => [
                             'class' => 'select2',
                         ],
-
                     ],
                 ])
 
@@ -118,7 +121,9 @@ class IngresoPacienteType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Fecha de salida del paciente',
                     ],
-
+                'constraints' => [
+                        new Constraints\Callback([$this, 'validarFecha'])
+                    ]
             ])
 
         ;
@@ -140,5 +145,12 @@ class IngresoPacienteType extends AbstractType
     public function getName()
     {
         return 'paciente_form';
+    }
+
+    public function validarFecha(ExecutionContextInterface $context)
+    {
+
+
+
     }
 }

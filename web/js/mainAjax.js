@@ -147,3 +147,53 @@ function ajaxProcedimiento()
         });
     });
 }
+function ajaxDiagnostico()
+{
+    $('body').on('submit', '.ajaxFormDiagnostico', function (e) {
+
+        e.preventDefault();
+        
+
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function(data) {
+           
+            window.location.reload();
+            
+
+          
+            
+         }
+        })
+        .done(function (data) {
+            if (typeof data.message !== 'undefined') {
+                alert(data.message);
+            }
+            
+        })
+        .fail(function (jqXHR, textStatus, errorThrown,data) {
+            if (typeof jqXHR.responseJSON !== 'undefined') {
+                if (jqXHR.responseJSON.hasOwnProperty('form')) {
+                    $('#form_body').html(jqXHR.responseJSON.form);
+                }
+
+                $('.form_error').html(jqXHR.responseJSON.message);
+
+            } else {
+               
+            }
+           
+           
+
+             $('#modalDiagnostico').modal('hide');
+                  
+             $(document).trigger("add-alerts", {
+              message: (jqXHR.responseJSON.error).substring(16),
+              priority: "error"
+            });
+
+        });
+    });
+}

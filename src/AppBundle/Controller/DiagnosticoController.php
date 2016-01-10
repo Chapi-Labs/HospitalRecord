@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use AppBundle\Entity\Diagnostico;
 use AppBundle\Form\Type\DiagnosticoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Diagnostico controller.
@@ -53,14 +54,26 @@ class DiagnosticoController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+          $em = $this->getDoctrine()->getManager();
 
-            return $this->redirect($this->generateUrl('diagnostico_show', array('id' => $entity->getId())));
+            $entities = $em->getRepository('AppBundle:Diagnostico')->findAll();
+            foreach ($entities as $entity) {
+                $response1[] = [
+                    'key' => $entity->getNombreDiagnostico(),
+                    // other fields
+                ];
+                $response2[] = [
+                    'value' => $entity->getId(),
+                    // other fields
+                ];
+            }
+
+            return new JsonResponse(([$response1, $response2]));
+        } else {
+
+            //llega aquí cuando no cumple la validación del formulario
+            return new JsonResponse(['error' => $form->getErrorsAsString()], 400);
         }
-
-        return array(
-            'entity' => $entity,
-            'form' => $form->createView(),
-        );
     }
 
     /**
@@ -77,7 +90,9 @@ class DiagnosticoController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Guardar','attr'=>[
+            'class' => 'btn btn-primary'
+            ]));
 
         return $form;
     }

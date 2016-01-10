@@ -11,6 +11,7 @@
  <script>
     ajaxAO();
     ajaxProcedimiento();
+    ajaxDiagnostico();
 </script>
 <script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
 <script type="text/javascript">
@@ -113,6 +114,9 @@ $(function(){
                                   
                                      {{form_row(form.arrayDiagnosticos)}}
                                      <br>
+                                      <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalDiagnostico">
+                                     Crear nuevo diagnóstico
+                                    </button>
                                            
                                 </div>
                             </div>
@@ -143,5 +147,6 @@ $(function(){
 
 {% include 'AppBundle:IngresoPaciente:modalAO.html.twig' %}
 {% include 'AppBundle:IngresoPaciente:modalProcedimiento.html.twig' %}
+{% include 'AppBundle:IngresoPaciente:modalDiagnostico.html.twig' %}
 
 {% endblock %}

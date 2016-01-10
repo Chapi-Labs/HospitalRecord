@@ -73,10 +73,7 @@ class ProcedimientoController extends Controller
             return new JsonResponse(([$key, $value]));
         }
 
-        return array(
-            'entity' => $entity,
-            'form' => $form->createView(),
-        );
+        return new JsonResponse(['error' => $form->getErrorsAsString()], 400);
     }
 
     /**

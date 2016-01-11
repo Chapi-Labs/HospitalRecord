@@ -81,7 +81,6 @@ class ConsultaController extends Controller
 
             $qb = $this->consultaPorClasificacion($qb, $clasificacion);
         }
-        $pacientes = $qb->getQuery()->getResult();
 
         if (isset($dataForm['consulta_edad'])) {
             $edadChoice = $dataForm['consulta_edad'];
@@ -97,13 +96,17 @@ class ConsultaController extends Controller
                 ->setParameter('sexo', $sexo);
         }
 
+        $pacientes = $qb->getQuery()->getResult();
+
         if (isset($dataForm['consulta_diagnostico'])) {
             $diagnostico = $dataForm['consulta_diagnostico'];
 
-            $pacientes = $this->consultaPorDiagnostico($qb, $diagnostico);
+            $pacientes = $this->consultaPorDiagnostico($pacientes, $diagnostico);
         }
 
-        
+        if (count($pacientes) < 1) {
+            $this->get('braincrafted_bootstrap.flash')->alert('No se encontraron pacientes');
+        }
 
         return $this->render(
             'ConsultaBundle:Consulta:consultaPaciente.html.twig',
@@ -134,27 +137,20 @@ class ConsultaController extends Controller
             ->setParameter('procedimiento', $procedimiento);
     }
 
-    private function consultaPorDiagnostico($qb, $diagnostico)
+    private function consultaPorDiagnostico($pacientes, $diagnostico)
     {
-        $arrayOfIngresoPacientes = [];
-        $em = $this->getDoctrine()->getManager();
-
-        $ingresos = $em->getRepository('AppBundle:IngresoPaciente')->findAll();
-        foreach($ingresos as $ingreso){
-            $diagnosticos = $ingreso->getArrayDiagnosticos();
-            foreach($diagnosticos as $diag){
-                if ($diag->getNombreDiagnostico()==$diagnostico){
-                    $arrayOfIngresoPacientes[] = $ingreso;   
+        $returnPacientes = [];
+        foreach ($pacientes as $paciente) {
+            $ingresosPaciente = $paciente->getIngreso();
+            foreach ($ingresosPaciente as $ingreso) {
+                $diagnosticos = $ingreso->getArrayDiagnosticos();
+                if (in_array($diagnostico, $diagnosticos)) {
+                    $returnPacientes[] = $paciente;
                 }
-
             }
         }
-        $arrayOfPacientes = [];
-        foreach($arrayOfIngresoPacientes as $ingreso){
-            $paciente = $ingreso->getPaciente();
-            $arrayOfPacientes[] = $paciente;
-        }
-        return $arrayOfPacientes;
+
+        return $returnPacientes;
     }
 
     private function consultaPorClasificacion($qb, $clasificacion)

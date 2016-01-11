@@ -39,53 +39,73 @@ class ConsultaController extends Controller
                 [
                     'form' => $formConsultas->createView(),
                     'pacientes' => null,
-                    'contPacientes' => $cantidadPacientes
+                    'contPacientes' => $cantidadPacientes,
                 ]
             );
         }
 
         $dataForm = $formConsultas->getData();
-        $tipoConsulta = 0;
-
-        if (isset($dataForm['consulta_dpi_nombre_apellidos'])) {
-            $tipoConsulta = 1;
-        } elseif (isset($dataForm['consulta_fecha_ingreso'])) {
-            $tipoConsulta = 2;
-        } elseif (isset($dataForm['consulta_procedimiento_realizado'])) {
-            $tipoConsulta = 3;
-        }
 
         $pacientes = [];
+        $qb = $repositoryPaciente->createQueryBuilder('p')
+            ->leftJoin('p.ingreso', 'ingreso');
 
-        if ($tipoConsulta == 1) {
+        if (isset($dataForm['consulta_dpi_nombre_apellidos'])) {
             $pacientes[] = $dataForm['consulta_dpi_nombre_apellidos'];
-        } elseif ($tipoConsulta == 2) {
-            $fecha = $dataForm['consulta_fecha_ingreso'];
-            $fechaInicio = $fecha->format('Y-m-d');
-            $fecha = $fecha->modify('+1 day');
-            $fechaFin = $fecha->format('Y-m-d');
 
-            $pacientes = $repositoryPaciente
-                ->createQueryBuilder('p')
-                ->leftJoin('p.ingreso', 'ingreso')
-                ->where('ingreso.fechaIngreso >= :fechaInicio')
-                ->andWhere('ingreso.fechaIngreso < :fechaFin')
-                ->setParameters([
-                    'fechaInicio' => $fechaInicio,
-                    'fechaFin' => $fechaFin,
-                    ])
-                ->getQuery()
-                ->getResult();
-        } elseif ($tipoConsulta == 3) {
-            $diagnostico = $dataForm['consulta_procedimiento_realizado'];
+            return $this->render(
+                'ConsultaBundle:Consulta:consultaPaciente.html.twig',
+                [
+                    'form' => $formConsultas->createView(),
+                    'pacientes' => $pacientes,
+                    'contPacientes' => $cantidadPacientes,
+                ]
+            );
+        }
 
-            $qb = $repositoryPaciente->createQueryBuilder('p');
-            $pacientes = $qb
-                ->leftJoin('p.ingreso', 'ingreso')
-                ->where('ingreso.diagnosticoCie10 = :diagnostico')
-                ->setParameter('diagnostico', $diagnostico)
-                ->getQuery()
-                ->getResult();
+        if (isset($dataForm['consulta_fecha_inicio_ingreso'])) {
+            $fechaInicio = $dataForm['consulta_fecha_inicio_ingreso']->format('Y-m-d');
+            $fechaFin = $dataForm['consulta_fecha_fin_ingreso']->format('Y-m-d');
+
+            $qb = $this->consultaPorFechas($qb, $fechaInicio, $fechaFin);
+        }
+
+        if (isset($dataForm['consulta_procedimiento_realizado'])) {
+            $procedimiento = $dataForm['consulta_procedimiento_realizado'];
+
+            $qb = $this->consultaPorProcedimiento($qb, $procedimiento);
+        }
+
+        if (isset($dataForm['consulta_clasificacion_ao'])) {
+            $clasificacion = $dataForm['consulta_clasificacion_ao'];
+
+            $qb = $this->consultaPorClasificacion($qb, $clasificacion);
+        }
+
+        if (isset($dataForm['consulta_edad'])) {
+            $edadChoice = $dataForm['consulta_edad'];
+
+            $qb = $this->consultarPorEdad($qb, $edadChoice);
+        }
+
+        if (isset($dataForm['consulta_sexo'])) {
+            $sexo = $dataForm['consulta_sexo'];
+
+            $qb
+                ->andWhere('p.genero = :sexo')
+                ->setParameter('sexo', $sexo);
+        }
+
+        $pacientes = $qb->getQuery()->getResult();
+
+        if (isset($dataForm['consulta_diagnostico'])) {
+            $diagnostico = $dataForm['consulta_diagnostico'];
+
+            $pacientes = $this->consultaPorDiagnostico($pacientes, $diagnostico);
+        }
+
+        if (count($pacientes) < 1) {
+            $this->get('braincrafted_bootstrap.flash')->alert('No se encontraron pacientes');
         }
 
         return $this->render(
@@ -93,9 +113,64 @@ class ConsultaController extends Controller
             [
                 'form' => $formConsultas->createView(),
                 'pacientes' => $pacientes,
-                'contPacientes' => $cantidadPacientes
+                'contPacientes' => $cantidadPacientes,
             ]
         );
     }
-}
 
+    private function consultaPorFechas($qb, $fechaInicio, $fechaFin)
+    {
+        return $qb
+            ->andWhere('ingreso.fechaIngreso >= :fechaInicio')
+            ->andWhere('ingreso.fechaIngreso < :fechaFin')
+            ->setParameters([
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+            ]
+        );
+    }
+
+    private function consultaPorProcedimiento($qb, $procedimiento)
+    {
+        return $qb
+            ->andWhere('ingreso.procedimientoRealizado = :procedimiento')
+            ->setParameter('procedimiento', $procedimiento);
+    }
+
+    private function consultaPorDiagnostico($pacientes, $diagnostico)
+    {
+        $returnPacientes = [];
+        foreach ($pacientes as $paciente) {
+            $ingresosPaciente = $paciente->getIngreso();
+            foreach ($ingresosPaciente as $ingreso) {
+                $diagnosticos = $ingreso->getArrayDiagnosticos();
+                if (in_array($diagnostico, $diagnosticos)) {
+                    $returnPacientes[] = $paciente;
+                }
+            }
+        }
+
+        return $returnPacientes;
+    }
+
+    private function consultaPorClasificacion($qb, $clasificacion)
+    {
+        return $qb
+            ->andWhere('ingreso.clasificacionAO = :clasificacion')
+            ->setParameter('clasificacion', $clasificacion);
+    }
+
+    private function consultarPorEdad($qb, $edadChoice)
+    {
+        if ($edadChoice === 'N') {
+            $qb
+                ->andWhere('p.edad >= 0')
+                ->andWhere('p.edad < 13');
+        } elseif ($edadChoice === 'A') {
+            $qb
+                ->andWhere('p.edad >= 13');
+        }
+
+        return $qb;
+    }
+}

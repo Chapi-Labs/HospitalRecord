@@ -6,6 +6,25 @@
 
 {% block javascripts %}
   {{ form_javascript(form) }}
+ <script src="{{asset('js/jquery.collection.js')}}"></script>
+ <script src="{{asset('js/mainAjax.js')}}"></script>
+ <script>
+    ajaxAO();
+    ajaxProcedimiento();
+    ajaxDiagnostico();
+</script>
+<script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
+<script type="text/javascript">
+        $('select').select2({
+    theme: "bootstrap"
+});
+</script>
+<script src="{{ asset('js/jquery.bsAlerts.min.js')}}"></script>
+<script>
+$(function(){
+    $('#paciente_form_arrayDiagnosticos').addClass('select2')});
+</script>
+
 {% endblock %}
 
 {% block body -%}
@@ -41,10 +60,13 @@
                         </li>
                     </ul>
                 </div>
+                
                 {{form_start(form)}}
+               
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="step1">
+                            {{ form_errors(form) }}
                             <div class="row">
                                 <div class="col-md-6">
                                     {{form_row(form.fechaIngreso)}}
@@ -60,21 +82,29 @@
                                     {{form_row(form.motivoIngreso)}}
                                 </div>
                                 <div class="col-md-6">
+                                    {{form_row(form.clasificacionAO)}}
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal">
+                                     Crear nueva clasificación AO
+                                    </button>
+                                </div>
+                            </div>
+                            <div data-alerts="alerts" data-titles="{'warning': '<em>Warning!</em>'}" data-ids="myid" data-fade="3000"></div>
+                            
+                              <div class="row">
+                                <div class="col-md-12">
                                     {{form_row(form.procedimientoRealizado)}}
+                                    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalProcedimiento">
+                                     Crear nuevo procedimiento
+                                    </button>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnosticoCie10)}}
-                                </div>
-                                <div class="col-md-12">
-                                    <a class="btn btn-success" href="{{path('cie10_new')}}">Agregar un diagnóstico</a>
-                                </div>
-                            </div>
+
                         </div>
                         <ul class="list-inline pull-right">
                             <li><button type="button" class="btn btn-primary next-step">Guardar y Continuar</button></li>
                             <li><a class="btn btn-success" href="{{path('paciente_new')}}">No aparece el paciente? Haz click aquí</a>
+                                
                             </li>
                         </ul>
                     </div>
@@ -82,24 +112,13 @@
                         <div class="step1">
                             <div class="row">
                                 <div class="col-md-12">
-                                    {{form_row(form.diagnostico1)}}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnostico2)}}
-                                </div>
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnostico2)}}
-                                </div>
-                                <div class="col-md-12">
-                                    {{form_row(form.diagnostico3)}}
-                                </div>
-                                 <div class="col-md-12">
-                                    {{form_row(form.diagnostico4)}}
-                                </div>
-                                 <div class="col-md-12">
-                                    {{form_row(form.diagnostico5)}}
+                                  
+                                     {{form_row(form.arrayDiagnosticos)}}
+                                     <br>
+                                      <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalDiagnostico">
+                                     Crear nuevo diagnóstico
+                                    </button>
+                                           
                                 </div>
                             </div>
                         </div>
@@ -126,4 +145,9 @@
     </div>
     <div class="col-md-1"></div>
 </div>
+
+{% include 'AppBundle:IngresoPaciente:modalAO.html.twig' %}
+{% include 'AppBundle:IngresoPaciente:modalProcedimiento.html.twig' %}
+{% include 'AppBundle:IngresoPaciente:modalDiagnostico.html.twig' %}
+
 {% endblock %}

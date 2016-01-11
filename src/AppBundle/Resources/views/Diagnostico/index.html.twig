@@ -1,0 +1,41 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+    <h1>Diagnostico list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre del Diagnóstico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('diagnostico_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nombreDiagnostico }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a class="btn btn-warning" href="{{ path('diagnostico_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-danger" href="{{ path('diagnostico_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+       
+        </div>
+    <div class="col-md-1"></div>
+</div>
+    {% endblock %}

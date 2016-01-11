@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table()
  * @ORM\Entity
  * @UniqueEntity("dpi")
+ * @UniqueEntity("expediente")
  */
 class Paciente
 {
@@ -26,9 +27,16 @@ class Paciente
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="expediente", type="string", length=255,unique=true)
+     */
+    private $expediente;
+
+    /**
      * @var int
      *
-     * @ORM\Column(name="dpi", type="string",length=13, unique=true)
+     * @ORM\Column(name="dpi", type="string",length=13, unique=true,nullable=true)
      * 
      * @Assert\Length(
      *      min = 13,
@@ -44,14 +52,14 @@ class Paciente
      *
      * @ORM\Column(name="nombre", type="string", length=100)
      */
-    private $nombre;
+    public $nombre;
 
     /**
      * @var string
      *
      * @ORM\Column(name="apellidos", type="string", length=100)
      */
-    private $apellidos;
+    public $apellidos;
 
     /**
      * @var int
@@ -479,6 +487,30 @@ class Paciente
     public function getContentChangedBy()
     {
         return $this->contentChangedBy;
+    }
+
+    /**
+     * Set expediente.
+     *
+     * @param string $expediente
+     *
+     * @return Paciente
+     */
+    public function setExpediente($expediente)
+    {
+        $this->expediente = $expediente;
+
+        return $this;
+    }
+
+    /**
+     * Get expediente.
+     *
+     * @return string
+     */
+    public function getExpediente()
+    {
+        return $this->expediente;
     }
 
     public function __toString()

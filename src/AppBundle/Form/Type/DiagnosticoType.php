@@ -1,31 +1,31 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class Cie10Type extends AbstractType
+class DiagnosticoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('diagnostico',null,['label'=>'Diagnóstico'])
+           ->add('nombreDiagnostico', 'textarea', ['label' => 'Diagnóstico'])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Cie10'
+            'data_class' => 'AppBundle\Entity\Diagnostico',
         ));
     }
 
@@ -34,6 +34,6 @@ class Cie10Type extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_cie10';
+        return 'appbundle_diagnostico';
     }
 }

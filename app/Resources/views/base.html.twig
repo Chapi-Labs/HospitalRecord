@@ -4,24 +4,25 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Hospital Regional de Occidente {% endblock %}</title>
 
-        {% block stylesheets %}{% endblock %}
+      {% block stylesheets %}{% endblock %}
     
         <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css"  media="all" />
-        <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+        <link href='{{ asset('css/fonts.css')}}' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ asset('css/responsiveslides.css') }} ">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }} ">
         <link rel="stylesheet" href="{{ asset('css/minimalMenu.css')}}">
         <link rel="stylesheet" href="{{ asset('css/tables.css')}}">
         <link rel="stylesheet" href="{{ asset('css/select2.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/select2-bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{ asset('css/tabs.css')}}">
-      
-       
+        <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css')}}">
+        <script src="{{ asset('js/jquery-1.11.3.min.js')}}"></script>
 
    
       
         <script>
             // You can also use "$(window).load(function() {"
-                $(function () {
+                $(window).load(function() {
             
                   // Slideshow 1
                   $("#slider1").responsiveSlides({
@@ -43,7 +44,7 @@
             
        
          
-        {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
+       
         {% block body %}{% endblock %}
 
         <!---start-footer---->
@@ -85,24 +86,29 @@
         
         <script src="{{ asset('js/responsiveslides.min.js') }}"></script>
         <script src="{{ asset('js/minimalMenu.js')}}"></script>
-        <script src="{{ asset('js/jquery-1.11.3.min.js')}}"></script>
         <script src="{{ asset('js/bootstrap.min.js')}}"></script> 
         <script src="{{ asset('js/select2.min.js')}}"></script> 
-         <script src="{{ asset('js/tabs.js')}}"></script> 
+        <script src="{{ asset('js/tabs.js')}}"></script> 
+        <script src="{{ asset('js/helper.js')}}"></script> 
+        <script src="{{ asset('js/jquery.dataTables.min.js')}}"></script>
+        
+     
+     
         <script>
-                 $('.navbar-toggler').on('click', function(event) {
-                    event.preventDefault();
-                    $(this).closest('.navbar-minimal').toggleClass('open');
-                });
+            $('table').dataTable( {
+                    "language": {
+                        "url": "{{ asset('json/Spanish.json')}}"
+                    }
+                } );
         </script>
-        <script type="text/javascript">
-        $('select').select2();
-        </script>
-       <script>
-            $(document).ready(function () {
-                $('.dropdown-toggle').dropdown();
-            });
-        </script>
+    
         {% block javascripts %}{% endblock %}
+        {#
+        <script>
+        $('#consulta_type_consulta_dpi_nombre_apellidos').select2({
+            tags: "true"
+        });
+        </script>
+        #}
     </body>
 </html>

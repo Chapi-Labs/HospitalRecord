@@ -39,50 +39,24 @@ class IngresoPaciente
     /**
      * @var string
      *
-     * @ORM\Column(name="procedimientoRealizado", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Procedimiento")
+     * @ORM\JoinColumn(name="procedimiento_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $procedimientoRealizado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cie10",inversedBy="diagnosticos")
-     * @ORM\JoinColumn(name="cie10_", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ClasificacionAO")
+     * @ORM\JoinColumn(name="clasificacionao_id", referencedColumnName="id",onDelete="SET NULL")
      */
-    private $diagnosticoCie10;
+    private $clasificacionAO;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="diagnostico1", type="string", length=255,nullable=true)
+     *              
+     * 
+     * @ORM\Column(name="arrayDiagnosticos",type="array")
      */
-    private $diagnostico1;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico2", type="string", length=255,nullable=true)
-     */
-    private $diagnostico2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico3", type="string", length=255,nullable=true)
-     */
-    private $diagnostico3;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico4", type="string", length=255,nullable=true)
-     */
-    private $diagnostico4;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="diagnostico5", type="string", length=255,nullable=true)
-     */
-    private $diagnostico5;
+    private $arrayDiagnosticos;
 
     /**
      * @var \DateTime
@@ -92,7 +66,7 @@ class IngresoPaciente
     private $fechaSalida;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso")
+     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso",cascade={"remove"})
      * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $paciente;
@@ -132,6 +106,12 @@ class IngresoPaciente
      * @Gedmo\Blameable(on="change", field={"fechaIngreso", "motivoIngreso","procedimientoRealizado","fechaSalida"})
      */
     private $contentChangedBy;
+
+    public function __toString()
+    {
+        return date_format($this->fechaIngreso, 'd/m/Y');
+    }
+
     /**
      * Get id.
      *
@@ -215,75 +195,41 @@ class IngresoPaciente
     }
 
     /**
-     * Set diagnostico1.
+     * Set arrayDiagnosticos.
      *
-     * @param string $diagnostico1
+     * @param array $arrayDiagnosticos
      *
      * @return IngresoPaciente
      */
-    public function setDiagnostico1($diagnostico1)
+    public function setArrayDiagnosticos($arrayDiagnosticos)
     {
-        $this->diagnostico1 = $diagnostico1;
+        $this->arrayDiagnosticos = $arrayDiagnosticos;
 
         return $this;
     }
 
     /**
-     * Get diagnostico1.
+     * Set arrayDiagnosticos.
      *
-     * @return string
-     */
-    public function getDiagnostico1()
-    {
-        return $this->diagnostico1;
-    }
-
-    /**
-     * Set diagnostico2.
-     *
-     * @param string $diagnostico2
+     * @param array $arrayDiagnosticos
      *
      * @return IngresoPaciente
      */
-    public function setDiagnostico2($diagnostico2)
+    public function addArrayDiagnosticos($arrayDiagnosticos)
     {
-        $this->diagnostico2 = $diagnostico2;
+        $this->arrayDiagnosticos->add($arrayDiagnosticos);
 
         return $this;
     }
 
     /**
-     * Get diagnostico2.
+     * Get arrayDiagnosticos.
      *
-     * @return string
+     * @return array
      */
-    public function getDiagnostico2()
+    public function getArrayDiagnosticos()
     {
-        return $this->diagnostico2;
-    }
-
-    /**
-     * Set diagnostico3.
-     *
-     * @param string $diagnostico3
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico3($diagnostico3)
-    {
-        $this->diagnostico3 = $diagnostico3;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico3.
-     *
-     * @return string
-     */
-    public function getDiagnostico3()
-    {
-        return $this->diagnostico3;
+        return $this->arrayDiagnosticos;
     }
 
     /**
@@ -315,7 +261,7 @@ class IngresoPaciente
      *
      * @param string $slug
      *
-     * @return Curso
+     * @return IngresoPaciente
      */
     public function setSlug($slug)
     {
@@ -334,16 +280,6 @@ class IngresoPaciente
         return $this->slug;
     }
 
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    public function getUpdated()
-    {
-        return $this->updated;
-    }
-
     /**
      * Set created.
      *
@@ -359,6 +295,16 @@ class IngresoPaciente
     }
 
     /**
+     * Get created.
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
      * Set updated.
      *
      * @param \DateTime $updated
@@ -370,6 +316,40 @@ class IngresoPaciente
         $this->updated = $updated;
 
         return $this;
+    }
+
+    /**
+     * Get updated.
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * Set contentChangedBy.
+     *
+     * @param string $contentChangedBy
+     *
+     * @return IngresoPaciente
+     */
+    public function setContentChangedBy($contentChangedBy)
+    {
+        $this->contentChangedBy = $contentChangedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get contentChangedBy.
+     *
+     * @return string
+     */
+    public function getContentChangedBy()
+    {
+        return $this->contentChangedBy;
     }
 
     /**
@@ -421,103 +401,26 @@ class IngresoPaciente
     }
 
     /**
-     * Set diagnosticoCie10.
+     * Set clasificacionAO.
      *
-     * @param \AppBundle\Entity\Cie10 $diagnosticoCie10
+     * @param \AppBundle\Entity\ClasificacionAO $clasificacionAO
      *
      * @return IngresoPaciente
      */
-    public function setDiagnosticoCie10(\AppBundle\Entity\Cie10 $diagnosticoCie10 = null)
+    public function setClasificacionAO(\AppBundle\Entity\ClasificacionAO $clasificacionAO = null)
     {
-        $this->diagnosticoCie10 = $diagnosticoCie10;
+        $this->clasificacionAO = $clasificacionAO;
 
         return $this;
     }
 
     /**
-     * Get diagnosticoCie10.
+     * Get clasificacionAO.
      *
-     * @return \AppBundle\Entity\Cie10
+     * @return \AppBundle\Entity\ClasificacionAO
      */
-    public function getDiagnosticoCie10()
+    public function getClasificacionAO()
     {
-        return $this->diagnosticoCie10;
-    }
-
-    /**
-     * Set contentChangedBy.
-     *
-     * @param string $contentChangedBy
-     *
-     * @return IngresoPaciente
-     */
-    public function setContentChangedBy($contentChangedBy)
-    {
-        $this->contentChangedBy = $contentChangedBy;
-
-        return $this;
-    }
-
-    /**
-     * Get contentChangedBy.
-     *
-     * @return string
-     */
-    public function getContentChangedBy()
-    {
-        return $this->contentChangedBy;
-    }
-
-    public function __toString()
-    {
-        return date_format($this->fechaIngreso, 'd/m/Y');
-    }
-
-    /**
-     * Set diagnostico4
-     *
-     * @param string $diagnostico4
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico4($diagnostico4)
-    {
-        $this->diagnostico4 = $diagnostico4;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico4
-     *
-     * @return string
-     */
-    public function getDiagnostico4()
-    {
-        return $this->diagnostico4;
-    }
-
-    /**
-     * Set diagnostico5
-     *
-     * @param string $diagnostico5
-     *
-     * @return IngresoPaciente
-     */
-    public function setDiagnostico5($diagnostico5)
-    {
-        $this->diagnostico5 = $diagnostico5;
-
-        return $this;
-    }
-
-    /**
-     * Get diagnostico5
-     *
-     * @return string
-     */
-    public function getDiagnostico5()
-    {
-        return $this->diagnostico5;
+        return $this->clasificacionAO;
     }
 }

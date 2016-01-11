@@ -5,6 +5,11 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use AppBundle\Form\Type\DiagnosticoType;
+use Symfony\Component\Validator\Constraints;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints\Callback;
 
 class IngresoPacienteType extends AbstractType
 {
@@ -14,6 +19,7 @@ class IngresoPacienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $data = $builder->getData();
         $builder
             ->add('fechaIngreso', 'collot_datetime', ['pickerOptions' => ['format' => 'dd/mm/yyyy',
                 'weekStart' => 0,
@@ -36,6 +42,9 @@ class IngresoPacienteType extends AbstractType
                 'showMeridian' => false,
 
                 ],
+                'attr' => [
+                    'placeholder' => 'Fecha de Ingreso del paciente',
+                ],
             ])
               ->add('paciente', 'entity', [
                 'empty_value' => 'Seleccionar Paciente',
@@ -47,23 +56,51 @@ class IngresoPacienteType extends AbstractType
                     'class' => 'select2',
                 ],
             ])
-            ->add('motivoIngreso')
-            ->add('procedimientoRealizado')
-            ->add('diagnosticoCie10', 'entity', [
-                'empty_value' => 'Seleccionar Diagnóstico',
-                'class' => 'AppBundle:Cie10',
-                'property' => 'diagnostico',
-                'required' => false,
-                'label' => 'Buscador de Diagnóstico Cie-10 (opcional)',
+            ->add('motivoIngreso', null, [
                 'attr' => [
-                    'class' => 'select2',
-                ],
-            ])
-            ->add('diagnostico1', 'textarea', ['label' => 'Diagnóstico 1', 'required' => false])
-            ->add('diagnostico2', 'textarea', ['label' => 'Diagnóstico 2', 'required' => false])
-            ->add('diagnostico3', 'textarea', ['label' => 'Diagnóstico 3', 'required' => false])
-            ->add('diagnostico4', 'textarea', ['label' => 'Diagnóstico 4', 'required' => false])
-            ->add('diagnostico5', 'textarea', ['label' => 'Diagnóstico 5', 'required' => false])
+                    'placeholder' => 'Motivo de ingreso del paciente',
+                    ],
+                ])
+            ->add('clasificacionAO', 'entity', [
+                 'empty_value' => 'Seleccionar Clasificación AO',
+                'label' => 'Clasificación AO',
+                'class' => 'AppBundle:ClasificacionAO',
+                'attr' => [
+                    'placeholder' => 'AO',
+                    'class => select2',
+                    ],
+                ])
+            ->add('procedimientoRealizado', 'entity', [
+                 'empty_value' => 'Seleccionar Procedimiento',
+                'class' => 'AppBundle:Procedimiento',
+                'attr' => [
+                        'placeholder' => 'Procedimiento realizado',
+                        'class' => 'select2',
+                    ],
+                ])
+           ->add('arrayDiagnosticos', 'bootstrap_collection', [
+                    'type' => 'entity',
+                    'label' => 'Diagnósticos dinámicos',
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'add_button_text' => 'Agregar Diagnóstico',
+                    'delete_button_text' => 'Eliminar Diagnóstico',
+                    'sub_widget_col' => 9,
+                    'button_col' => 3,
+                    'attr' => [
+                            'class' => 'select2',
+                        ],
+                    'options' => [
+                       'empty_value' => 'Seleccionar Diagnóstico',
+                        'class' => 'AppBundle:Diagnostico',
+                        'required' => true,
+                        'label' => 'Buscador de Diagnósticos',
+                        'attr' => [
+                            'class' => 'select2',
+                        ],
+                    ],
+                ])
+
             ->add('fechaSalida', 'collot_datetime', ['pickerOptions' => ['format' => 'mm/dd/yyyy',
                 'weekStart' => 0,
                 //'startDate' => date('m/d/Y'), //example
@@ -85,6 +122,9 @@ class IngresoPacienteType extends AbstractType
                 'showMeridian' => false,
 
                 ],
+                'attr' => [
+                    'placeholder' => 'Fecha de salida del paciente',
+                    ],
             ])
 
         ;
@@ -97,6 +137,7 @@ class IngresoPacienteType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\IngresoPaciente',
+            'constraints' => new Callback([$this, 'validarFecha'])
         ]);
     }
 
@@ -106,5 +147,23 @@ class IngresoPacienteType extends AbstractType
     public function getName()
     {
         return 'paciente_form';
+    }
+    /**
+     * Validar que la fecha de ingreso sea antes que la fecha de salida
+     * @param  Array                   $data       contiene los datos del formulario
+     * @param  ExecutionContextInterface $context 
+     * @return null                            
+     */
+    public function validarFecha($data, ExecutionContextInterface $context)
+    {
+
+        if ($data->getFechaIngreso() > $data->getFechaSalida()){
+
+           $context->buildViolation('La fecha de salida no puede ser antes que la fecha de entrada')
+                ->atPath('ingresopaciente_new')
+                ->addViolation();   
+        }
+        
+
     }
 }

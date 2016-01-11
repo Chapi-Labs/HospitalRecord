@@ -23,49 +23,25 @@
                     <td>{{ entity.procedimientoRealizado }}</td>
                 </tr>
                 <tr>
-                    <th>Diagnóstico Cie-10</th>
-                    <td>{{ entity.diagnosticoCie10 }}</td>
+                    <th>Clasificación AO</th>
+                    <td>{{ entity.clasificacionAO}}</td>
                 </tr>
+                {% for diagnostico in entity.arrayDiagnosticos %}
+                        
                 <tr>
-                    <th>Diagnóstico 1</th>
+                    <th>Diagnóstico </th>
                     <td>
-                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico1 }}
+                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{diagnostico}}
                         </textarea>
 
                     </td>
                 </tr>
-                <tr>
-                    <th>Diagnóstico 2</th>
-                    <td>
-                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico2 }}
-                        </textarea>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>Diagnóstico 3</th>
-                    <td>
-                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico3 }}
-                        </textarea>
-
-                    </td>
-                </tr>
-                  <tr>
-                    <th>Diagnóstico 4</th>
-                    <td>
-                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico4 }}
-                        </textarea>
-
-                    </td>
-                </tr>
-                  <tr>
-                    <th>Diagnóstico 5</th>
-                    <td>
-                        <textarea readonly disabled autofocus wrap="soft" rows="4" cols="70">{{ entity.diagnostico5 }}
-                        </textarea>
-
-                    </td>
-                </tr>
+              
+               
+                {% endfor %}
+               
+               
+                 
                 <tr>
                     <th>Fecha de salida</th>
                     <td>{{ entity.fechaSalida|date('d-m-Y') }}</td>

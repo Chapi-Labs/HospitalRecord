@@ -43,6 +43,7 @@
             {{form_end(form)}}
 
     {% if pacientes is not null %}
+        {% if pacientes|length != 0 %}
                 <table class="table table-condensed  table-striped">
                     <tr>
                         <th>Nombre paciente</th>
@@ -54,7 +55,6 @@
                         
                     </tr>
                     {% for paciente in pacientes %}
-                   
                     <tr>
                         <td><a href="{{path('paciente_show',{'slug':paciente.slug})}}">{{ paciente.nombre }} {{paciente.apellidos}}</a></td>
                         <td>{{ paciente.edad }}</td>
@@ -68,6 +68,11 @@
                    
                     {% endfor %}
                 </table>
+                {% else %}
+                <div class="alert alert-danger">
+                  <strong>Advertencia!</strong> No se han encontrado resultados.
+                </div>
+            {% endif %}
     {% endif %}
         </div>
     </div>

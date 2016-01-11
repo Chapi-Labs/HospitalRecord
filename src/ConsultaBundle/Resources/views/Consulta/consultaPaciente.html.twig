@@ -25,14 +25,22 @@
             {{form_row(form.consulta_diagnostico)}}
             {{form_row(form.consulta_procedimiento_realizado)}}
             {{form_row(form.consulta_clasificacion_ao)}}
-            {{form_row(form.consulta_fecha_ingreso)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            {{form_row(form.consulta_fecha_inicio_ingreso)}}
+        </div>
+        <div class="col-md-5">
+            {{form_row(form.consulta_fecha_fin_ingreso)}}
         </div>
     </div>
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
             {{form_row(form.consultar)}}
-    {{form_end(form)}}
+            {{form_end(form)}}
 
     {% if pacientes is not null %}
                 <table class="table table-condensed  table-striped">

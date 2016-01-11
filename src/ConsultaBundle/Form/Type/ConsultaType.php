@@ -27,9 +27,32 @@ class ConsultaType extends AbstractType
                         'class' => 'select2',
                     ],
                 ])
-            ->add('consulta_fecha_ingreso', 'collot_datetime',
+            ->add('consulta_fecha_inicio_ingreso', 'collot_datetime',
                 [
-                    'label' => 'Consulta por fecha de ingreso',
+                    'label' => 'Fecha inicio',
+                    'required' => false,
+                    'pickerOptions' => [
+                        'format' => 'mm/dd/yyyy',
+                        'weekStart' => 0,
+                        'autoclose' => true,
+                        'startView' => 'month',
+                        'minView' => 'month',
+                        'maxView' => 'decade',
+                        'todayBtn' => true,
+                        'todayHighlight' => true,
+                        'keyboardNavigation' => true,
+                        'language' => 'es',
+                        'forceParse' => true,
+                        'minuteStep' => 5,
+                        'pickerReferer ' => 'default', //deprecated
+                        'pickerPosition' => 'bottom-right',
+                        'viewSelect' => 'month',
+                        'showMeridian' => false,
+                    ],
+                ])
+            ->add('consulta_fecha_fin_ingreso', 'collot_datetime',
+                [
+                    'label' => 'Fecha fin',
                     'required' => false,
                     'pickerOptions' => [
                         'format' => 'mm/dd/yyyy',

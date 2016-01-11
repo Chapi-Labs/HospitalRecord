@@ -62,20 +62,23 @@ class ConsultaController extends Controller
             );
         }
 
-        if (isset($dataForm['consulta_fecha_ingreso'])) {
-            $fecha = $dataForm['consulta_fecha_ingreso'];
-            $fechaInicio = $fecha->format('Y-m-d');
-            $fecha = $fecha->modify('+1 day');
-            $fechaFin = $fecha->format('Y-m-d');
+        if (isset($dataForm['consulta_fecha_inicio_ingreso'])) {
+            $fechaInicio = $dataForm['consulta_fecha_inicio_ingreso']->format('Y-m-d');
+            $fechaFin = $dataForm['consulta_fecha_fin_ingreso']->format('Y-m-d');
 
             $qb = $this->consultaPorFechas($qb, $fechaInicio, $fechaFin);
-
         }
 
         if (isset($dataForm['consulta_procedimiento_realizado'])) {
             $procedimiento = $dataForm['consulta_procedimiento_realizado'];
 
             $qb = $this->consultaPorProcedimiento($qb, $procedimiento);
+        }
+
+        if (isset($dataForm['consulta_clasificacion_ao'])) {
+            $clasificacion = $dataForm['consulta_procedimiento_realizado'];
+
+            $qb = $this->consultaPorClasificacion($qb, $clasificacion);
         }
 
         if (isset($dataForm['consulta_diagnostico'])) {
@@ -124,5 +127,13 @@ class ConsultaController extends Controller
     private function consultaPorDiagnostico($qb, $diagnostico)
     {
 
+    }
+
+    private function consultaPorClasificacion($qb, $clasificacion)
+    {
+        return $qb
+            ->leftJoin('p.ingreso', 'ingreso')
+            ->andWhere('ingreso.clasificacionAO = :clasificacion')
+            ->setParameter('clasificacion', $clasificacion);
     }
 }

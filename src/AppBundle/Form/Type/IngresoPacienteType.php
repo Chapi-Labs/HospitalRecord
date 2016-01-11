@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\Type\DiagnosticoType;
 use Symfony\Component\Validator\Constraints;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints\Callback;
 
 class IngresoPacienteType extends AbstractType
 {
@@ -16,6 +19,7 @@ class IngresoPacienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $data = $builder->getData();
         $builder
             ->add('fechaIngreso', 'collot_datetime', ['pickerOptions' => ['format' => 'dd/mm/yyyy',
                 'weekStart' => 0,
@@ -121,9 +125,6 @@ class IngresoPacienteType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Fecha de salida del paciente',
                     ],
-                'constraints' => [
-                        new Constraints\Callback([$this, 'validarFecha'])
-                    ]
             ])
 
         ;
@@ -136,6 +137,7 @@ class IngresoPacienteType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\IngresoPaciente',
+            'constraints' => new Callback([$this, 'validarFecha'])
         ]);
     }
 
@@ -146,11 +148,22 @@ class IngresoPacienteType extends AbstractType
     {
         return 'paciente_form';
     }
-
-    public function validarFecha(ExecutionContextInterface $context)
+    /**
+     * Validar que la fecha de ingreso sea antes que la fecha de salida
+     * @param  Array                   $data       contiene los datos del formulario
+     * @param  ExecutionContextInterface $context 
+     * @return null                            
+     */
+    public function validarFecha($data, ExecutionContextInterface $context)
     {
 
+        if ($data->getFechaIngreso() > $data->getFechaSalida()){
 
+           $context->buildViolation('La fecha de salida no puede ser antes que la fecha de entrada')
+                ->atPath('ingresopaciente_new')
+                ->addViolation();   
+        }
+        
 
     }
 }

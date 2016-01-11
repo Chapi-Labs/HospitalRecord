@@ -1,14 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
     <h1>Diagnostico list</h1>
 
     <table class="records_list">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Nombrediagnostico</th>
-                <th>Actions</th>
+                <th>Nombre del Diagnóstico</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -19,10 +22,10 @@
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('diagnostico_show', { 'id': entity.id }) }}">show</a>
+                        <a class="btn btn-warning" href="{{ path('diagnostico_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('diagnostico_edit', { 'id': entity.id }) }}">edit</a>
+                        <a class="btn btn-danger" href="{{ path('diagnostico_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
@@ -31,11 +34,8 @@
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('diagnostico_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+       
+        </div>
+    <div class="col-md-1"></div>
+</div>
     {% endblock %}

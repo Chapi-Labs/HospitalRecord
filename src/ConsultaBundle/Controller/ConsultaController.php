@@ -81,6 +81,7 @@ class ConsultaController extends Controller
 
             $qb = $this->consultaPorClasificacion($qb, $clasificacion);
         }
+        $pacientes = $qb->getQuery()->getResult();
 
         if (isset($dataForm['consulta_edad'])) {
             $edadChoice = $dataForm['consulta_edad'];
@@ -99,10 +100,10 @@ class ConsultaController extends Controller
         if (isset($dataForm['consulta_diagnostico'])) {
             $diagnostico = $dataForm['consulta_diagnostico'];
 
-            $qb = $this->consultaPorDiagnostico($qb, $diagnostico);
+            $pacientes = $this->consultaPorDiagnostico($qb, $diagnostico);
         }
 
-        $pacientes = $qb->getQuery()->getResult();
+        
 
         return $this->render(
             'ConsultaBundle:Consulta:consultaPaciente.html.twig',
@@ -135,7 +136,25 @@ class ConsultaController extends Controller
 
     private function consultaPorDiagnostico($qb, $diagnostico)
     {
+        $arrayOfIngresoPacientes = [];
+        $em = $this->getDoctrine()->getManager();
 
+        $ingresos = $em->getRepository('AppBundle:IngresoPaciente')->findAll();
+        foreach($ingresos as $ingreso){
+            $diagnosticos = $ingreso->getArrayDiagnosticos();
+            foreach($diagnosticos as $diag){
+                if ($diag->getNombreDiagnostico()==$diagnostico){
+                    $arrayOfIngresoPacientes[] = $ingreso;   
+                }
+
+            }
+        }
+        $arrayOfPacientes = [];
+        foreach($arrayOfIngresoPacientes as $ingreso){
+            $paciente = $ingreso->getPaciente();
+            $arrayOfPacientes[] = $paciente;
+        }
+        return $arrayOfPacientes;
     }
 
     private function consultaPorClasificacion($qb, $clasificacion)

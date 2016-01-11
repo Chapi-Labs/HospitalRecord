@@ -103,11 +103,8 @@ function ajaxProcedimiento()
                 select.options.add(opt1);
             }
             
-            $('#myModal').modal('hide');
+            $('#modalProcedimiento').modal('hide');
 
-            $("#appbundle_clasificacionao_identificadorAO").reset();
-
-             
 
             $(document).trigger("add-alerts", {
               message: "Se ha guardado correctamente",
@@ -137,7 +134,7 @@ function ajaxProcedimiento()
            
            
 
-             $('#myModal').modal('hide');
+             $('#modalProcedimiento').modal('hide');
                   
              $(document).trigger("add-alerts", {
               message: (jqXHR.responseJSON.error).substring(16),
@@ -161,8 +158,12 @@ function ajaxDiagnostico()
             success: function(data) {
            
             window.location.reload();
-            
 
+                  
+             $(document).trigger("add-alerts", {
+              message: (jqXHR.responseJSON.error).substring(16),
+              priority: "error"
+            });
           
             
          }

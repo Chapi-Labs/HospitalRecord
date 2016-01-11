@@ -47,7 +47,8 @@ class ConsultaController extends Controller
         $dataForm = $formConsultas->getData();
 
         $pacientes = [];
-        $qb = $repositoryPaciente->createQueryBuilder('p');
+        $qb = $repositoryPaciente->createQueryBuilder('p')
+            ->leftJoin('p.ingreso', 'ingreso');
 
         if (isset($dataForm['consulta_dpi_nombre_apellidos'])) {
             $pacientes[] = $dataForm['consulta_dpi_nombre_apellidos'];
@@ -76,14 +77,13 @@ class ConsultaController extends Controller
         }
 
         if (isset($dataForm['consulta_clasificacion_ao'])) {
-            $clasificacion = $dataForm['consulta_procedimiento_realizado'];
+            $clasificacion = $dataForm['consulta_clasificacion_ao'];
 
             $qb = $this->consultaPorClasificacion($qb, $clasificacion);
         }
 
         if (isset($dataForm['consulta_diagnostico'])) {
-            echo('consulta por diagnostico');
-            $diagnostico = $dataForm['consulta_procedimiento_realizado'];
+            $diagnostico = $dataForm['consulta_diagnostico'];
 
             $qb = $this->consultaPorDiagnostico($qb, $diagnostico);
         }
@@ -103,7 +103,6 @@ class ConsultaController extends Controller
     private function consultaPorFechas($qb, $fechaInicio, $fechaFin)
     {
         return $qb
-            ->leftJoin('p.ingreso', 'ingreso')
             ->andWhere('ingreso.fechaIngreso >= :fechaInicio')
             ->andWhere('ingreso.fechaIngreso < :fechaFin')
             ->setParameters([
@@ -116,8 +115,7 @@ class ConsultaController extends Controller
     private function consultaPorProcedimiento($qb, $procedimiento)
     {
         return $qb
-            ->leftJoin('p.ingreso', 'ingreso2')
-            ->andWhere('ingreso2.procedimientoRealizado = :procedimiento')
+            ->andWhere('ingreso.procedimientoRealizado = :procedimiento')
             ->setParameter('procedimiento', $procedimiento);
     }
 
@@ -129,8 +127,7 @@ class ConsultaController extends Controller
     private function consultaPorClasificacion($qb, $clasificacion)
     {
         return $qb
-            ->leftJoin('p.ingreso', 'ingreso3')
-            ->andWhere('ingreso3.clasificacionAO = :clasificacion')
+            ->andWhere('ingreso.clasificacionAO = :clasificacion')
             ->setParameter('clasificacion', $clasificacion);
     }
 }

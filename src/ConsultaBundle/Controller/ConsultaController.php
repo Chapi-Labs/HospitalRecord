@@ -82,6 +82,20 @@ class ConsultaController extends Controller
             $qb = $this->consultaPorClasificacion($qb, $clasificacion);
         }
 
+        if (isset($dataForm['consulta_edad'])) {
+            $edadChoice = $dataForm['consulta_edad'];
+
+            $qb = $this->consultarPorEdad($qb, $edadChoice);
+        }
+
+        if (isset($dataForm['consulta_sexo'])) {
+            $sexo = $dataForm['consulta_sexo'];
+
+            $qb
+                ->andWhere('p.genero = :sexo')
+                ->setParameter('sexo', $sexo);
+        }
+
         if (isset($dataForm['consulta_diagnostico'])) {
             $diagnostico = $dataForm['consulta_diagnostico'];
 
@@ -129,5 +143,19 @@ class ConsultaController extends Controller
         return $qb
             ->andWhere('ingreso.clasificacionAO = :clasificacion')
             ->setParameter('clasificacion', $clasificacion);
+    }
+
+    private function consultarPorEdad($qb, $edadChoice)
+    {
+        if ($edadChoice === 'N') {
+            $qb
+                ->andWhere('p.edad >= 0')
+                ->andWhere('p.edad < 13');
+        } elseif ($edadChoice === 'A') {
+            $qb
+                ->andWhere('p.edad >= 13');
+        }
+
+        return $qb;
     }
 }

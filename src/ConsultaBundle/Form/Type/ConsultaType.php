@@ -27,6 +27,26 @@ class ConsultaType extends AbstractType
                         'class' => 'select2',
                     ],
                 ])
+            ->add('consulta_edad', 'choice',
+                [
+                    'label' => 'Consulta por edad',
+                    'empty_value' => 'Seleccionar edad',
+                    'required' => false,
+                    'choices' => [
+                        'N' => 'Niño',
+                        'A' => 'Adulto'
+                    ]
+                ])
+            ->add('consulta_sexo', 'choice',
+                [
+                    'label' => 'Consulta por sexo',
+                    'empty_value' => 'Seleccionar sexo',
+                    'required' => false,
+                    'choices' => [
+                        'Masculino' => 'Masculino',
+                        'Femenino' => 'Femenino'
+                    ]
+                ])
             ->add('consulta_fecha_inicio_ingreso', 'collot_datetime',
                 [
                     'label' => 'Fecha inicio',

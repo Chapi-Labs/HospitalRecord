@@ -22,6 +22,20 @@
         <div class="col-md-10">
             <h1>Consulta de pacientes</h1>
             {{form_row(form.consulta_dpi_nombre_apellidos)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            {{form_row(form.consulta_edad)}}
+        </div>
+        <div class="col-md-5">
+            {{form_row(form.consulta_sexo)}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
             {{form_row(form.consulta_diagnostico)}}
             {{form_row(form.consulta_procedimiento_realizado)}}
             {{form_row(form.consulta_clasificacion_ao)}}

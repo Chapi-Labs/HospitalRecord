@@ -5,6 +5,12 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
+    <script type="text/javascript">
+            $('select').select2({
+        theme: "bootstrap"
+    });
+    </script>
     {{ form_javascript(form) }}
 {% endblock %}
 
@@ -16,8 +22,10 @@
         <div class="col-md-10">
             <h1>Consulta de pacientes</h1>
             {{form_row(form.consulta_dpi_nombre_apellidos)}}
-            {{form_row(form.consulta_fecha_ingreso)}}
+            {{form_row(form.consulta_diagnostico)}}
             {{form_row(form.consulta_procedimiento_realizado)}}
+            {{form_row(form.consulta_clasificacion_ao)}}
+            {{form_row(form.consulta_fecha_ingreso)}}
         </div>
     </div>
     <div class="row">

@@ -52,22 +52,38 @@ class ConsultaType extends AbstractType
                 ])
             ->add('consulta_procedimiento_realizado', 'entity',
                 [
-                    'label' => 'Consulta por diagnóstico',
+                    'label' => 'Consulta por procedimiento',
                     'required' => false,
-                    'empty_value' => 'Seleccionar diagnóstico Cie-10',
-                    'class' => 'AppBundle:Cie10',
-                    'property' => 'Diagnostico',
+                    'empty_value' => 'Seleccionar procedimiento',
+                    'class' => 'AppBundle:Procedimiento',
+                    'property' => 'DescripcionProcedimiento',
                     'attr' => [
                         'class' => 'select2',
-                    ],
-                    'query_builder' => function (EntityRepository $er) {
-
-                        $qb = $er->createQueryBuilder('d');
-
-                        return $qb->innerJoin('d.diagnosticos', 'ds');
-                    },
+                    ]
                 ])
-           ->add('consultar', 'submit',
+            ->add('consulta_diagnostico', 'entity',
+                [
+                    'label' => 'Consulta por diagnóstico',
+                    'required' => false,
+                    'empty_value' => 'Seleccionar diagnóstico',
+                    'class' => 'AppBundle:Diagnostico',
+                    'property' => 'NombreDiagnostico',
+                    'attr' => [
+                        'class' => 'select2',
+                    ]
+                ])
+            ->add('consulta_clasificacion_ao', 'entity',
+                [
+                    'label' => 'Consulta por clasificación AO',
+                    'required' => false,
+                    'empty_value' => 'Seleccionar clasificación',
+                    'class' => 'AppBundle:ClasificacionAO',
+                    'property' => 'IdentificadorAO',
+                    'attr' => [
+                        'class' => 'select2',
+                    ]
+                ])
+            ->add('consultar', 'submit',
                 [
                     'label' => 'Consultar',
                     'attr' => [

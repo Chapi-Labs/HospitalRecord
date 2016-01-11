@@ -45,48 +45,47 @@ class ConsultaController extends Controller
         }
 
         $dataForm = $formConsultas->getData();
-        $tipoConsulta = 0;
-
-        if (isset($dataForm['consulta_dpi_nombre_apellidos'])) {
-            $tipoConsulta = 1;
-        } elseif (isset($dataForm['consulta_fecha_ingreso'])) {
-            $tipoConsulta = 2;
-        } elseif (isset($dataForm['consulta_procedimiento_realizado'])) {
-            $tipoConsulta = 3;
-        }
 
         $pacientes = [];
+        $qb = $repositoryPaciente->createQueryBuilder('p');
 
-        if ($tipoConsulta == 1) {
+        if (isset($dataForm['consulta_dpi_nombre_apellidos'])) {
             $pacientes[] = $dataForm['consulta_dpi_nombre_apellidos'];
-        } elseif ($tipoConsulta == 2) {
+
+            return $this->render(
+                'ConsultaBundle:Consulta:consultaPaciente.html.twig',
+                [
+                    'form' => $formConsultas->createView(),
+                    'pacientes' => $pacientes,
+                    'contPacientes' => $cantidadPacientes,
+                ]
+            );
+        }
+
+        if (isset($dataForm['consulta_fecha_ingreso'])) {
             $fecha = $dataForm['consulta_fecha_ingreso'];
             $fechaInicio = $fecha->format('Y-m-d');
             $fecha = $fecha->modify('+1 day');
             $fechaFin = $fecha->format('Y-m-d');
 
-            $pacientes = $repositoryPaciente
-                ->createQueryBuilder('p')
-                ->leftJoin('p.ingreso', 'ingreso')
-                ->where('ingreso.fechaIngreso >= :fechaInicio')
-                ->andWhere('ingreso.fechaIngreso < :fechaFin')
-                ->setParameters([
-                    'fechaInicio' => $fechaInicio,
-                    'fechaFin' => $fechaFin,
-                    ])
-                ->getQuery()
-                ->getResult();
-        } elseif ($tipoConsulta == 3) {
+            $qb = $this->consultaPorFechas($qb, $fechaInicio, $fechaFin);
+
+        }
+
+        if (isset($dataForm['consulta_procedimiento_realizado'])) {
+            $procedimiento = $dataForm['consulta_procedimiento_realizado'];
+
+            $qb = $this->consultaPorProcedimiento($qb, $procedimiento);
+        }
+
+        if (isset($dataForm['consulta_diagnostico'])) {
+            echo('consulta por diagnostico');
             $diagnostico = $dataForm['consulta_procedimiento_realizado'];
 
-            $qb = $repositoryPaciente->createQueryBuilder('p');
-            $pacientes = $qb
-                ->leftJoin('p.ingreso', 'ingreso')
-                ->where('ingreso.diagnosticoCie10 = :diagnostico')
-                ->setParameter('diagnostico', $diagnostico)
-                ->getQuery()
-                ->getResult();
+            $qb = $this->consultaPorDiagnostico($qb, $diagnostico);
         }
+
+        $pacientes = $qb->getQuery()->getResult();
 
         return $this->render(
             'ConsultaBundle:Consulta:consultaPaciente.html.twig',
@@ -96,5 +95,34 @@ class ConsultaController extends Controller
                 'contPacientes' => $cantidadPacientes,
             ]
         );
+    }
+
+    private function consultaPorFechas($qb, $fechaInicio, $fechaFin)
+    {
+        $fechaInicio = $fecha->format('Y-m-d');
+        $fechaFin = $fecha->format('Y-m-d');
+
+        return $qb
+            ->leftJoin('p.ingreso', 'ingreso')
+            ->andWhere('ingreso.fechaIngreso >= :fechaInicio')
+            ->andWhere('ingreso.fechaIngreso < :fechaFin')
+            ->setParameters([
+                'fechaInicio' => $fechaInicio,
+                'fechaFin' => $fechaFin,
+            ]
+        );
+    }
+
+    private function consultaPorProcedimiento($qb, $procedimiento)
+    {
+        return $qb
+            ->leftJoin('p.ingreso', 'ingreso')
+            ->andWhere('ingreso.procedimientoRealizado = :procedimiento')
+            ->setParameter('procedimiento', $procedimiento);
+    }
+
+    private function consultaPorDiagnostico($qb, $diagnostico)
+    {
+
     }
 }

@@ -102,9 +102,6 @@ class ConsultaController extends Controller
 
     private function consultaPorFechas($qb, $fechaInicio, $fechaFin)
     {
-        $fechaInicio = $fecha->format('Y-m-d');
-        $fechaFin = $fecha->format('Y-m-d');
-
         return $qb
             ->leftJoin('p.ingreso', 'ingreso')
             ->andWhere('ingreso.fechaIngreso >= :fechaInicio')
@@ -119,8 +116,8 @@ class ConsultaController extends Controller
     private function consultaPorProcedimiento($qb, $procedimiento)
     {
         return $qb
-            ->leftJoin('p.ingreso', 'ingreso')
-            ->andWhere('ingreso.procedimientoRealizado = :procedimiento')
+            ->leftJoin('p.ingreso', 'ingreso2')
+            ->andWhere('ingreso2.procedimientoRealizado = :procedimiento')
             ->setParameter('procedimiento', $procedimiento);
     }
 
@@ -132,8 +129,8 @@ class ConsultaController extends Controller
     private function consultaPorClasificacion($qb, $clasificacion)
     {
         return $qb
-            ->leftJoin('p.ingreso', 'ingreso')
-            ->andWhere('ingreso.clasificacionAO = :clasificacion')
+            ->leftJoin('p.ingreso', 'ingreso3')
+            ->andWhere('ingreso3.clasificacionAO = :clasificacion')
             ->setParameter('clasificacion', $clasificacion);
     }
 }

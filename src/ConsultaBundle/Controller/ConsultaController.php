@@ -49,7 +49,7 @@ class ConsultaController extends Controller
         $pacientes = [];
         $qb = $repositoryPaciente->createQueryBuilder('p')
             ->leftJoin('p.ingreso', 'ingreso');
-
+        
         if (isset($dataForm['consulta_dpi_nombre_apellidos'])) {
             $pacientes[] = $dataForm['consulta_dpi_nombre_apellidos'];
 
@@ -61,6 +61,21 @@ class ConsultaController extends Controller
                     'contPacientes' => $cantidadPacientes,
                 ]
             );
+        }
+
+        if (isset($dataForm['consulta_expediente'])) {
+            
+            $pacientes[] = $dataForm['consulta_expediente'];
+
+            return $this->render(
+                'ConsultaBundle:Consulta:consultaPaciente.html.twig',
+                [
+                    'form' => $formConsultas->createView(),
+                    'pacientes' => $pacientes,
+                    'contPacientes' => $cantidadPacientes,
+                ]
+            );
+
         }
 
         if (isset($dataForm['consulta_fecha_inicio_ingreso'])) {

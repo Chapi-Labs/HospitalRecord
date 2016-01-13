@@ -16,6 +16,17 @@ class ConsultaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+             ->add('consulta_expediente', 'entity',
+                [
+                    'label' => 'Consulta por número de expediente',
+                    'required' => false,
+                    'empty_value' => 'Ingresar número de expediente',
+                    'class' => 'AppBundle:Paciente',
+                    'property' => 'Expediente',
+                    'attr' => [
+                        'class' => 'select2',
+                    ],
+                ])
             ->add('consulta_dpi_nombre_apellidos', 'entity',
                 [
                     'label' => 'Consulta por dpi, nombre o apellidos',
@@ -44,7 +55,8 @@ class ConsultaType extends AbstractType
                     'required' => false,
                     'choices' => [
                         'Masculino' => 'Masculino',
-                        'Femenino' => 'Femenino'
+                        'Femenino' => 'Femenino',
+                        'Otro'     =>  'Otro',
                     ]
                 ])
             ->add('consulta_fecha_inicio_ingreso', 'collot_datetime',

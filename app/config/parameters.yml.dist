@@ -12,7 +12,7 @@ parameters:
     mailer_transport: smtp
     mailer_host: smtp.sendgrid.net
     mailer_user: fcpauldiaz
-    mailer_password: 1aba5ddiaz12.
+    mailer_password: ~
     mailer_port: 587
 
     # A secret key that's used to generate certain security-related tokens

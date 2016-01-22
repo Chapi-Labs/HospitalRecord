@@ -14,10 +14,18 @@
     ajaxDiagnostico();
 </script>
 <script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
+<script src="{{asset('js/jquery.initialize.js')}}"></script>
 <script type="text/javascript">
-        $('select').select2({
+(function(){
+        $("select").initialize( function(){
+     $(this).select2({
     theme: "bootstrap"
+}); 
+
 });
+       
+          
+})();
 </script>
 <script src="{{ asset('js/jquery.bsAlerts.min.js')}}"></script>
 <script>

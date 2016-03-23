@@ -100,38 +100,4 @@ class Diagnostico
     {
         return $this->ingreso;
     }
-
-    /**
-     * Add ingreso
-     *
-     * @param \AppBundle\Entity\IngresoPaciente $ingreso
-     *
-     * @return Diagnostico
-     */
-    public function addIngreso(\AppBundle\Entity\IngresoPaciente $ingreso)
-    {
-        $this->ingresos[] = $ingreso;
-
-        return $this;
-    }
-
-    /**
-     * Remove ingreso
-     *
-     * @param \AppBundle\Entity\IngresoPaciente $ingreso
-     */
-    public function removeIngreso(\AppBundle\Entity\IngresoPaciente $ingreso)
-    {
-        $this->ingresos->removeElement($ingreso);
-    }
-
-    /**
-     * Get ingresos
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIngresos()
-    {
-        return $this->ingresos;
-    }
 }

@@ -19,7 +19,7 @@ class IngresoPacienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $data = $builder->getData();
+        //$data = $builder->getData();
         $builder
             ->add('fechaIngreso', 'collot_datetime', ['pickerOptions' => ['format' => 'dd/mm/yyyy',
                 'weekStart' => 0,
@@ -78,7 +78,7 @@ class IngresoPacienteType extends AbstractType
                         'class' => 'select2',
                     ],
                 ])
-           ->add('arrayDiagnosticos', 'bootstrap_collection', [
+           ->add('diagnosticos', 'bootstrap_collection', [
                     'type' => 'entity',
                     'label' => 'Diagnósticos dinámicos',
                     'allow_add' => true,

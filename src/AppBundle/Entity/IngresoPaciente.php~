@@ -44,20 +44,16 @@ class IngresoPaciente
      */
     private $procedimientoRealizado;
 
-     /**
+    /**
      * @ORM\ManyToOne(targetEntity="ClasificacionAO")
      * @ORM\JoinColumn(name="clasificacionao_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $clasificacionAO;
-
     /**
-     * @var string
-     *  
-     * 
-     * @ORM\Column(name="arrayDiagnosticos",type="array")
-     */
-    private $arrayDiagnosticos;
-
+    * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Diagnostico", inversedBy="ingresos")
+    * @ORM\JoinTable(name="diagnosticos_por_ingreso")
+    */
+    private $diagnosticos;
 
     /**
      * @var \DateTime
@@ -67,7 +63,7 @@ class IngresoPaciente
     private $fechaSalida;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso")
+     * @ORM\ManyToOne(targetEntity="Paciente",inversedBy="ingreso",cascade={"remove"})
      * @ORM\JoinColumn(name="paciente_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $paciente;
@@ -108,6 +104,10 @@ class IngresoPaciente
      */
     private $contentChangedBy;
 
+    public function __construct()
+    {
+          $this->diagnosticos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -115,9 +115,9 @@ class IngresoPaciente
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -125,7 +125,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set fechaIngreso
+     * Set fechaIngreso.
      *
      * @param \DateTime $fechaIngreso
      *
@@ -139,7 +139,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaIngreso
+     * Get fechaIngreso.
      *
      * @return \DateTime
      */
@@ -149,7 +149,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set motivoIngreso
+     * Set motivoIngreso.
      *
      * @param string $motivoIngreso
      *
@@ -163,7 +163,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get motivoIngreso
+     * Get motivoIngreso.
      *
      * @return string
      */
@@ -173,7 +173,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set procedimientoRealizado
+     * Set procedimientoRealizado.
      *
      * @param string $procedimientoRealizado
      *
@@ -187,7 +187,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get procedimientoRealizado
+     * Get procedimientoRealizado.
      *
      * @return string
      */
@@ -196,36 +196,9 @@ class IngresoPaciente
         return $this->procedimientoRealizado;
     }
 
-    /**
-     * Set arrayDiagnosticos
-     *
-     * @param array $arrayDiagnosticos
-     *
-     * @return IngresoPaciente
-     */
-    public function setArrayDiagnosticos($arrayDiagnosticos)
-    {
-        $this->arrayDiagnosticos = $arrayDiagnosticos;
-
-        return $this;
-    }
-
-     /**
-     * Set arrayDiagnosticos
-     *
-     * @param array $arrayDiagnosticos
-     *
-     * @return IngresoPaciente
-     */
-    public function addArrayDiagnosticos($arrayDiagnosticos)
-    {
-        $this->arrayDiagnosticos->add($arrayDiagnosticos);
-
-        return $this;
-    }
 
     /**
-     * Get arrayDiagnosticos
+     * Get arrayDiagnosticos.
      *
      * @return array
      */
@@ -235,7 +208,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set fechaSalida
+     * Set fechaSalida.
      *
      * @param \DateTime $fechaSalida
      *
@@ -249,7 +222,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get fechaSalida
+     * Get fechaSalida.
      *
      * @return \DateTime
      */
@@ -259,7 +232,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -273,7 +246,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -283,7 +256,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set created
+     * Set created.
      *
      * @param \DateTime $created
      *
@@ -297,7 +270,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get created
+     * Get created.
      *
      * @return \DateTime
      */
@@ -307,7 +280,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set updated
+     * Set updated.
      *
      * @param \DateTime $updated
      *
@@ -321,7 +294,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get updated
+     * Get updated.
      *
      * @return \DateTime
      */
@@ -331,7 +304,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set contentChangedBy
+     * Set contentChangedBy.
      *
      * @param string $contentChangedBy
      *
@@ -345,7 +318,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get contentChangedBy
+     * Get contentChangedBy.
      *
      * @return string
      */
@@ -355,7 +328,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set paciente
+     * Set paciente.
      *
      * @param \AppBundle\Entity\Paciente $paciente
      *
@@ -369,7 +342,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get paciente
+     * Get paciente.
      *
      * @return \AppBundle\Entity\Paciente
      */
@@ -379,7 +352,7 @@ class IngresoPaciente
     }
 
     /**
-     * Set usuario
+     * Set usuario.
      *
      * @param \UserBundle\Entity\Usuario $usuario
      *
@@ -393,7 +366,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get usuario
+     * Get usuario.
      *
      * @return \UserBundle\Entity\Usuario
      */
@@ -401,10 +374,9 @@ class IngresoPaciente
     {
         return $this->usuario;
     }
-  
 
     /**
-     * Set clasificacionAO
+     * Set clasificacionAO.
      *
      * @param \AppBundle\Entity\ClasificacionAO $clasificacionAO
      *
@@ -418,7 +390,7 @@ class IngresoPaciente
     }
 
     /**
-     * Get clasificacionAO
+     * Get clasificacionAO.
      *
      * @return \AppBundle\Entity\ClasificacionAO
      */

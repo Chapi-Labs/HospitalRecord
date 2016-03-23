@@ -49,14 +49,11 @@ class IngresoPaciente
      * @ORM\JoinColumn(name="clasificacionao_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $clasificacionAO;
-
     /**
-     * @var string
-     *              
-     * 
-     * @ORM\Column(name="arrayDiagnosticos",type="array")
-     */
-    private $arrayDiagnosticos;
+    * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Diagnostico", inversedBy="ingresos")
+    * @ORM\JoinTable(name="diagnosticos_por_ingreso")
+    */
+    private $diagnosticos;
 
     /**
      * @var \DateTime
@@ -106,6 +103,11 @@ class IngresoPaciente
      * @Gedmo\Blameable(on="change", field={"fechaIngreso", "motivoIngreso","procedimientoRealizado","fechaSalida"})
      */
     private $contentChangedBy;
+
+    public function __construct()
+    {
+          $this->diagnosticos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -194,33 +196,6 @@ class IngresoPaciente
         return $this->procedimientoRealizado;
     }
 
-    /**
-     * Set arrayDiagnosticos.
-     *
-     * @param array $arrayDiagnosticos
-     *
-     * @return IngresoPaciente
-     */
-    public function setArrayDiagnosticos($arrayDiagnosticos)
-    {
-        $this->arrayDiagnosticos = $arrayDiagnosticos;
-
-        return $this;
-    }
-
-    /**
-     * Set arrayDiagnosticos.
-     *
-     * @param array $arrayDiagnosticos
-     *
-     * @return IngresoPaciente
-     */
-    public function addArrayDiagnosticos($arrayDiagnosticos)
-    {
-        $this->arrayDiagnosticos->add($arrayDiagnosticos);
-
-        return $this;
-    }
 
     /**
      * Get arrayDiagnosticos.
@@ -422,5 +397,39 @@ class IngresoPaciente
     public function getClasificacionAO()
     {
         return $this->clasificacionAO;
+    }
+
+    /**
+     * Add diagnostico
+     *
+     * @param \AppBundle\Entity\Diagnostico $diagnostico
+     *
+     * @return IngresoPaciente
+     */
+    public function addDiagnostico(\AppBundle\Entity\Diagnostico $diagnostico)
+    {
+        $this->diagnosticos[] = $diagnostico;
+
+        return $this;
+    }
+
+    /**
+     * Remove diagnostico
+     *
+     * @param \AppBundle\Entity\Diagnostico $diagnostico
+     */
+    public function removeDiagnostico(\AppBundle\Entity\Diagnostico $diagnostico)
+    {
+        $this->diagnosticos->removeElement($diagnostico);
+    }
+
+    /**
+     * Get diagnosticos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDiagnosticos()
+    {
+        return $this->diagnosticos;
     }
 }

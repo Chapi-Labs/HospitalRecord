@@ -1,5 +1,24 @@
 {% extends '::base.html.twig' %}
 
+{% block javascripts %}
+<script src="{{asset('js/bc-bootstrap-collection.js')}}"></script>
+<script src="{{asset('js/jquery.initialize.js')}}"></script>
+<script type="text/javascript">
+(function(){
+        $("select").initialize( function(){
+     $(this).select2({
+    theme: "bootstrap"
+}); 
+
+});
+       
+          
+})();
+</script>
+<script src="{{ asset('js/jquery.bsAlerts.min.js')}}"></script>
+<script>
+
+{% endblock %}
 {% block body -%}
 	<div class="row">
 	<div class="col-md-1"></div>

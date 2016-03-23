@@ -101,7 +101,7 @@ class IngresoPacienteType extends AbstractType
                     ],
                 ])
 
-            ->add('fechaSalida', 'collot_datetime', ['pickerOptions' => ['format' => 'mm/dd/yyyy',
+            ->add('fechaSalida', 'collot_datetime', ['pickerOptions' => ['format' => 'dd/mm/yyyy',
                 'weekStart' => 0,
                 //'startDate' => date('m/d/Y'), //example
                 //'endDate' => '01/01/3000', //example

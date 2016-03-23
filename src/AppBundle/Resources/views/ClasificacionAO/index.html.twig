@@ -13,7 +13,6 @@
                 </tr>
             </thead>
             <tbody>
-            {{dump(entities)}}
                 {% for entity in entities %}
                 <tr>
                     <td><a href="{{ path('clasificacionao_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>

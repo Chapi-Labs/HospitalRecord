@@ -44,7 +44,10 @@ class IngresoPacienteType extends AbstractType
                 ],
                 'attr' => [
                     'placeholder' => 'Fecha de Ingreso del paciente',
+                   
                 ],
+                'read_only' => true,
+               
             ])
               ->add('paciente', 'entity', [
                 'empty_value' => 'Seleccionar Paciente',
@@ -124,7 +127,9 @@ class IngresoPacienteType extends AbstractType
                 ],
                 'attr' => [
                     'placeholder' => 'Fecha de salida del paciente',
+
                     ],
+                'read_only' => true,
             ])
 
         ;

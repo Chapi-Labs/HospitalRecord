@@ -158,8 +158,8 @@ class ConsultaController extends Controller
         foreach ($pacientes as $paciente) {
             $ingresosPaciente = $paciente->getIngreso();
             foreach ($ingresosPaciente as $ingreso) {
-                $diagnosticos = $ingreso->getArrayDiagnosticos();
-                if (in_array($diagnostico, $diagnosticos)) {
+                $diagnosticos = $ingreso->getDiagnosticos();
+                if ($diagnosticos->contains($diagnostico)) {
                     $returnPacientes[] = $paciente;
                 }
             }

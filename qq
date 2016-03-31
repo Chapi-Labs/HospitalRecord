@@ -1,0 +1,12 @@
+[1mdiff --git a/src/AppBundle/Resources/views/IngresoPaciente/new.html.twig b/src/AppBundle/Resources/views/IngresoPaciente/new.html.twig[m
+[1mindex 48d941e..464ab6f 100644[m
+[1m--- a/src/AppBundle/Resources/views/IngresoPaciente/new.html.twig[m
+[1m+++ b/src/AppBundle/Resources/views/IngresoPaciente/new.html.twig[m
+[36m@@ -24,7 +24,6 @@[m
+ $(function(){[m
+     $('#paciente_form_arrayDiagnosticos').addClass('select2')});[m
+ </script>[m
+[31m-[m
+ {% endblock %}[m
+ [m
+ {% block body -%}[m
